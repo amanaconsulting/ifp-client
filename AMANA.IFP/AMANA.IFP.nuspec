@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>http://redmine/projects/sx/wiki/Lizenzen</licenseUrl>
+    <projectUrl>http://amana-consulting.de/de/produkte/rechnungswesen/xbrl</projectUrl>
+    <iconUrl>http://downloads.amana-consulting.de/amana-nuget.png</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>See Redmine/SVN</releaseNotes>
+    <copyright>Copyright 2016 AMANA consulting GmbH</copyright>
+    <tags>XBRL</tags>
+	<dependencies>
+		<dependency id="AMANA.IFP.Client" version="$version$" />
+	</dependencies>
+  </metadata>
+</package>

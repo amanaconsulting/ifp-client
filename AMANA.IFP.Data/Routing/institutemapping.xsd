@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	attributeFormDefault="unqualified" elementFormDefault="qualified"
+	xmlns="http://www.ifp.de/namespace/mappings" targetNamespace="http://www.ifp.de/namespace/mappings">
+
+	<xs:simpleType name="UmgebungType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="test" />
+			<xs:enumeration value="prod" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:element name="Umgebung" type="UmgebungType" />
+	<xs:element name="URL" type="xs:string" />
+	<xs:element name="BLZ" type="xs:string" />
+	<xs:element name="BIC" type="xs:string" />
+	<xs:element name="Mail" type="xs:string" />
+	<xs:element name="Telefon" type="xs:string" />
+	<xs:element name="IFP-ID" type="xs:string" />
+	<xs:element name="Gueltig_ab" type="xs:string" />
+	<xs:element name="Gueltig_bis" type="xs:string" />
+	<xs:element name="Verarbeitungsart" type="xs:string" />
+
+	<xs:element name="Mapping">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Umgebung" minOccurs="1" maxOccurs="1" />
+				<xs:element ref="Gueltig_ab" minOccurs="1" maxOccurs="1" />
+				<xs:element ref="Gueltig_bis" minOccurs="0" maxOccurs="1" />
+				<xs:element ref="BLZ" minOccurs="1" maxOccurs="1" />
+				<xs:element ref="BIC" minOccurs="0" maxOccurs="1" />
+				<xs:element ref="Kontakt" minOccurs="1" maxOccurs="1" />
+				<xs:element ref="IFP-ID" minOccurs="1" maxOccurs="1" />
+				<xs:element ref="Version" minOccurs="1" maxOccurs="3" />
+			</xs:sequence>
+			<xs:attribute name="date" type="xs:dateTime" use="required" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="Mappings">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Mapping" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+			<xs:attribute name="date" type="xs:dateTime" use="required" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="Kontakt">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Mail" minOccurs="1" maxOccurs="1" />
+				<xs:element ref="Telefon" minOccurs="0" maxOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="Version">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="URL" minOccurs="1" maxOccurs="1" />
+				<xs:element ref="Taxonomie" minOccurs="1" maxOccurs="unbounded" />
+				<xs:element ref="Verarbeitungsart" minOccurs="0" maxOccurs="1" />
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="Taxonomie">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Gueltig_ab" minOccurs="1" maxOccurs="1" />
+				<xs:element ref="Gueltig_bis" minOccurs="0" maxOccurs="1" />
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

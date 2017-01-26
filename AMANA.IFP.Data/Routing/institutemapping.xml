@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mit XMLSpy v2013 rel. 2 sp2 (http://www.altova.com) von iSV (Fiducia IT AG) bearbeitet -->
+<Mappings date="2015-03-01T07:01:02" xmlns="htt//www.ifp.de/namespace/mappings" xmlns:xsi="htt//www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="htt//www.ifp.de/namespace/mappings institutemapping1.xsd ">
+    <Mapping date="2015-03-01T07:01:02">
+		<Umgebung>test</Umgebung>
+		<Gueltig_ab>2015-03-19</Gueltig_ab>
+		<Gueltig_bis>2017-05-12</Gueltig_bis>
+		<BLZ>9998887</BLZ>
+		<BIC>1234567890123456</BIC>
+		<Kontakt>
+			<Mail>info@amana-consulting.de</Mail>
+			<Telefon>0049020194622862</Telefon>
+		</Kontakt>
+		<IFP-ID>IFP98765432</IFP-ID>
+		<Version name="2017_001">
+			<URL>http://localhost:54079/BilanzdatenELBAService.svc</URL>
+			<Taxonomie name="HGB_6.0">
+				<Gueltig_ab>2017-01-01</Gueltig_ab>
+			</Taxonomie>
+			<Taxonomie name="HGB_5.4">
+				<Gueltig_ab>2015-01-01</Gueltig_ab>
+				<Gueltig_bis>2016-12-31</Gueltig_bis>
+			</Taxonomie>
+			<Taxonomie name="EÜR:1.0">
+				<Gueltig_ab>2015-01-01</Gueltig_ab>
+				<Gueltig_bis>2016-12-01</Gueltig_bis>
+			</Taxonomie>
+		</Version>
+	</Mapping>
+	<Mapping date="2015-03-01T07:01:02">
+		<Umgebung>test</Umgebung>
+		<Gueltig_ab>2015-03-19</Gueltig_ab>
+		<Gueltig_bis>2017-05-12</Gueltig_bis>
+		<BLZ>99988877</BLZ>
+		<BIC>1234567890123456</BIC>
+		<Kontakt>
+			<Mail>info@amana-consulting.de</Mail>
+			<Telefon>0049020194622862</Telefon>
+		</Kontakt>
+		<IFP-ID>IFP98765432</IFP-ID>
+		<Version name="2017_001">
+			<URL>http://localhost:54079/BilanzdatenELBAService.svc</URL>
+			<Taxonomie name="HGB_6.0">
+				<Gueltig_ab>2017-01-01</Gueltig_ab>
+			</Taxonomie>
+			<Taxonomie name="HGB_5.4">
+				<Gueltig_ab>2015-01-01</Gueltig_ab>
+				<Gueltig_bis>2016-12-31</Gueltig_bis>
+			</Taxonomie>
+			<Taxonomie name="EÜR:1.0">
+				<Gueltig_ab>2015-01-01</Gueltig_ab>
+				<Gueltig_bis>2016-12-01</Gueltig_bis>
+			</Taxonomie>
+		</Version>
+	</Mapping>
+	<Mapping date="2015-03-01T07:01:02">
+		<Umgebung>test</Umgebung>
+		<Gueltig_ab>2015-03-19</Gueltig_ab>
+		<Gueltig_bis>2017-05-12</Gueltig_bis>
+		<BLZ>1134456</BLZ>
+		<BIC>4913502315623451</BIC>
+		<Kontakt>
+			<Mail>elba-test@essendi.de</Mail>
+			<Telefon>0043987123456</Telefon>
+		</Kontakt>
+		<IFP-ID>alf123</IFP-ID>
+		<Version name="2017_001">
+			<URL>https://elba-test.essendi.de/BilanzdatenELBA</URL>
+			<Taxonomie name="HGB_6.0">
+				<Gueltig_ab>2017-01-01</Gueltig_ab>
+			</Taxonomie>
+			<Taxonomie name="HGB_5.4">
+				<Gueltig_ab>2015-01-01</Gueltig_ab>
+				<Gueltig_bis>2016-12-31</Gueltig_bis>
+			</Taxonomie>
+			<Taxonomie name="EÜR:1.0">
+				<Gueltig_ab>2015-01-01</Gueltig_ab>
+				<Gueltig_bis>2016-12-01</Gueltig_bis>
+			</Taxonomie>
+		</Version>
+	</Mapping>
+	<Mapping date="2015-03-03T13:11:12">
+		<Umgebung>test</Umgebung>
+		<Gueltig_ab>2015-03-19</Gueltig_ab>
+		<Gueltig_bis>2017-05-12</Gueltig_bis>
+		<BLZ>62290110</BLZ>
+		<BIC>GENODES1SHA</BIC>
+		<Kontakt>
+			<Mail>elba-test@essendi.de</Mail>
+			<Telefon>0043987123456</Telefon>
+		</Kontakt>
+		<IFP-ID>IFP9990000</IFP-ID>
+		<Version name="2017_001">
+			<URL>https://elba-test.essendi.de/BilanzdatenELBA</URL>
+			<Taxonomie name="HGB_6.0">
+				<Gueltig_ab>2017-01-01</Gueltig_ab>
+			</Taxonomie>
+			<Taxonomie name="HGB_5.4">
+				<Gueltig_ab>2015-01-01</Gueltig_ab>
+				<Gueltig_bis>2016-12-31</Gueltig_bis>
+			</Taxonomie>
+			<Taxonomie name="EÜR:1.0">
+				<Gueltig_ab>2015-01-01</Gueltig_ab>
+				<Gueltig_bis>2016-12-01</Gueltig_bis>
+			</Taxonomie>
+		</Version>
+	</Mapping>
+	<Mapping date="2015-03-05T23:59:59">
+		<Umgebung>test</Umgebung>
+		<Gueltig_ab>2015-03-19</Gueltig_ab>
+		<Gueltig_bis>2017-05-12</Gueltig_bis>
+		<BLZ>62090100</BLZ>
+		<BIC>GENODES1VHN 	</BIC>
+		<Kontakt>
+			<Mail>elba-test@essendi.de</Mail>
+			<Telefon>0043987123456</Telefon>
+		</Kontakt>
+		<IFP-ID>IFP99900003</IFP-ID>
+		<Version name="2017_001">
+			<URL>https://elba-test.essendi.de/BilanzdatenELBA</URL>
+			<Taxonomie name="HGB_6.0">
+				<Gueltig_ab>2017-01-01</Gueltig_ab>
+			</Taxonomie>
+			<Taxonomie name="HGB_5.4">
+				<Gueltig_ab>2015-01-01</Gueltig_ab>
+				<Gueltig_bis>2016-12-31</Gueltig_bis>
+			</Taxonomie>
+			<Taxonomie name="EÜR:1.0">
+				<Gueltig_ab>2015-01-01</Gueltig_ab>
+				<Gueltig_bis>2016-12-01</Gueltig_bis>
+			</Taxonomie>
+		</Version>
+	</Mapping>
+	<Mapping date="2015-03-06T00:00:00">
+		<Umgebung>test</Umgebung>
+		<Gueltig_ab>2015-03-19</Gueltig_ab>
+		<Gueltig_bis>2017-05-12</Gueltig_bis>
+		<BLZ>0011100</BLZ>
+		<BIC>0000000000</BIC>
+		<Kontakt>
+			<Mail>elba-test@essendi.de</Mail>
+			<Telefon>0043987123456</Telefon>
+		</Kontakt>
+		<IFP-ID>IFP99988833</IFP-ID>
+		<Version name="2017_001">
+			<URL>https://elba-test.essendi.de/BilanzdatenELBA</URL>
+			<Taxonomie name="HGB_6.0">
+				<Gueltig_ab>2017-01-01</Gueltig_ab>
+			</Taxonomie>
+			<Taxonomie name="HGB_5.4">
+				<Gueltig_ab>2015-01-01</Gueltig_ab>
+				<Gueltig_bis>2016-12-31</Gueltig_bis>
+			</Taxonomie>
+			<Taxonomie name="EÜR:1.0">
+				<Gueltig_ab>2015-01-01</Gueltig_ab>
+				<Gueltig_bis>2016-12-01</Gueltig_bis>
+			</Taxonomie>
+		</Version>
+	</Mapping>
+	<Mapping date="2015-03-06T01:00:00">
+		<Umgebung>test</Umgebung>
+		<Gueltig_ab>2015-03-19</Gueltig_ab>
+		<Gueltig_bis>2017-05-12</Gueltig_bis>
+		<BLZ>0022200</BLZ>
+		<BIC>0000000000</BIC>
+		<Kontakt>
+			<Mail>elba-test@essendi.de</Mail>
+			<Telefon>0043987123456</Telefon>
+		</Kontakt>
+		<IFP-ID>IFP99988844</IFP-ID>
+		<Version name="2017_001">
+			<URL>https://elba-test.essendi.de/BilanzdatenELBA</URL>
+			<Taxonomie name="HGB_6.0">
+				<Gueltig_ab>2017-01-01</Gueltig_ab>
+			</Taxonomie>
+			<Taxonomie name="HGB_5.4">
+				<Gueltig_ab>2015-01-01</Gueltig_ab>
+				<Gueltig_bis>2016-12-31</Gueltig_bis>
+			</Taxonomie>
+			<Taxonomie name="EÜR:1.0">
+				<Gueltig_ab>2015-01-01</Gueltig_ab>
+				<Gueltig_bis>2016-12-01</Gueltig_bis>
+			</Taxonomie>
+		</Version>
+	</Mapping>
+	<Mapping date="2015-03-06T01:00:00">
+		<Umgebung>test</Umgebung>
+		<Gueltig_ab>2015-03-19</Gueltig_ab>
+		<Gueltig_bis>2017-05-12</Gueltig_bis>
+		<BLZ>70020270</BLZ>
+		<BIC>HYVEDEMMXXX</BIC>
+		<Kontakt>
+			<Mail>elba-test@essendi.de</Mail>
+			<Telefon>0043987123456</Telefon>
+		</Kontakt>
+		<IFP-ID>IFP99900029</IFP-ID>
+		<Version name="2017_001">
+			<URL>https://elba-test.essendi.de/BilanzdatenELBA</URL>
+			<Taxonomie name="HGB_6.0">
+				<Gueltig_ab>2017-01-01</Gueltig_ab>
+			</Taxonomie>
+			<Taxonomie name="HGB_5.4">
+				<Gueltig_ab>2015-01-01</Gueltig_ab>
+				<Gueltig_bis>2016-12-31</Gueltig_bis>
+			</Taxonomie>
+			<Taxonomie name="EÜR:1.0">
+				<Gueltig_ab>2015-01-01</Gueltig_ab>
+				<Gueltig_bis>2016-12-01</Gueltig_bis>
+			</Taxonomie>
+		</Version>
+	</Mapping>
+	<Mapping date="2015-03-06T01:00:00">
+		<Umgebung>test</Umgebung>
+		<Gueltig_ab>2015-03-19</Gueltig_ab>
+		<Gueltig_bis>2017-05-12</Gueltig_bis>
+		<BLZ>67290100</BLZ>
+		<BIC>GENODE61HD3</BIC>
+		<Kontakt>
+			<Mail>elba-test@essendi.de</Mail>
+			<Telefon>0043987123456</Telefon>
+		</Kontakt>
+		<IFP-ID>IFP99900016</IFP-ID>
+		<Version name="2017_001">
+			<URL>https://elba-test.essendi.de/BilanzdatenELBA</URL>
+			<Taxonomie name="HGB_6.0">
+				<Gueltig_ab>2017-01-01</Gueltig_ab>
+			</Taxonomie>
+			<Taxonomie name="HGB_5.4">
+				<Gueltig_ab>2015-01-01</Gueltig_ab>
+				<Gueltig_bis>2016-12-31</Gueltig_bis>
+			</Taxonomie>
+			<Taxonomie name="EÜR:1.0">
+				<Gueltig_ab>2015-01-01</Gueltig_ab>
+				<Gueltig_bis>2016-12-01</Gueltig_bis>
+			</Taxonomie>
+		</Version>
+	</Mapping>
+	<Mapping date="2015-03-06T01:00:00">
+		<Umgebung>test</Umgebung>
+		<Gueltig_ab>2015-03-19</Gueltig_ab>
+		<Gueltig_bis>2017-05-12</Gueltig_bis>
+		<BLZ>71090000</BLZ>
+		<BIC>GENODEF1BGL</BIC>
+		<Kontakt>
+			<Mail>elba-test@essendi.de</Mail>
+			<Telefon>0043987123456</Telefon>
+		</Kontakt>
+		<IFP-ID>IFP99900016</IFP-ID>
+		<Version name="2017_001">
+			<URL>https://elba-test.essendi.de/BilanzdatenELBA</URL>
+			<Taxonomie name="HGB_6.0">
+				<Gueltig_ab>2017-01-01</Gueltig_ab>
+			</Taxonomie>
+			<Taxonomie name="HGB_5.4">
+				<Gueltig_ab>2015-01-01</Gueltig_ab>
+				<Gueltig_bis>2016-12-31</Gueltig_bis>
+			</Taxonomie>
+			<Taxonomie name="EÜR:1.0">
+				<Gueltig_ab>2015-01-01</Gueltig_ab>
+				<Gueltig_bis>2016-12-01</Gueltig_bis>
+			</Taxonomie>
+			<Verarbeitungsart>Hinweis auf Verarbeitungsart</Verarbeitungsart>
+		</Version>
+	</Mapping>
+</Mappings>
