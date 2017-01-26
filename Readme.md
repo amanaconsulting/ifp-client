@@ -2,7 +2,7 @@
 
 ## Installation
 
-Die aktuellste Version des Clients steht unter folgender Adresse zum Download zur Verfügung: https://github.com/amanaconsulting/DiFin-Client/releases
+Die aktuellste Version des Clients steht unter folgender Adresse zum Download zur Verfügung: [GitHub Releases](https://github.com/amanaconsulting/DiFin-Client/releases)
 
 Die ZIP-Datei muss entpackt und die AMANA.IFP.WinClient.exe gestartet werden.
 
