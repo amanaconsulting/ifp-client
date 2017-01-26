@@ -1,4 +1,4 @@
-# AMANA Client für den Digitalen Finanzbericht
+# AMANA IFP Client für den Digitalen Finanzbericht
 
 ## Installation
 
