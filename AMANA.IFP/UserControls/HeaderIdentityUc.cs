@@ -46,6 +46,7 @@ namespace AMANA.IFP.UserControls
             ProviderTextBox.DataBindings.Clear();
             ClientTextBox.DataBindings.Clear();
             InstituteIdTextBox.DataBindings.Clear();
+            InstituteIdTypeComboBox.DataBindings.Clear();
 
             if (_headerIdentity == null)
                 return;
@@ -54,6 +55,7 @@ namespace AMANA.IFP.UserControls
             ProviderTextBox.SetTextDataBinding(_headerIdentity, nameof(_headerIdentity.Provider));
             ClientTextBox.SetTextDataBinding(_headerIdentity, nameof(_headerIdentity.Client));
             InstituteIdTextBox.SetTextDataBinding(_headerIdentity, nameof(_headerIdentity.InstituteId));
+            InstituteIdTypeComboBox.SetTextDataBinding(_headerIdentity, nameof(_headerIdentity.InstituteIdType));
         }
     }
 }
