@@ -19,6 +19,15 @@ namespace AMANA.IFP.UserControls
         public HeaderIdentityUc()
         {
             InitializeComponent();
+            InitializeControl();
+        }
+
+        private void InitializeControl()
+        {
+            InstituteIdTypeComboBox.Items.Clear();
+            InstituteIdTypeComboBox.Items.Add("BLZ");
+            InstituteIdTypeComboBox.Items.Add("BIC");
+            InstituteIdTypeComboBox.Items.Add("RZBK");
         }
 
         public HeaderIdentity HeaderIdentity
@@ -33,18 +42,20 @@ namespace AMANA.IFP.UserControls
 
         private void InitializeControlBindings()
         {
-            FipIdTextBox.DataBindings.Clear();
+            UserIdTextBox.DataBindings.Clear();
             ProviderTextBox.DataBindings.Clear();
             ClientTextBox.DataBindings.Clear();
             InstituteIdTextBox.DataBindings.Clear();
+            InstituteIdTypeComboBox.DataBindings.Clear();
 
             if (_headerIdentity == null)
                 return;
 
-            FipIdTextBox.SetTextDataBinding(_headerIdentity, nameof(_headerIdentity.FipId));
+            UserIdTextBox.SetTextDataBinding(_headerIdentity, nameof(_headerIdentity.UserId));
             ProviderTextBox.SetTextDataBinding(_headerIdentity, nameof(_headerIdentity.Provider));
             ClientTextBox.SetTextDataBinding(_headerIdentity, nameof(_headerIdentity.Client));
             InstituteIdTextBox.SetTextDataBinding(_headerIdentity, nameof(_headerIdentity.InstituteId));
+            InstituteIdTypeComboBox.SetTextDataBinding(_headerIdentity, nameof(_headerIdentity.InstituteIdType));
         }
     }
 }

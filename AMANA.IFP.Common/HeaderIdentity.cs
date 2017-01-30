@@ -15,18 +15,19 @@ namespace AMANA.IFP.Common
 {
     public class HeaderIdentity : INotifyPropertyChanged
     {
-        private string _fipId;
+        private string _userId;
         private string _instituteId;
+        private string _instituteIdType;
         private string _client;
         private string _provider;
 
-        public string FipId
+        public string UserId
         {
-            get { return _fipId; }
+            get { return _userId; }
             set
             {
-                if (value == _fipId) return;
-                _fipId = value;
+                if (value == _userId) return;
+                _userId = value;
                 OnPropertyChanged();
             }
         }
@@ -38,6 +39,17 @@ namespace AMANA.IFP.Common
             {
                 if (value == _instituteId) return;
                 _instituteId = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string InstituteIdType
+        {
+            get { return _instituteIdType; }
+            set
+            {
+                if (value == _instituteIdType) return;
+                _instituteIdType = value;
                 OnPropertyChanged();
             }
         }
@@ -69,7 +81,7 @@ namespace AMANA.IFP.Common
             ns1IdentityHeaderTyp headerIdentity = new ns1IdentityHeaderTyp
             {
                 institute = GetHeaderInstitute(),
-                userid = FipId,
+                userid = UserId,
                 provider = Provider
             };
 
@@ -81,7 +93,8 @@ namespace AMANA.IFP.Common
             ns1IdentityHeaderTypInstitute institute = new ns1IdentityHeaderTypInstitute
             {
                 client = Client,
-                id = InstituteId
+                id = InstituteId,
+                idType = InstituteIdType
             };
 
             return institute;

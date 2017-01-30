@@ -53,9 +53,7 @@ namespace AMANA.IFP.Forms
             this.SenderIdentitiesUc = new AMANA.IFP.UserControls.SenderIdentitiesUc();
             this.SenderContactUc = new AMANA.IFP.UserControls.ContactUc();
             this.IfpConfigurationTabPage = new System.Windows.Forms.TabPage();
-            this.VersionTextBox = new System.Windows.Forms.TextBox();
-            this.VersionLabel = new System.Windows.Forms.Label();
-            this.HeaderIdentityUc = new AMANA.IFP.UserControls.HeaderIdentityUc();
+            this.ClientConfigurationUc = new AMANA.IFP.UserControls.ClientConfigurationUc();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.SettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.IfpSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -315,9 +313,7 @@ namespace AMANA.IFP.Forms
             // 
             // IfpConfigurationTabPage
             // 
-            this.IfpConfigurationTabPage.Controls.Add(this.VersionTextBox);
-            this.IfpConfigurationTabPage.Controls.Add(this.VersionLabel);
-            this.IfpConfigurationTabPage.Controls.Add(this.HeaderIdentityUc);
+            this.IfpConfigurationTabPage.Controls.Add(this.ClientConfigurationUc);
             this.IfpConfigurationTabPage.Location = new System.Drawing.Point(4, 22);
             this.IfpConfigurationTabPage.Name = "IfpConfigurationTabPage";
             this.IfpConfigurationTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -326,31 +322,15 @@ namespace AMANA.IFP.Forms
             this.IfpConfigurationTabPage.Text = "Client-Konfiguration";
             this.IfpConfigurationTabPage.UseVisualStyleBackColor = true;
             // 
-            // VersionTextBox
+            // ClientConfigurationUc
             // 
-            this.VersionTextBox.Location = new System.Drawing.Point(185, 140);
-            this.VersionTextBox.Name = "VersionTextBox";
-            this.VersionTextBox.Size = new System.Drawing.Size(460, 20);
-            this.VersionTextBox.TabIndex = 2;
-            // 
-            // VersionLabel
-            // 
-            this.VersionLabel.AutoSize = true;
-            this.VersionLabel.Location = new System.Drawing.Point(6, 143);
-            this.VersionLabel.Name = "VersionLabel";
-            this.VersionLabel.Size = new System.Drawing.Size(42, 13);
-            this.VersionLabel.TabIndex = 1;
-            this.VersionLabel.Text = "Version";
-            // 
-            // HeaderIdentityUc
-            // 
-            this.HeaderIdentityUc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ClientConfigurationUc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.HeaderIdentityUc.HeaderIdentity = null;
-            this.HeaderIdentityUc.Location = new System.Drawing.Point(3, 6);
-            this.HeaderIdentityUc.Name = "HeaderIdentityUc";
-            this.HeaderIdentityUc.Size = new System.Drawing.Size(645, 128);
-            this.HeaderIdentityUc.TabIndex = 0;
+            this.ClientConfigurationUc.IfpDataContainer = null;
+            this.ClientConfigurationUc.Location = new System.Drawing.Point(6, 6);
+            this.ClientConfigurationUc.Name = "ClientConfigurationUc";
+            this.ClientConfigurationUc.Size = new System.Drawing.Size(642, 192);
+            this.ClientConfigurationUc.TabIndex = 0;
             // 
             // menuStrip1
             // 
@@ -457,7 +437,6 @@ namespace AMANA.IFP.Forms
             this.SenderInfoTabPage.ResumeLayout(false);
             this.SenderInformationPanel.ResumeLayout(false);
             this.IfpConfigurationTabPage.ResumeLayout(false);
-            this.IfpConfigurationTabPage.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -487,9 +466,6 @@ namespace AMANA.IFP.Forms
         private AddressUc CustomerAddressUc;
         private ContactUc CustomerContactUc;
         private System.Windows.Forms.TabPage IfpConfigurationTabPage;
-        private HeaderIdentityUc HeaderIdentityUc;
-        private System.Windows.Forms.TextBox VersionTextBox;
-        private System.Windows.Forms.Label VersionLabel;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem SettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem HttpProxySettingsToolStripMenuItem;
@@ -502,6 +478,7 @@ namespace AMANA.IFP.Forms
         private System.Windows.Forms.ToolTip GcdToolTip;
         private System.Windows.Forms.ToolStripMenuItem hilfeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem überToolStripMenuItem;
+        private ClientConfigurationUc ClientConfigurationUc;
     }
 }
 

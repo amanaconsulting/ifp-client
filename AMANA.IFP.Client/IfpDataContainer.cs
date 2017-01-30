@@ -8,22 +8,37 @@
 // 
 // Link zu den Lizenzbedingungen: https://www.gnu.org/licenses/gpl-3.0.txt
 using System;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using AMANA.IFP.Common;
 using AMANA.IFP.Common.Helpers;
 using AMANA.IFP.Data.Elba;
 
 namespace AMANA.IFP.Client
 {
-    public class IfpDataContainer
+    public class IfpDataContainer : INotifyPropertyChanged
     {
         private string _settingsFilePath;
+        private string _version;
+
         public ElbaInformation ElbaInformation { get; set; }
         public HeaderIdentity HeaderIdentity { get; set; }
         public Client Client { get; set; }
-        public string Version { get; set; }
         public HttpProxySettings HttpProxySettings { get; set; }
-        public IfpClientSettings IfpClientSettings { get; set; } 
+        public IfpClientSettings IfpClientSettings { get; set; }
+
+        public string Version
+        {
+            get { return _version; }
+            set
+            {
+                if (value == _version) return;
+                _version = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         public string SettingsFilePath
         {
@@ -143,6 +158,13 @@ namespace AMANA.IFP.Client
                 HeaderIdentity.ToElbaData(), recieverMapping, recieverVersion, HttpProxySettings, IfpClientSettings.CertificateSettings);
 
             return new RequestResult(quittung);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

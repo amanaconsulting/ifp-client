@@ -35,8 +35,10 @@
             this.InstituteIdTextBox = new System.Windows.Forms.TextBox();
             this.ClientTextBox = new System.Windows.Forms.TextBox();
             this.ProviderTextBox = new System.Windows.Forms.TextBox();
-            this.FipIdTextBox = new System.Windows.Forms.TextBox();
-            this.FipIdLabel = new System.Windows.Forms.Label();
+            this.UserIdTextBox = new System.Windows.Forms.TextBox();
+            this.UserIdLabel = new System.Windows.Forms.Label();
+            this.IdTypeLabel = new System.Windows.Forms.Label();
+            this.InstituteIdTypeComboBox = new System.Windows.Forms.ComboBox();
             this.HeaderIdentityGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,17 +47,19 @@
             this.HeaderIdentityGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.HeaderIdentityGroupBox.Controls.Add(this.InstituteIdTypeComboBox);
+            this.HeaderIdentityGroupBox.Controls.Add(this.IdTypeLabel);
             this.HeaderIdentityGroupBox.Controls.Add(this.InstituteIdLabel);
             this.HeaderIdentityGroupBox.Controls.Add(this.ClientLabel);
             this.HeaderIdentityGroupBox.Controls.Add(this.ProviderLabel);
             this.HeaderIdentityGroupBox.Controls.Add(this.InstituteIdTextBox);
             this.HeaderIdentityGroupBox.Controls.Add(this.ClientTextBox);
             this.HeaderIdentityGroupBox.Controls.Add(this.ProviderTextBox);
-            this.HeaderIdentityGroupBox.Controls.Add(this.FipIdTextBox);
-            this.HeaderIdentityGroupBox.Controls.Add(this.FipIdLabel);
+            this.HeaderIdentityGroupBox.Controls.Add(this.UserIdTextBox);
+            this.HeaderIdentityGroupBox.Controls.Add(this.UserIdLabel);
             this.HeaderIdentityGroupBox.Location = new System.Drawing.Point(4, 4);
             this.HeaderIdentityGroupBox.Name = "HeaderIdentityGroupBox";
-            this.HeaderIdentityGroupBox.Size = new System.Drawing.Size(629, 122);
+            this.HeaderIdentityGroupBox.Size = new System.Drawing.Size(629, 151);
             this.HeaderIdentityGroupBox.TabIndex = 0;
             this.HeaderIdentityGroupBox.TabStop = false;
             this.HeaderIdentityGroupBox.Text = "Header-Identitätsinformationen*";
@@ -83,9 +87,9 @@
             this.ProviderLabel.AutoSize = true;
             this.ProviderLabel.Location = new System.Drawing.Point(6, 48);
             this.ProviderLabel.Name = "ProviderLabel";
-            this.ProviderLabel.Size = new System.Drawing.Size(46, 13);
+            this.ProviderLabel.Size = new System.Drawing.Size(89, 13);
             this.ProviderLabel.TabIndex = 2;
-            this.ProviderLabel.Text = "Provider";
+            this.ProviderLabel.Text = "Provider (IFP-ID)*";
             // 
             // InstituteIdTextBox
             // 
@@ -114,24 +118,42 @@
             this.ProviderTextBox.Size = new System.Drawing.Size(444, 20);
             this.ProviderTextBox.TabIndex = 3;
             // 
-            // FipIdTextBox
+            // UserIdTextBox
             // 
-            this.FipIdTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.UserIdTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.FipIdTextBox.Location = new System.Drawing.Point(179, 19);
-            this.FipIdTextBox.Name = "FipIdTextBox";
-            this.FipIdTextBox.ReadOnly = true;
-            this.FipIdTextBox.Size = new System.Drawing.Size(444, 20);
-            this.FipIdTextBox.TabIndex = 1;
+            this.UserIdTextBox.Location = new System.Drawing.Point(179, 19);
+            this.UserIdTextBox.Name = "UserIdTextBox";
+            this.UserIdTextBox.Size = new System.Drawing.Size(444, 20);
+            this.UserIdTextBox.TabIndex = 1;
             // 
-            // FipIdLabel
+            // UserIdLabel
             // 
-            this.FipIdLabel.AutoSize = true;
-            this.FipIdLabel.Location = new System.Drawing.Point(6, 22);
-            this.FipIdLabel.Name = "FipIdLabel";
-            this.FipIdLabel.Size = new System.Drawing.Size(37, 13);
-            this.FipIdLabel.TabIndex = 0;
-            this.FipIdLabel.Text = "FIP-ID";
+            this.UserIdLabel.AutoSize = true;
+            this.UserIdLabel.Location = new System.Drawing.Point(6, 22);
+            this.UserIdLabel.Name = "UserIdLabel";
+            this.UserIdLabel.Size = new System.Drawing.Size(148, 13);
+            this.UserIdLabel.TabIndex = 0;
+            this.UserIdLabel.Text = "User-ID (beim Servicenehmer)";
+            // 
+            // IdTypeLabel
+            // 
+            this.IdTypeLabel.AutoSize = true;
+            this.IdTypeLabel.Location = new System.Drawing.Point(6, 126);
+            this.IdTypeLabel.Name = "IdTypeLabel";
+            this.IdTypeLabel.Size = new System.Drawing.Size(78, 13);
+            this.IdTypeLabel.TabIndex = 1;
+            this.IdTypeLabel.Text = "Instituts-ID-Typ";
+            // 
+            // InstituteIdTypeComboBox
+            // 
+            this.InstituteIdTypeComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.InstituteIdTypeComboBox.FormattingEnabled = true;
+            this.InstituteIdTypeComboBox.Location = new System.Drawing.Point(179, 123);
+            this.InstituteIdTypeComboBox.Name = "InstituteIdTypeComboBox";
+            this.InstituteIdTypeComboBox.Size = new System.Drawing.Size(444, 21);
+            this.InstituteIdTypeComboBox.TabIndex = 8;
             // 
             // HeaderIdentityUc
             // 
@@ -139,7 +161,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.HeaderIdentityGroupBox);
             this.Name = "HeaderIdentityUc";
-            this.Size = new System.Drawing.Size(636, 128);
+            this.Size = new System.Drawing.Size(636, 157);
             this.HeaderIdentityGroupBox.ResumeLayout(false);
             this.HeaderIdentityGroupBox.PerformLayout();
             this.ResumeLayout(false);
@@ -152,10 +174,12 @@
         private System.Windows.Forms.TextBox InstituteIdTextBox;
         private System.Windows.Forms.TextBox ClientTextBox;
         private System.Windows.Forms.TextBox ProviderTextBox;
-        private System.Windows.Forms.TextBox FipIdTextBox;
-        private System.Windows.Forms.Label FipIdLabel;
+        private System.Windows.Forms.TextBox UserIdTextBox;
+        private System.Windows.Forms.Label UserIdLabel;
         private System.Windows.Forms.Label InstituteIdLabel;
         private System.Windows.Forms.Label ClientLabel;
         private System.Windows.Forms.Label ProviderLabel;
+        private System.Windows.Forms.Label IdTypeLabel;
+        private System.Windows.Forms.ComboBox InstituteIdTypeComboBox;
     }
 }
