@@ -24,6 +24,7 @@ namespace AMANA.IFP.Forms
 
         public Software ChannelSoftware { get; set; } = new Software()
         {
+            Id = "IFP99900045",
             Manufacturer = "AMANA consulting GmbH",
             Name = "IFP Transfer Client",
             Version = Assembly.GetExecutingAssembly().GetName().Version.ToString()
@@ -106,9 +107,8 @@ namespace AMANA.IFP.Forms
 
             BalanceInformation.BalanceInformation = elbaInformation.PrimaryBalanceInformation;
 
-            HeaderIdentityUc.HeaderIdentity = _dataContainer.HeaderIdentity;
-            VersionTextBox.SetTextDataBinding(_dataContainer, nameof(_dataContainer.Version));
             CustomerTextBox.SetTextDataBinding(customer, nameof(customer.Name));
+            ClientConfigurationUc.IfpDataContainer = _dataContainer;
 
             GcdToolTip.SetToolTip(BtnSetGcdCustomer, GuiHelper.GetGcdValueTooltipText("Name"));
         }

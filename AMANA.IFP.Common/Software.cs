@@ -35,7 +35,8 @@ namespace AMANA.IFP.Common
         {
             ns1ChannelHeaderTyp channel = new ns1ChannelHeaderTyp
             {
-                hersteller = Manufacturer,
+                idSoftwareProducer = Id,
+                softwareProducer = Manufacturer,
                 name = Name,
                 version = Version
             };

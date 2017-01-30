@@ -138,6 +138,12 @@
     <Compile Include="UserControls\CertificateSettingsUc.Designer.cs">
       <DependentUpon>CertificateSettingsUc.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ClientConfigurationUc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ClientConfigurationUc.Designer.cs">
+      <DependentUpon>ClientConfigurationUc.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ContactPersonUc.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -249,6 +255,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\CertificateSettingsUc.resx">
       <DependentUpon>CertificateSettingsUc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ClientConfigurationUc.resx">
+      <DependentUpon>ClientConfigurationUc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ContactPersonUc.resx">
       <DependentUpon>ContactPersonUc.cs</DependentUpon>

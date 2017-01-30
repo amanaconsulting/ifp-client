@@ -8,22 +8,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.Net.Security;
-
 namespace AMANA.IFP.Data.Elba {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="http://ifpev-schema.de/BilanzdatenELBA/_impl/FIDUCIAGAD", ConfigurationName="Elba.BilanzdatenELBAPortType", ProtectionLevel=ProtectionLevel.Sign)]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="http://ifpev-schema.de/BilanzdatenELBA/_impl/FIDUCIAGAD", ConfigurationName="Elba.BilanzdatenELBAPortType")]
     public interface BilanzdatenELBAPortType {
         
         // CODEGEN: Generating message contract since the operation uebernehmeElbaDaten is neither RPC nor document wrapped.
-        [System.ServiceModel.OperationContractAttribute(Action="http://ifpev-schema.de/BilanzdatenELBA/uebernehmeElbaDaten", ReplyAction="")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://ifpev-schema.de/BilanzdatenELBA/uebernehmeElbaDaten", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         AMANA.IFP.Data.Elba.uebernehmeElbaDatenResponse uebernehmeElbaDaten(AMANA.IFP.Data.Elba.uebernehmeElbaDatenRequest request);
         
-        //[System.ServiceModel.OperationContractAttribute(Action="http://ifpev-schema.de/BilanzdatenELBA/uebernehmeElbaDaten", ReplyAction="*")]
-        //System.Threading.Tasks.Task<AMANA.IFP.Data.Elba.uebernehmeElbaDatenResponse> uebernehmeElbaDatenAsync(AMANA.IFP.Data.Elba.uebernehmeElbaDatenRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://ifpev-schema.de/BilanzdatenELBA/uebernehmeElbaDaten", ReplyAction="*")]
+        System.Threading.Tasks.Task<AMANA.IFP.Data.Elba.uebernehmeElbaDatenResponse> uebernehmeElbaDatenAsync(AMANA.IFP.Data.Elba.uebernehmeElbaDatenRequest request);
     }
     
     /// <remarks/>
@@ -38,7 +36,9 @@ namespace AMANA.IFP.Data.Elba {
         
         private string versionField;
         
-        private string herstellerField;
+        private string softwareProducerField;
+        
+        private string idSoftwareProducerField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
@@ -66,13 +66,25 @@ namespace AMANA.IFP.Data.Elba {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=2)]
-        public string hersteller {
+        public string softwareProducer {
             get {
-                return this.herstellerField;
+                return this.softwareProducerField;
             }
             set {
-                this.herstellerField = value;
-                this.RaisePropertyChanged("hersteller");
+                this.softwareProducerField = value;
+                this.RaisePropertyChanged("softwareProducer");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public string idSoftwareProducer {
+            get {
+                return this.idSoftwareProducerField;
+            }
+            set {
+                this.idSoftwareProducerField = value;
+                this.RaisePropertyChanged("idSoftwareProducer");
             }
         }
         
@@ -430,12 +442,26 @@ namespace AMANA.IFP.Data.Elba {
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.ifpev.de/Protocol")]
     public partial class ns1IdentityHeaderTypInstitute : object, System.ComponentModel.INotifyPropertyChanged {
         
+        private string idTypeField;
+        
         private string idField;
         
         private string clientField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string idType {
+            get {
+                return this.idTypeField;
+            }
+            set {
+                this.idTypeField = value;
+                this.RaisePropertyChanged("idType");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
         public string id {
             get {
                 return this.idField;
@@ -447,7 +473,7 @@ namespace AMANA.IFP.Data.Elba {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
         public string client {
             get {
                 return this.clientField;
@@ -2081,22 +2107,22 @@ namespace AMANA.IFP.Data.Elba {
             return retVal.Rueckmeldung;
         }
         
-        //[System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        //System.Threading.Tasks.Task<AMANA.IFP.Data.Elba.uebernehmeElbaDatenResponse> AMANA.IFP.Data.Elba.BilanzdatenELBAPortType.uebernehmeElbaDatenAsync(AMANA.IFP.Data.Elba.uebernehmeElbaDatenRequest request) {
-        //    return base.Channel.uebernehmeElbaDatenAsync(request);
-        //}
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<AMANA.IFP.Data.Elba.uebernehmeElbaDatenResponse> AMANA.IFP.Data.Elba.BilanzdatenELBAPortType.uebernehmeElbaDatenAsync(AMANA.IFP.Data.Elba.uebernehmeElbaDatenRequest request) {
+            return base.Channel.uebernehmeElbaDatenAsync(request);
+        }
         
-        //public System.Threading.Tasks.Task<AMANA.IFP.Data.Elba.uebernehmeElbaDatenResponse> uebernehmeElbaDatenAsync(AMANA.IFP.Data.Elba.ns1ChannelHeaderTyp Channel, AMANA.IFP.Data.Elba.ns1IdentityHeaderTyp Identity, AMANA.IFP.Data.Elba.ns1ProtocolHeaderTyp Protocol, AMANA.IFP.Data.Elba.ns1ServiceHeaderTyp Service, AMANA.IFP.Data.Elba.ns1SessionHeaderTyp Session, AMANA.IFP.Data.Elba.ns1TargetHeaderTyp Target, AMANA.IFP.Data.Elba.ns1TicketHeaderTyp Ticket, AMANA.IFP.Data.Elba.ns2BilanzdatenTyp uebernehmeElbaDaten) {
-        //    AMANA.IFP.Data.Elba.uebernehmeElbaDatenRequest inValue = new AMANA.IFP.Data.Elba.uebernehmeElbaDatenRequest();
-        //    inValue.Channel = Channel;
-        //    inValue.Identity = Identity;
-        //    inValue.Protocol = Protocol;
-        //    inValue.Service = Service;
-        //    inValue.Session = Session;
-        //    inValue.Target = Target;
-        //    inValue.Ticket = Ticket;
-        //    inValue.uebernehmeElbaDaten = uebernehmeElbaDaten;
-        //    return ((AMANA.IFP.Data.Elba.BilanzdatenELBAPortType)(this)).uebernehmeElbaDatenAsync(inValue);
-        //}
+        public System.Threading.Tasks.Task<AMANA.IFP.Data.Elba.uebernehmeElbaDatenResponse> uebernehmeElbaDatenAsync(AMANA.IFP.Data.Elba.ns1ChannelHeaderTyp Channel, AMANA.IFP.Data.Elba.ns1IdentityHeaderTyp Identity, AMANA.IFP.Data.Elba.ns1ProtocolHeaderTyp Protocol, AMANA.IFP.Data.Elba.ns1ServiceHeaderTyp Service, AMANA.IFP.Data.Elba.ns1SessionHeaderTyp Session, AMANA.IFP.Data.Elba.ns1TargetHeaderTyp Target, AMANA.IFP.Data.Elba.ns1TicketHeaderTyp Ticket, AMANA.IFP.Data.Elba.ns2BilanzdatenTyp uebernehmeElbaDaten) {
+            AMANA.IFP.Data.Elba.uebernehmeElbaDatenRequest inValue = new AMANA.IFP.Data.Elba.uebernehmeElbaDatenRequest();
+            inValue.Channel = Channel;
+            inValue.Identity = Identity;
+            inValue.Protocol = Protocol;
+            inValue.Service = Service;
+            inValue.Session = Session;
+            inValue.Target = Target;
+            inValue.Ticket = Ticket;
+            inValue.uebernehmeElbaDaten = uebernehmeElbaDaten;
+            return ((AMANA.IFP.Data.Elba.BilanzdatenELBAPortType)(this)).uebernehmeElbaDatenAsync(inValue);
+        }
     }
 }
