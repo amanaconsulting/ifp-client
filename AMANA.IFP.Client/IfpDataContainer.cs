@@ -119,8 +119,8 @@ namespace AMANA.IFP.Client
             foreach (IfpMapping mapping in RoutingTableReader.Mappings)
             {
                 if (mapping.BLZ == ElbaInformation.RecieverInformation.BankId.Value
-                    && mapping.ValidFrom >= date
-                    && mapping.ValidTo <= date
+                    && mapping.ValidFrom <= date
+                    && mapping.ValidTo >= date
                     && mapping.Umgebung == UmgebungType.test == isTest)
                 {
                     foreach (Version version in mapping.Version)
@@ -128,8 +128,8 @@ namespace AMANA.IFP.Client
                         foreach (Taxonomie taxonomy in version.Taxonomie)
                         {
                             if (taxonomy.name == taxonomyName
-                                && (string.IsNullOrEmpty(taxonomy.Gueltig_ab) || DateTime.Parse(taxonomy.Gueltig_ab) >= date)
-                                && (string.IsNullOrEmpty(taxonomy.Gueltig_bis) || DateTime.Parse(taxonomy.Gueltig_bis) <= date))
+                                && (string.IsNullOrEmpty(taxonomy.Gueltig_ab) || DateTime.Parse(taxonomy.Gueltig_ab) <= date)
+                                && (string.IsNullOrEmpty(taxonomy.Gueltig_bis) || DateTime.Parse(taxonomy.Gueltig_bis) >= date))
                             {
                                 recieverMapping = mapping;
                                 recieverVersion = version;
