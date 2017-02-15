@@ -37,7 +37,7 @@ Zusätzlich zu den Leistungen der Open Source Variante bietet die Professional Ed
 
 ### Enterprise XBRL Portal (kostenpflichtig)
 
-Zusätzlich zu den Leistungen der Open Source und der Professional Variante bietet die Enterprise Portal Edition:
+Zusätzlich zu den Leistungen der Open Source und der Professional Variante bietet die Enterprise XBRL Portal Edition:
 
 * Datenbankgestützte Verwaltung von Mandanten und Abschlüssen
 * Excel-Visualisierung der XBRL-Meldungen
