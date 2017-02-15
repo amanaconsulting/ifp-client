@@ -65,7 +65,7 @@ namespace AMANA.IFP.Client
 
             if (!File.Exists(filename))
                 filename =
-                    $@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\AMANAconsulting\institutemapping.xml";
+                    $@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\AMANAconsulting\ifpSettings.xml";
 
             if (File.Exists(filename))
             {
