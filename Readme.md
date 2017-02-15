@@ -4,7 +4,7 @@
 
 Die aktuellste Version des Clients steht unter folgender Adresse zum Download zur Verfügung: [GitHub Releases](https://github.com/amanaconsulting/DiFin-Client/releases)
 
-Die ZIP-Datei muss entpackt und die AMANA.IFP.WinClient.exe gestartet werden.
+Die ZIP-Datei muss entpackt und die AMANA.IFP.WinClient.exe gestartet werden. Grundsätzlich lassen sich die DLL's aber auch als API in Drittanwendungen verwenden.
 
 ## Systemvoraussetzungen
 
@@ -12,6 +12,8 @@ Die ZIP-Datei muss entpackt und die AMANA.IFP.WinClient.exe gestartet werden.
 * .NET Framework 4.5.1
 
 ## Leistungsmerkmale
+
+![Der IFP Client bietet eine kofortable Benutzeroberfläche mit Validierung.](https://amana-consulting.de/files/_theme/uploads/graphics/ifp_client.png "Der IFP Client bietet eine kofortable Benutzeroberfläche mit Validierung.")
 
 Hier noch ein kurzer Überblick über die verfügbaren Leistungsmerkmale. Die Versionen „Professional“ und „Enterprise Portal“ sind nicht als Open Source verfügbar. Wenn Sie hieran Interesse haben, machen wir Ihnen gerne ein Angebot.
 
