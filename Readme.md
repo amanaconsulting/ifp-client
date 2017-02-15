@@ -33,7 +33,7 @@ Zusätzlich zu den Leistungen der Open Source Variante bietet die Professional Ed
 
 * XBRL „Checker“-Validierung vor dem Absenden
 * Support und Gewährleistung durch AMANA
-* Excel/CSV zu XBRL Konverter
+* Konverter: Excel/CSV -> XBRL und XBRL -> Excel/HTML/PDF
 
 ### Enterprise XBRL Portal (kostenpflichtig)
 
