@@ -15,26 +15,27 @@ Die ZIP-Datei muss entpackt und die AMANA.IFP.WinClient.exe gestartet werden. Gr
 
 ![Der IFP Client bietet eine kofortable Benutzeroberfläche mit Validierung.](https://amana-consulting.de/files/_theme/uploads/graphics/ifp_client.png "Der IFP Client bietet eine kofortable Benutzeroberfläche mit Validierung.")
 
-Hier noch ein kurzer Überblick über die verfügbaren Leistungsmerkmale. Die Versionen „Professional“ und „Enterprise Portal“ sind nicht als Open Source verfügbar. Wenn Sie hieran Interesse haben, machen wir Ihnen gerne ein Angebot.
-
 ### Open Source
 
-Die Leistungen der Open Source Variante:
+Die Leistungen der hier angebotenen Open Source Variante:
 
 * Einfache Benutzeroberfläche
 * Stammdateneingabe
 * Stammdatenvalidierung
 * Versendung mittels Routing an beliebige Banken
 * Anzeige der Versendungsrückmeldung
+* Automatische Übernahme der Stammdaten aus XBRL in die IFP Header
+* Automatischer Download der Routing Tabelle (Institutsmapping)
 
-### Professional
+### Professional (kostenpflichtig)
 
 Zusätzlich zu den Leistungen der Open Source Variante bietet die Professional Edition:
 
 * XBRL „Checker“-Validierung vor dem Absenden
 * Support und Gewährleistung durch AMANA
+* Excel/CSV zu XBRL Konverter
 
-### Enterprise Portal
+### Enterprise XBRL Portal (kostenpflichtig)
 
 Zusätzlich zu den Leistungen der Open Source und der Professional Variante bietet die Enterprise Portal Edition:
 
@@ -45,6 +46,7 @@ Zusätzlich zu den Leistungen der Open Source und der Professional Variante biete
 * Datenextraktion und Schnittstellen zu Data Warehouse Systemen
 * Vollständiger Audit-Trail und Ablage der Versendungsergebnisse
 * Server für den Digitalen Finanzbericht
+* XBRL Web-Editor 
 
 ## Lizenzinformationen
 
