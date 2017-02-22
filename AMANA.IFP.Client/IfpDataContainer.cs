@@ -78,8 +78,8 @@ namespace AMANA.IFP.Client
 
         public RequestResult SendData(Software channelSoftware, bool isTest = false)
         {
-            if (RoutingTableReader.Mappings == null)
-                RoutingTableReader.Read(IfpClientSettings.RoutingTableFilePath);
+            //if (RoutingTableReader.Mappings == null)
+            RoutingTableReader.Read(IfpClientSettings.RoutingTableFilePath);
 
             if (RoutingTableReader.Mappings == null)
                 throw new NullReferenceException("Die Routing-Tabelle konnte nicht ausgelesen werden. " +

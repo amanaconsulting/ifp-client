@@ -95,7 +95,7 @@ namespace AMANA.IFP.Common.Helpers
                     mapping.Gueltig_ab = mappingDetails.InnerText;
                     try
                     {
-                        mapping.ValidFrom = DateTime.Parse(mapping.Gueltig_ab);
+                        mapping.ValidFrom = XmlConvert.ToDateTime(mapping.Gueltig_ab);
                     }
                     catch (Exception ex)
                     {
@@ -107,7 +107,7 @@ namespace AMANA.IFP.Common.Helpers
                     mapping.Gueltig_bis = mappingDetails.InnerText;
                     try
                     {
-                        mapping.ValidFrom = DateTime.Parse(mapping.Gueltig_bis);
+                        mapping.ValidTo = XmlConvert.ToDateTime(mapping.Gueltig_bis);
                     }
                     catch (Exception ex)
                     {
