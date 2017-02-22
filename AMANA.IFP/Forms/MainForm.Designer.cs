@@ -64,6 +64,7 @@ namespace AMANA.IFP.Forms
             this.LblMandatoryFieldsInfo = new System.Windows.Forms.Label();
             this.BtnClose = new System.Windows.Forms.Button();
             this.GcdToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.chk_Testsubmission = new System.Windows.Forms.CheckBox();
             this.InformationTabs.SuspendLayout();
             this.BalanceInfoTabPage.SuspendLayout();
             this.CustomerInfoTabPage.SuspendLayout();
@@ -77,7 +78,7 @@ namespace AMANA.IFP.Forms
             // BtnSend
             // 
             this.BtnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BtnSend.Location = new System.Drawing.Point(13, 676);
+            this.BtnSend.Location = new System.Drawing.Point(23, 676);
             this.BtnSend.Name = "BtnSend";
             this.BtnSend.Size = new System.Drawing.Size(75, 23);
             this.BtnSend.TabIndex = 1;
@@ -384,7 +385,7 @@ namespace AMANA.IFP.Forms
             // ShowMessagesButton
             // 
             this.ShowMessagesButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ShowMessagesButton.Location = new System.Drawing.Point(94, 676);
+            this.ShowMessagesButton.Location = new System.Drawing.Point(105, 676);
             this.ShowMessagesButton.Name = "ShowMessagesButton";
             this.ShowMessagesButton.Size = new System.Drawing.Size(125, 23);
             this.ShowMessagesButton.TabIndex = 4;
@@ -412,11 +413,22 @@ namespace AMANA.IFP.Forms
             this.BtnClose.UseVisualStyleBackColor = true;
             this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
+            // chk_Testsubmission
+            // 
+            this.chk_Testsubmission.AutoSize = true;
+            this.chk_Testsubmission.Location = new System.Drawing.Point(236, 682);
+            this.chk_Testsubmission.Name = "chk_Testsubmission";
+            this.chk_Testsubmission.Size = new System.Drawing.Size(104, 17);
+            this.chk_Testsubmission.TabIndex = 6;
+            this.chk_Testsubmission.Text = "Testübermittlung";
+            this.chk_Testsubmission.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 711);
+            this.Controls.Add(this.chk_Testsubmission);
             this.Controls.Add(this.BtnClose);
             this.Controls.Add(this.LblMandatoryFieldsInfo);
             this.Controls.Add(this.ShowMessagesButton);
@@ -479,6 +491,7 @@ namespace AMANA.IFP.Forms
         private System.Windows.Forms.ToolStripMenuItem hilfeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem überToolStripMenuItem;
         private ClientConfigurationUc ClientConfigurationUc;
+        private System.Windows.Forms.CheckBox chk_Testsubmission;
     }
 }
 

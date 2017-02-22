@@ -132,7 +132,7 @@ namespace AMANA.IFP.Forms
         {
             try
             {
-                SendData(_dataContainer);
+                SendData(_dataContainer, chk_Testsubmission.Checked);
             }
             catch (Exception ex)
             {
