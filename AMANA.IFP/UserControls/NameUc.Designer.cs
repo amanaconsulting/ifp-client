@@ -51,9 +51,11 @@
             this.NameGrp.Controls.Add(this.NameTlp);
             this.NameGrp.Controls.Add(this.NameLabel);
             this.NameGrp.Controls.Add(this.NameTextBox);
-            this.NameGrp.Location = new System.Drawing.Point(3, 3);
+            this.NameGrp.Location = new System.Drawing.Point(4, 4);
+            this.NameGrp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.NameGrp.Name = "NameGrp";
-            this.NameGrp.Size = new System.Drawing.Size(629, 79);
+            this.NameGrp.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.NameGrp.Size = new System.Drawing.Size(839, 97);
             this.NameGrp.TabIndex = 0;
             this.NameGrp.TabStop = false;
             this.NameGrp.Text = "Name";
@@ -68,11 +70,12 @@
             this.NameTlp.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.NameTlp.Controls.Add(this.NameAdditionPnl, 1, 0);
             this.NameTlp.Controls.Add(this.NameAffixPnl, 0, 0);
-            this.NameTlp.Location = new System.Drawing.Point(6, 40);
+            this.NameTlp.Location = new System.Drawing.Point(8, 49);
+            this.NameTlp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.NameTlp.Name = "NameTlp";
             this.NameTlp.RowCount = 1;
             this.NameTlp.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.NameTlp.Size = new System.Drawing.Size(620, 33);
+            this.NameTlp.Size = new System.Drawing.Size(827, 41);
             this.NameTlp.TabIndex = 2;
             // 
             // NameAdditionPnl
@@ -82,17 +85,19 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NameAdditionPnl.Controls.Add(this.NameAdditionLabel);
             this.NameAdditionPnl.Controls.Add(this.NameAdditionTextBox);
-            this.NameAdditionPnl.Location = new System.Drawing.Point(313, 3);
+            this.NameAdditionPnl.Location = new System.Drawing.Point(417, 4);
+            this.NameAdditionPnl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.NameAdditionPnl.Name = "NameAdditionPnl";
-            this.NameAdditionPnl.Size = new System.Drawing.Size(304, 27);
+            this.NameAdditionPnl.Size = new System.Drawing.Size(406, 33);
             this.NameAdditionPnl.TabIndex = 1;
             // 
             // NameAdditionLabel
             // 
             this.NameAdditionLabel.AutoSize = true;
-            this.NameAdditionLabel.Location = new System.Drawing.Point(5, 6);
+            this.NameAdditionLabel.Location = new System.Drawing.Point(7, 7);
+            this.NameAdditionLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.NameAdditionLabel.Name = "NameAdditionLabel";
-            this.NameAdditionLabel.Size = new System.Drawing.Size(102, 13);
+            this.NameAdditionLabel.Size = new System.Drawing.Size(136, 17);
             this.NameAdditionLabel.TabIndex = 0;
             this.NameAdditionLabel.Text = "Namensergaenzung";
             // 
@@ -100,9 +105,10 @@
             // 
             this.NameAdditionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.NameAdditionTextBox.Location = new System.Drawing.Point(170, 3);
+            this.NameAdditionTextBox.Location = new System.Drawing.Point(227, 4);
+            this.NameAdditionTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.NameAdditionTextBox.Name = "NameAdditionTextBox";
-            this.NameAdditionTextBox.Size = new System.Drawing.Size(128, 20);
+            this.NameAdditionTextBox.Size = new System.Drawing.Size(170, 22);
             this.NameAdditionTextBox.TabIndex = 1;
             // 
             // NameAffixPnl
@@ -112,17 +118,19 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NameAffixPnl.Controls.Add(this.NameAffixLabel);
             this.NameAffixPnl.Controls.Add(this.NameAffixTextBox);
-            this.NameAffixPnl.Location = new System.Drawing.Point(3, 3);
+            this.NameAffixPnl.Location = new System.Drawing.Point(4, 4);
+            this.NameAffixPnl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.NameAffixPnl.Name = "NameAffixPnl";
-            this.NameAffixPnl.Size = new System.Drawing.Size(304, 27);
+            this.NameAffixPnl.Size = new System.Drawing.Size(405, 33);
             this.NameAffixPnl.TabIndex = 0;
             // 
             // NameAffixLabel
             // 
             this.NameAffixLabel.AutoSize = true;
-            this.NameAffixLabel.Location = new System.Drawing.Point(7, 6);
+            this.NameAffixLabel.Location = new System.Drawing.Point(9, 7);
+            this.NameAffixLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.NameAffixLabel.Name = "NameAffixLabel";
-            this.NameAffixLabel.Size = new System.Drawing.Size(76, 13);
+            this.NameAffixLabel.Size = new System.Drawing.Size(101, 17);
             this.NameAffixLabel.TabIndex = 0;
             this.NameAffixLabel.Text = "Namenszusatz";
             // 
@@ -130,34 +138,38 @@
             // 
             this.NameAffixTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.NameAffixTextBox.Location = new System.Drawing.Point(170, 3);
+            this.NameAffixTextBox.Location = new System.Drawing.Point(227, 4);
+            this.NameAffixTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.NameAffixTextBox.Name = "NameAffixTextBox";
-            this.NameAffixTextBox.Size = new System.Drawing.Size(125, 20);
+            this.NameAffixTextBox.Size = new System.Drawing.Size(165, 22);
             this.NameAffixTextBox.TabIndex = 1;
             // 
             // NameLabel
             // 
             this.NameLabel.AutoSize = true;
-            this.NameLabel.Location = new System.Drawing.Point(16, 20);
+            this.NameLabel.Location = new System.Drawing.Point(21, 25);
+            this.NameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.NameLabel.Name = "NameLabel";
-            this.NameLabel.Size = new System.Drawing.Size(35, 13);
+            this.NameLabel.Size = new System.Drawing.Size(50, 17);
             this.NameLabel.TabIndex = 0;
-            this.NameLabel.Text = "Name";
+            this.NameLabel.Text = "Name*";
             // 
             // NameTextBox
             // 
-            this.NameTextBox.Location = new System.Drawing.Point(179, 17);
+            this.NameTextBox.Location = new System.Drawing.Point(239, 21);
+            this.NameTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.NameTextBox.Name = "NameTextBox";
-            this.NameTextBox.Size = new System.Drawing.Size(125, 20);
+            this.NameTextBox.Size = new System.Drawing.Size(165, 22);
             this.NameTextBox.TabIndex = 1;
             // 
             // NameUc
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.NameGrp);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "NameUc";
-            this.Size = new System.Drawing.Size(636, 85);
+            this.Size = new System.Drawing.Size(848, 105);
             this.NameGrp.ResumeLayout(false);
             this.NameGrp.PerformLayout();
             this.NameTlp.ResumeLayout(false);

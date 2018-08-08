@@ -78,6 +78,7 @@
     </Content>
     <None Include="Config\appSettings.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="key.snk" />
     <None Include="Properties\Settings.settings">
@@ -91,7 +92,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AMANA.IFP\AMANA.IFP.csproj">

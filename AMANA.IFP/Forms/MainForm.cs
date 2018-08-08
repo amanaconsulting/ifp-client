@@ -76,10 +76,9 @@ namespace AMANA.IFP.Forms
 
         private void InitObjects()
         {
-            _dataContainer = new IfpDataContainer(ConfigurationManager.AppSettings["IfpSettingsFilePath"])
+            _dataContainer = new IfpDataContainer()
             {
-                Version = "2017_001",
-                IfpClientSettings = {ValidateIfpData = true}
+                Version = "2017_001"                
             };
         }
 
@@ -195,7 +194,7 @@ namespace AMANA.IFP.Forms
         {
             IfpSettingsForm form = new IfpSettingsForm { Settings = _dataContainer.IfpClientSettings };
             if (form.ShowDialog() == DialogResult.OK)
-                _dataContainer.IfpClientSettings.Save(_dataContainer.SettingsFilePath);
+                _dataContainer.IfpClientSettings.Save();
         }
 
         private void BtnSetGcdCustomer_Click(object sender, EventArgs e)

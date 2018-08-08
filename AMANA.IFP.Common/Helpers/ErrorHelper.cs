@@ -120,6 +120,8 @@ namespace AMANA.IFP.Common.Helpers
                     return CreateHinweis(fehlercode, @"Ungültiger Wert im Feld Anhaenge-AnhangID");
                 case Enums.Fehlercode.F150:
                     return CreateHinweis(fehlercode, @"Kein PDF-Anhang vorhanden");
+                case Enums.Fehlercode.F168:
+                    return CreateHinweis(fehlercode, @"Mehr als 5 Datei-Anhänge sind nicht erlaubt");
                 case Enums.Fehlercode.U111:
                     return CreateHinweis(fehlercode, @"Unbekannter Fehler");
                 default:

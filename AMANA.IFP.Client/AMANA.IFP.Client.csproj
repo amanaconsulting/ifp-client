@@ -64,7 +64,6 @@
     </Compile>
     <Compile Include="CertificateSettings.cs" />
     <Compile Include="Client.cs" />
-    <Compile Include="ElbaDebugInterceptor.cs" />
     <Compile Include="IfpDataContainer.cs" />
     <Compile Include="IfpClientSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

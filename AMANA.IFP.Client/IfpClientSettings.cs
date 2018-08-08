@@ -22,6 +22,7 @@ namespace AMANA.IFP.Client
         private bool _validateIfpData;
         private bool _validateGcdData;
         private string _routingTableFilePath;
+        private readonly string _settingsFilePath;
 
         public bool ValidateIfpData
         {
@@ -58,23 +59,19 @@ namespace AMANA.IFP.Client
 
         public CertificateSettings CertificateSettings { get; set; }
 
-        public static IfpClientSettings Load(string filename)
-        {
-            IfpClientSettings settings = new IfpClientSettings();
-            filename = PathHelper.GetAbsolutePath(filename);
-
-            if (!File.Exists(filename))
-                filename =
-                    $@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\AMANAconsulting\ifpSettings.xml";
+        private void Load()
+        {            
+            var filename = PathHelper.GetAbsolutePath(_settingsFilePath);            
 
             if (File.Exists(filename))
             {
                 using (Stream stream = File.Open(filename, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
-                    XmlSerializer serializer = new XmlSerializer(typeof(IfpClientSettings));
+                    XmlSerializer serializer = new XmlSerializer(typeof(IfpClientSettings), typeof(IfpClientSettings).GetNestedTypes());
                     try
                     {
-                        settings = (IfpClientSettings) serializer.Deserialize(stream);
+                        var settings = (IfpClientSettings) serializer.Deserialize(stream);
+                        settings.CopyTo(this);
                     }
                     catch (Exception)
                     {
@@ -87,22 +84,26 @@ namespace AMANA.IFP.Client
             }
             else
             {
-                settings.RoutingTableFilePath = filename;
-                settings.CertificateSettings.SetDefaultValues();
+                ValidateIfpData = true;
+                CertificateSettings.SetDefaultValues();
             }
-
-            return settings;
         }
 
-        public IfpClientSettings()
+        private IfpClientSettings()
         {
             CertificateSettings = new CertificateSettings();
         }
 
-        public void Save(string filename)
+        public IfpClientSettings(string settingsFilepath)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(IfpClientSettings));
-            using (Stream stream = File.Open(filename, FileMode.Create))
+            _settingsFilePath = settingsFilepath;
+            Load();
+        }
+
+        public void Save()
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(IfpClientSettings), typeof(IfpClientSettings).GetNestedTypes());
+            using (Stream stream = File.Open(_settingsFilePath, FileMode.Create))
             {
                 serializer.Serialize(stream, this);
                 stream.Close();
