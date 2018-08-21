@@ -78,6 +78,7 @@ namespace AMANA.IFP.Forms
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
                     TextBoxFilePath.Text = ofd.FileName;
+                    TextBoxFileName.Text = ofd.SafeFileName;
                 }
             }
             catch (Exception ex)

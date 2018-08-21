@@ -63,6 +63,7 @@ namespace AMANA.IFP.UserControls
             try
             {
                 AddNewItem();
+                AddButton.Enabled = AttachmentsListView.Items.Count < 5;
             }
             catch (Exception ex)
             {
@@ -87,6 +88,7 @@ namespace AMANA.IFP.UserControls
             try
             {
                 RemoveSelectedItems();
+                AddButton.Enabled = AttachmentsListView.Items.Count < 5;
             }
             catch (Exception ex)
             {

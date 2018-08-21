@@ -1,0 +1,172 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.ServiceModel.Channels;
+using System.ServiceModel.Description;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml;
+
+namespace AMANA.IFP.Data
+{
+    public class CustomTextMessageBindingElement : MessageEncodingBindingElement
+    {
+        private MessageVersion _msgVersion;
+        private string _mediaType;
+        private string _encoding;
+        private XmlDictionaryReaderQuotas _readerQuotas;
+
+        private CustomTextMessageBindingElement(CustomTextMessageBindingElement binding)
+            : this(binding.Encoding, binding.MediaType, binding.MessageVersion)
+        {
+            _readerQuotas = new XmlDictionaryReaderQuotas();
+            binding.ReaderQuotas.CopyTo(_readerQuotas);
+        }
+
+        public CustomTextMessageBindingElement(string encoding, string mediaType, MessageVersion msgVersion)
+        {
+            if (encoding == null)
+                throw new ArgumentNullException("encoding");
+
+            if (mediaType == null)
+                throw new ArgumentNullException("mediaType");
+
+            if (msgVersion == null)
+                throw new ArgumentNullException("msgVersion");
+
+            _msgVersion = msgVersion;
+            _mediaType = mediaType;
+            _encoding = encoding;
+
+            _readerQuotas = new XmlDictionaryReaderQuotas();
+            _readerQuotas.MaxDepth = Int32.MaxValue;
+            _readerQuotas.MaxStringContentLength = Int32.MaxValue;
+            _readerQuotas.MaxArrayLength = Int32.MaxValue;
+            _readerQuotas.MaxBytesPerRead = Int32.MaxValue;
+            _readerQuotas.MaxNameTableCharCount = Int32.MaxValue;               
+        }
+
+        public CustomTextMessageBindingElement(string encoding, string mediaType)
+    : this(encoding, mediaType, System.ServiceModel.Channels.MessageVersion.Soap12)
+        {
+        }
+
+        public CustomTextMessageBindingElement(string encoding)
+            : this(encoding, "text/xml")
+        {
+        }
+
+        public override MessageVersion MessageVersion
+        {
+            get
+            {
+                return _msgVersion;
+            }
+
+            set
+            {
+                if (value == null)
+                    throw new ArgumentNullException("value");
+                _msgVersion = value;
+            }
+        }
+
+        public string MediaType
+        {
+            get
+            {
+                return _mediaType;
+            }
+
+            set
+            {
+                if (value == null)
+                    throw new ArgumentNullException("value");
+                _mediaType = value;
+            }
+        }
+
+        public string Encoding
+        {
+            get
+            {
+                return _encoding;
+            }
+
+            set
+            {
+                if (value == null)
+                    throw new ArgumentNullException("value");
+                _encoding = value;
+            }
+        }
+
+        // This encoder does not enforces any quotas for the unsecure messages. The 
+        // quotas are enforced for the secure portions of messages when this encoder
+        // is used in a binding that is configured with security. 
+        public XmlDictionaryReaderQuotas ReaderQuotas
+        {
+            get
+            {
+                return _readerQuotas;
+            }
+        }
+
+        public override MessageEncoderFactory CreateMessageEncoderFactory()
+        {
+            return new CustomTextMessageEncoderFactory(MediaType,
+                Encoding, MessageVersion);
+        }
+
+        public override BindingElement Clone()
+        {
+            return new CustomTextMessageBindingElement(this);
+        }
+
+        public override IChannelFactory<TChannel> BuildChannelFactory<TChannel>(BindingContext context)
+        {
+            if (context == null)
+                throw new ArgumentNullException("context");
+
+            context.BindingParameters.Add(this);
+            return context.BuildInnerChannelFactory<TChannel>();
+        }
+
+        public override bool CanBuildChannelFactory<TChannel>(BindingContext context)
+        {
+            if (context == null)
+                throw new ArgumentNullException("context");
+
+            return context.CanBuildInnerChannelFactory<TChannel>();
+        }
+
+        public override IChannelListener<TChannel> BuildChannelListener<TChannel>(BindingContext context)
+        {
+            if (context == null)
+                throw new ArgumentNullException("context");
+
+            context.BindingParameters.Add(this);
+            return context.BuildInnerChannelListener<TChannel>();
+        }
+
+        public override bool CanBuildChannelListener<TChannel>(BindingContext context)
+        {
+            if (context == null)
+                throw new ArgumentNullException("context");
+
+            context.BindingParameters.Add(this);
+            return context.CanBuildInnerChannelListener<TChannel>();
+        }
+
+        public override T GetProperty<T>(BindingContext context)
+        {
+            if (typeof(T) == typeof(XmlDictionaryReaderQuotas))
+            {
+                return (T)(object)_readerQuotas;
+            }
+
+            return base.GetProperty<T>(context);
+        }
+    }
+}
+

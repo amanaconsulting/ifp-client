@@ -33,7 +33,7 @@ namespace AMANA.IFP.Common.Helpers
             XmlNode gcdNode =
                 instanceNode.SelectSingleNode($@"//{BalanceInformation.XbrlGcdDataNamespacePrefix}:{conceptLocalName}",
                     namespaceManager);
-            if (gcdNode == null || gcdNode.ChildNodes.Count < 0)
+            if (gcdNode == null || gcdNode.ChildNodes.Count == 0)
                 return string.Empty;
 
             gcdNode = gcdNode.ChildNodes[0];

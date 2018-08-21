@@ -89,7 +89,7 @@ namespace AMANA.IFP.Common
         }
 
         private ns1IdentityHeaderTypInstitute GetHeaderInstitute()
-        {
+        {           
             ns1IdentityHeaderTypInstitute institute = new ns1IdentityHeaderTypInstitute
             {
                 client = Client,

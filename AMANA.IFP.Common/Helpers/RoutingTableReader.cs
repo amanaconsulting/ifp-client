@@ -80,7 +80,8 @@ namespace AMANA.IFP.Common.Helpers
         {
             IfpMapping mapping = new IfpMapping
             {
-                date = GetDateAttribute(mappingNode)
+                date = GetDateAttribute(mappingNode),
+                ValidTo = DateTime.MaxValue
             };
 
             List<Version> mappingVersions = new List<Version>();
@@ -95,7 +96,7 @@ namespace AMANA.IFP.Common.Helpers
                     mapping.Gueltig_ab = mappingDetails.InnerText;
                     try
                     {
-                        mapping.ValidFrom = XmlConvert.ToDateTime(mapping.Gueltig_ab);
+                        mapping.ValidFrom = XmlConvert.ToDateTime(mapping.Gueltig_ab, XmlDateTimeSerializationMode.Unspecified);
                     }
                     catch (Exception ex)
                     {
@@ -107,7 +108,7 @@ namespace AMANA.IFP.Common.Helpers
                     mapping.Gueltig_bis = mappingDetails.InnerText;
                     try
                     {
-                        mapping.ValidTo = XmlConvert.ToDateTime(mapping.Gueltig_bis);
+                        mapping.ValidTo = XmlConvert.ToDateTime(mapping.Gueltig_bis, XmlDateTimeSerializationMode.Unspecified);
                     }
                     catch (Exception ex)
                     {

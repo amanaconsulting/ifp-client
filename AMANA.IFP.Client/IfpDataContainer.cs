@@ -19,8 +19,9 @@ namespace AMANA.IFP.Client
 {
     public class IfpDataContainer : INotifyPropertyChanged
     {
-        private string _settingsFilePath;
+        
         private string _version;
+        private readonly string _settingsFilePath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\AMANAconsulting\ifpSettings.xml";
 
         public ElbaInformation ElbaInformation { get; set; }
         public HeaderIdentity HeaderIdentity { get; set; }
@@ -37,43 +38,15 @@ namespace AMANA.IFP.Client
                 _version = value;
                 OnPropertyChanged();
             }
-        }
+        }                        
 
-
-        public string SettingsFilePath
-        {
-            get
-            {
-                if (!string.IsNullOrEmpty(_settingsFilePath))
-                    return _settingsFilePath;
-
-                return
-                    $@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\AMANAconsulting\ifpSettings.xml";
-            }
-            set { _settingsFilePath = value; }
-        }
-
-        public IfpDataContainer(string settingsFilePath)
-            : this()
-        {
-            
-            SettingsFilePath = settingsFilePath;
-            IfpClientSettings = IfpClientSettings.Load(SettingsFilePath);
-        }
-
-        public IfpDataContainer(IfpClientSettings settings)
-            : this()
-        {
-            IfpClientSettings = settings;
-        }
-
-        private IfpDataContainer()
+        public IfpDataContainer()
         {
             ElbaInformation = new ElbaInformation();
             HeaderIdentity = new HeaderIdentity();
             Client = new Client();
             HttpProxySettings = new HttpProxySettings();
-            IfpClientSettings = new IfpClientSettings();
+            IfpClientSettings = new IfpClientSettings(_settingsFilePath);
         }
 
         public RequestResult SendData(Software channelSoftware, bool isTest = false)
@@ -153,6 +126,22 @@ namespace AMANA.IFP.Client
                                                  $"mit der Taxonomieversion '{Version}' gefunden werden. " +
                                                  "Bitte überprüfen Sie, ob die XBRL-Instanz " +
                                                  "mit einer unterstützen Taxonomieversion generiert wurde.");
+
+            elbaData.Abschluss.First().Software.Erstellung = new ns2SoftwareTyp
+            {
+                Name = channelSoftware.Name,
+                Hersteller = channelSoftware.Manufacturer,
+                Version = channelSoftware.Version,
+                ID = channelSoftware.Id
+            };
+
+            elbaData.Abschluss.First().Software.Versand = new ns2SoftwareTyp
+            {
+                Name = channelSoftware.Name,
+                Hersteller = channelSoftware.Manufacturer,
+                Version = channelSoftware.Version,
+                ID = channelSoftware.Id
+            };
 
             ns3QuittungTyp quittung = Client.SendElbaData(channelSoftware.ToChannelData(), elbaData,
                 HeaderIdentity.ToElbaData(), recieverMapping, recieverVersion, HttpProxySettings, IfpClientSettings.CertificateSettings);
