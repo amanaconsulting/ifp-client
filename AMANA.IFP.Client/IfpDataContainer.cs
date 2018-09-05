@@ -9,6 +9,7 @@
 // Link zu den Lizenzbedingungen: https://www.gnu.org/licenses/gpl-3.0.txt
 using System;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using AMANA.IFP.Common;
@@ -21,7 +22,9 @@ namespace AMANA.IFP.Client
     {
         
         private string _version;
-        private readonly string _settingsFilePath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\AMANAconsulting\ifpSettings.xml";
+
+        private readonly string _proxySettingsFilePath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\AMANAconsulting\proxySettings.xml";
+        private readonly string _ifpSettingsFilePath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\AMANAconsulting\ifpSettings.xml";
 
         public ElbaInformation ElbaInformation { get; set; }
         public HeaderIdentity HeaderIdentity { get; set; }
@@ -38,20 +41,54 @@ namespace AMANA.IFP.Client
                 _version = value;
                 OnPropertyChanged();
             }
-        }                        
+        }
 
         public IfpDataContainer()
         {
             ElbaInformation = new ElbaInformation();
             HeaderIdentity = new HeaderIdentity();
             Client = new Client();
-            HttpProxySettings = new HttpProxySettings();
-            IfpClientSettings = new IfpClientSettings(_settingsFilePath);
+            HttpProxySettings = new HttpProxySettings(_proxySettingsFilePath);
+            IfpClientSettings = new IfpClientSettings(_ifpSettingsFilePath);            
         }
 
         public RequestResult SendData(Software channelSoftware, bool isTest = false)
         {
-            //if (RoutingTableReader.Mappings == null)
+            if (!IfpClientSettings.IsAutoDownloadRoutingTableFileDisabled)
+            {
+                var baseSettingsDirPath = new FileInfo(_ifpSettingsFilePath).DirectoryName;
+                var downloadedRemoteFileLastWriteDate = IfpClientSettings.RemoteDownloadInstituteMappingTestFileLastWriteDate;
+                if (!isTest)
+                    downloadedRemoteFileLastWriteDate = IfpClientSettings.RemoteDownloadInstituteMappingProdFileLastWriteDate;
+
+                var mappingFilePath = RoutingTableReader.DownloadInstituteMappingFileFromSftpServerIfNewer(
+                    IfpClientSettings.SftpSchufaFilesUserName,
+                    IfpClientSettings.SftpSchufaFilesPassword,
+                    isTest,
+                    baseSettingsDirPath,
+                    downloadedRemoteFileLastWriteDate,
+                    out var remoteFileLastWriteDate,
+                    HttpProxySettings.HttpProxyAddresUri,
+                    HttpProxySettings.UserName,
+                    HttpProxySettings.Password
+                );
+
+                if (remoteFileLastWriteDate.HasValue)
+                {
+                    IfpClientSettings.RoutingTableFilePath = mappingFilePath;
+                    if (isTest)
+                    {
+                        IfpClientSettings.RemoteDownloadInstituteMappingTestFileLastWriteDate = remoteFileLastWriteDate;
+                    }
+                    else
+                    {
+                        IfpClientSettings.RemoteDownloadInstituteMappingProdFileLastWriteDate = remoteFileLastWriteDate;
+                    }
+
+                    IfpClientSettings.Save();
+                }
+            }
+
             RoutingTableReader.Read(IfpClientSettings.RoutingTableFilePath);
 
             if (RoutingTableReader.Mappings == null)

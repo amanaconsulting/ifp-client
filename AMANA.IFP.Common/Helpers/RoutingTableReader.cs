@@ -10,14 +10,19 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Xml;
+using WinSCP;
 
 namespace AMANA.IFP.Common.Helpers
 {
     public static class RoutingTableReader
     {
         public static List<IfpMapping> Mappings { get; set; }
+        public static string SftpSchufaFileServerHostUrl = "file-port.schufa.de";
+        public static string InstituteMappingProdFileName = "institutemapping-prod.xml";
+        public static string InstituteMappingTestFileName = "institutemapping-test.xml";
 
         public static void Read(string relativePath)
         {
@@ -39,6 +44,52 @@ namespace AMANA.IFP.Common.Helpers
                     }
                 }
             }
+        }
+
+        public static string DownloadInstituteMappingFileFromSftpServerIfNewer(string userName, string password, bool isTest, string localSaveDirPath, DateTime? downloadedRemoteFileLastWriteDate,  out DateTime? remoteFileLastWriteDate, Uri proxyUri = null, string proxyUserName = null, string proxyPassword = null)
+        {
+            remoteFileLastWriteDate = null;
+            var remoteFileName = InstituteMappingTestFileName;
+            if (!isTest)
+                remoteFileName = InstituteMappingProdFileName;
+
+            var localSaveFilePath = Path.Combine(localSaveDirPath, remoteFileName);            
+
+            SessionOptions sessionOptions = new SessionOptions
+            {
+                Protocol = Protocol.Sftp,
+                HostName = SftpSchufaFileServerHostUrl,
+                UserName = userName,
+                Password = password,
+                GiveUpSecurityAndAcceptAnySshHostKey = true
+            };
+
+            if (proxyUri != null && !String.IsNullOrWhiteSpace(proxyUserName) && !String.IsNullOrWhiteSpace(proxyPassword))
+            {
+                //3 is Http Proxy Method s. https://winscp.net/eng/docs/rawsettings
+                sessionOptions.AddRawSettings("ProxyMethod", "3");
+                sessionOptions.AddRawSettings("ProxyHost", proxyUri.Host);
+                sessionOptions.AddRawSettings("ProxyPort", proxyUri.Port.ToString());
+                sessionOptions.AddRawSettings("ProxyUsername", proxyUserName);
+                sessionOptions.AddRawSettings("ProxyPassword", proxyPassword);
+            }
+
+            using (Session session = new Session())
+            {                
+                // Connect - Open throws an internal exception which can be ignored
+                session.Open(sessionOptions);
+                var remoteFilePath = "/" + remoteFileName;
+
+                if (session.FileExists(remoteFilePath))
+                    remoteFileLastWriteDate = session.GetFileInfo(remoteFilePath).LastWriteTime.Date;              
+
+                if (!downloadedRemoteFileLastWriteDate.HasValue || remoteFileLastWriteDate.HasValue && remoteFileLastWriteDate.Value > downloadedRemoteFileLastWriteDate)
+                {                   
+                    session.GetFiles(remoteFilePath, localSaveFilePath).Check();                    
+                }
+            }           
+
+            return localSaveFilePath;
         }
 
         public static Mapping GetMappingForBlz(string blz, string routingTableFilePath, string taxonomyName, bool isTest = false)
