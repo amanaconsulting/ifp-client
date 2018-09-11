@@ -19,9 +19,13 @@ namespace AMANA.IFP.Client
     [Serializable]
     public class IfpClientSettings : INotifyPropertyChanged
     {
+        private bool _isAutoDownloadRoutingTableFileDisabled;
+        private string _sftpSchufaFilesUserName;
+        private string _sftpSchufaFilesPassword;
         private bool _validateIfpData;
         private bool _validateGcdData;
         private string _routingTableFilePath;
+        private readonly string _settingsFilePath;
 
         public bool ValidateIfpData
         {
@@ -56,25 +60,59 @@ namespace AMANA.IFP.Client
             }
         }
 
+
+        public bool IsAutoDownloadRoutingTableFileDisabled
+        {
+            get { return _isAutoDownloadRoutingTableFileDisabled; }
+            set
+            {
+                if (value == _isAutoDownloadRoutingTableFileDisabled) return;
+                    _isAutoDownloadRoutingTableFileDisabled = value;
+                OnPropertyChanged();
+            }
+        }
+
         public CertificateSettings CertificateSettings { get; set; }
 
-        public static IfpClientSettings Load(string filename)
+        public string SftpSchufaFilesUserName
         {
-            IfpClientSettings settings = new IfpClientSettings();
-            filename = PathHelper.GetAbsolutePath(filename);
+            get { return _sftpSchufaFilesUserName; }
+            set
+            {
+                if (value == _sftpSchufaFilesUserName) return;
+                    _sftpSchufaFilesUserName = value;
+                OnPropertyChanged();
+            }
+        }
 
-            if (!File.Exists(filename))
-                filename =
-                    $@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\AMANAconsulting\ifpSettings.xml";
+        public string SftpSchufaFilesPassword
+        {
+            get { return _sftpSchufaFilesPassword; }
+            set
+            {
+                if (value == _sftpSchufaFilesPassword) return;
+                    _sftpSchufaFilesPassword = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime? RemoteDownloadInstituteMappingProdFileLastWriteDate { get; set; }
+        public DateTime? RemoteDownloadInstituteMappingTestFileLastWriteDate { get; set; }
+
+
+        private void Load()
+        {            
+            var filename = PathHelper.GetAbsolutePath(_settingsFilePath);            
 
             if (File.Exists(filename))
             {
                 using (Stream stream = File.Open(filename, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
-                    XmlSerializer serializer = new XmlSerializer(typeof(IfpClientSettings));
+                    XmlSerializer serializer = new XmlSerializer(typeof(IfpClientSettings), typeof(IfpClientSettings).GetNestedTypes());
                     try
                     {
-                        settings = (IfpClientSettings) serializer.Deserialize(stream);
+                        var settings = (IfpClientSettings) serializer.Deserialize(stream);
+                        settings.CopyTo(this);
                     }
                     catch (Exception)
                     {
@@ -87,22 +125,28 @@ namespace AMANA.IFP.Client
             }
             else
             {
-                settings.RoutingTableFilePath = filename;
-                settings.CertificateSettings.SetDefaultValues();
+                ValidateIfpData = true;
+                CertificateSettings.SetDefaultValues();
             }
-
-            return settings;
         }
 
-        public IfpClientSettings()
+        private IfpClientSettings()
         {
             CertificateSettings = new CertificateSettings();
         }
 
-        public void Save(string filename)
+        public IfpClientSettings(string settingsFilepath)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(IfpClientSettings));
-            using (Stream stream = File.Open(filename, FileMode.Create))
+            _settingsFilePath = settingsFilepath;
+            IsAutoDownloadRoutingTableFileDisabled = true;
+
+            Load();
+        }
+
+        public void Save()
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(IfpClientSettings), typeof(IfpClientSettings).GetNestedTypes());
+            using (Stream stream = File.Open(_settingsFilePath, FileMode.Create))
             {
                 serializer.Serialize(stream, this);
                 stream.Close();
@@ -120,6 +164,9 @@ namespace AMANA.IFP.Client
             settings.ValidateGcdData = ValidateGcdData;
             settings.RoutingTableFilePath = RoutingTableFilePath;
             settings.CertificateSettings = CertificateSettings.Copy();
+            settings.IsAutoDownloadRoutingTableFileDisabled = IsAutoDownloadRoutingTableFileDisabled;
+            settings.SftpSchufaFilesUserName = SftpSchufaFilesUserName;
+            settings.SftpSchufaFilesPassword = SftpSchufaFilesPassword;
 
             return settings;
         }

@@ -64,6 +64,7 @@ namespace AMANA.IFP.Common
             F148,
             F149,
             F150,
+            F168,
             U111, // unbekannter Fehler, der nicht in der Liste steht
             X401 // xbrl invalid
         }

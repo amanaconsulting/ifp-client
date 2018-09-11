@@ -9,7 +9,10 @@
 // Link zu den Lizenzbedingungen: https://www.gnu.org/licenses/gpl-3.0.txt
 using System;
 using System.Configuration;
+using System.Drawing;
+using System.Linq;
 using System.Reflection;
+using System.ServiceModel;
 using System.Windows.Forms;
 using AMANA.IFP.Client;
 using AMANA.IFP.Common;
@@ -76,10 +79,9 @@ namespace AMANA.IFP.Forms
 
         private void InitObjects()
         {
-            _dataContainer = new IfpDataContainer(ConfigurationManager.AppSettings["IfpSettingsFilePath"])
+            _dataContainer = new IfpDataContainer()
             {
-                Version = "2017_001",
-                IfpClientSettings = {ValidateIfpData = true}
+                Version = "2017_001"                
             };
         }
 
@@ -117,13 +119,48 @@ namespace AMANA.IFP.Forms
         {
             try
             {
+                ValidationScopeLabel.Text = String.Empty;
+                ValidationResultIconLabel.Text = String.Empty;
+
                 _lastRequestResult = container.SendData(ChannelSoftware, isTest);
                 MessageBox.Show(_lastRequestResult.IsLocalResult
                     ? "Daten wurden nicht gesendet. Bitte überprüfen Sie die Meldungen."
                     : "Daten wurden gesendet. Bitte überprüfen Sie die Meldungen");
+
+                if (_lastRequestResult.IsLocalResult)
+                {
+                    ValidationScopeLabel.Text = "Client";
+                    ValidationResultIconLabel.Text = "X";
+                    ValidationResultIconLabel.ForeColor = Color.Red;
+                }
+                else
+                {
+                    ValidationScopeLabel.Text = "Server";
+
+                    if (_lastRequestResult.ResultMessages.Count == 0 || 
+                        _lastRequestResult.ResultMessages.Count == 1 && 
+                        _lastRequestResult.ResultMessages.Any(rm => rm.MessageId.Equals(Enums.Fehlercode.F000.ToString(), StringComparison.OrdinalIgnoreCase))
+                    )
+                    {                        
+                        ValidationResultIconLabel.Text = "✓";
+                        ValidationResultIconLabel.ForeColor = Color.Green;
+                    }
+                    else
+                    {                       
+                        ValidationResultIconLabel.Text = "X";
+                        ValidationResultIconLabel.ForeColor = Color.Red;
+                    }
+                }
             }
             catch (Exception ex)
             {
+                if (ex is FaultException)
+                {
+                    ValidationScopeLabel.Text = "Server";
+                    ValidationResultIconLabel.Text = "X";
+                    ValidationResultIconLabel.ForeColor = Color.Red;
+                }
+
                 ex.ToMessageBox();
             }
         }
@@ -144,10 +181,10 @@ namespace AMANA.IFP.Forms
         {
             try
             {
-                HttpProxySettings settings = _dataContainer.HttpProxySettings.Copy();
+                HttpProxySettings settings = _dataContainer.HttpProxySettings;
                 HttpProxySettingsForm form = new HttpProxySettingsForm { HttpProxySettings = settings };
                 if (form.ShowDialog() == DialogResult.OK)
-                    form.HttpProxySettings.CopyTo(_dataContainer.HttpProxySettings);
+                    form.HttpProxySettings.Save();
             }
             catch (Exception ex)
             {
@@ -195,7 +232,7 @@ namespace AMANA.IFP.Forms
         {
             IfpSettingsForm form = new IfpSettingsForm { Settings = _dataContainer.IfpClientSettings };
             if (form.ShowDialog() == DialogResult.OK)
-                _dataContainer.IfpClientSettings.Save(_dataContainer.SettingsFilePath);
+                _dataContainer.IfpClientSettings.Save();
         }
 
         private void BtnSetGcdCustomer_Click(object sender, EventArgs e)
@@ -243,6 +280,6 @@ namespace AMANA.IFP.Forms
             {
                 ex.ToMessageBox();
             }
-        }
+        }       
     }
 }

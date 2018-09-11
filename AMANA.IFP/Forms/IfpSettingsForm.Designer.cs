@@ -37,9 +37,9 @@
             // 
             this.SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.SaveButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.SaveButton.Location = new System.Drawing.Point(236, 236);
+            this.SaveButton.Location = new System.Drawing.Point(207, 427);
             this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(75, 23);
+            this.SaveButton.Size = new System.Drawing.Size(93, 23);
             this.SaveButton.TabIndex = 1;
             this.SaveButton.Text = "Speichern";
             this.SaveButton.UseVisualStyleBackColor = true;
@@ -49,9 +49,9 @@
             // 
             this.CloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.CloseButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CloseButton.Location = new System.Drawing.Point(317, 236);
+            this.CloseButton.Location = new System.Drawing.Point(306, 427);
             this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(75, 23);
+            this.CloseButton.Size = new System.Drawing.Size(86, 23);
             this.CloseButton.TabIndex = 2;
             this.CloseButton.Text = "Schließen";
             this.CloseButton.UseVisualStyleBackColor = true;
@@ -63,16 +63,16 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SettingsUc.Location = new System.Drawing.Point(0, -2);
+            this.SettingsUc.Margin = new System.Windows.Forms.Padding(4);
             this.SettingsUc.Name = "SettingsUc";
             this.SettingsUc.Settings = null;
-            this.SettingsUc.Size = new System.Drawing.Size(401, 232);
+            this.SettingsUc.Size = new System.Drawing.Size(401, 423);
             this.SettingsUc.TabIndex = 0;
             // 
             // IfpSettingsForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(404, 271);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(404, 462);
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.SettingsUc);

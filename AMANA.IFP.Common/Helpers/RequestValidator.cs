@@ -245,6 +245,9 @@ namespace AMANA.IFP.Common.Helpers
 
                 if (Abschluss.Daten.Anhaenge.Any(a => a.Dokument.Length == 0))
                     AddHinweisFromErrorCode(Enums.Fehlercode.F129);
+
+                if (Abschluss.Daten.Anhaenge.Length > 5)
+                    AddHinweisFromErrorCode(Enums.Fehlercode.F168);
             }
 
             if (string.IsNullOrEmpty(Abschluss.IdentMerkmal))
