@@ -8,19 +8,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+//!!! Attention: Custom changes required and have been applied to this file. In case of service reference update these changes must be merged !!!
+
+using System.Net.Security;
+
 namespace AMANA.IFP.Data.Elba {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="http://ifpev-schema.de/BilanzdatenELBA/_impl/FIDUCIAGAD", ConfigurationName="Elba.BilanzdatenELBAPortType")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="http://ifpev-schema.de/BilanzdatenELBA/_impl/FIDUCIAGAD", ConfigurationName="Elba.BilanzdatenELBAPortType", ProtectionLevel = ProtectionLevel.Sign)]
     public interface BilanzdatenELBAPortType {
         
         // CODEGEN: Generating message contract since the operation uebernehmeElbaDaten is neither RPC nor document wrapped.
-        [System.ServiceModel.OperationContractAttribute(Action="http://ifpev-schema.de/BilanzdatenELBA/uebernehmeElbaDaten", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://ifpev-schema.de/BilanzdatenELBA", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         AMANA.IFP.Data.Elba.uebernehmeElbaDatenResponse uebernehmeElbaDaten(AMANA.IFP.Data.Elba.uebernehmeElbaDatenRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://ifpev-schema.de/BilanzdatenELBA/uebernehmeElbaDaten", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://ifpev-schema.de/BilanzdatenELBA", ReplyAction="*")]
         System.Threading.Tasks.Task<AMANA.IFP.Data.Elba.uebernehmeElbaDatenResponse> uebernehmeElbaDatenAsync(AMANA.IFP.Data.Elba.uebernehmeElbaDatenRequest request);
     }
     
@@ -380,8 +384,8 @@ namespace AMANA.IFP.Data.Elba {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.ifpev.de/Protocol")]
-    public partial class ns1IdentityHeaderTyp : object, System.ComponentModel.INotifyPropertyChanged {
-        
+    public partial class ns1IdentityHeaderTyp : object, System.ComponentModel.INotifyPropertyChanged
+    {      
         private string useridField;
         
         private ns1IdentityHeaderTypInstitute instituteField;
@@ -1801,7 +1805,7 @@ namespace AMANA.IFP.Data.Elba {
         private ns2AbschlussTyp[] abschlussField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified, Order = 0)]
         public ns2KanzleiTyp Absender {
             get {
                 return this.absenderField;
@@ -1811,9 +1815,9 @@ namespace AMANA.IFP.Data.Elba {
                 this.RaisePropertyChanged("Absender");
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified, Order = 1)]
         public ns2EmpfaengerTyp Empfaenger {
             get {
                 return this.empfaengerField;
@@ -1823,9 +1827,9 @@ namespace AMANA.IFP.Data.Elba {
                 this.RaisePropertyChanged("Empfaenger");
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
+        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified, Order = 2)]
         public ns2BilanzdatenTypKunde Kunde {
             get {
                 return this.kundeField;
@@ -1835,9 +1839,9 @@ namespace AMANA.IFP.Data.Elba {
                 this.RaisePropertyChanged("Kunde");
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Abschluss", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute("Abschluss", Form = System.Xml.Schema.XmlSchemaForm.Unqualified, Order = 3)]
         public ns2AbschlussTyp[] Abschluss {
             get {
                 return this.abschlussField;
@@ -1985,25 +1989,25 @@ namespace AMANA.IFP.Data.Elba {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class uebernehmeElbaDatenRequest {
         
-        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://www.ifpev.de/Protocol")]
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://www.ifpev.de/Protocol", MustUnderstand = true)]
         public AMANA.IFP.Data.Elba.ns1ChannelHeaderTyp Channel;
         
-        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://www.ifpev.de/Protocol")]
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://www.ifpev.de/Protocol", MustUnderstand = true)]
         public AMANA.IFP.Data.Elba.ns1IdentityHeaderTyp Identity;
         
-        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://www.ifpev.de/Protocol")]
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://www.ifpev.de/Protocol", MustUnderstand = true)]
         public AMANA.IFP.Data.Elba.ns1ProtocolHeaderTyp Protocol;
         
-        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://www.ifpev.de/Protocol")]
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://www.ifpev.de/Protocol", MustUnderstand = true)]
         public AMANA.IFP.Data.Elba.ns1ServiceHeaderTyp Service;
         
-        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://www.ifpev.de/Protocol")]
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://www.ifpev.de/Protocol", MustUnderstand = true)]
         public AMANA.IFP.Data.Elba.ns1SessionHeaderTyp Session;
         
-        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://www.ifpev.de/Protocol")]
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://www.ifpev.de/Protocol", MustUnderstand = true)]
         public AMANA.IFP.Data.Elba.ns1TargetHeaderTyp Target;
         
-        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://www.ifpev.de/Protocol")]
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://www.ifpev.de/Protocol", MustUnderstand = true)]
         public AMANA.IFP.Data.Elba.ns1TicketHeaderTyp Ticket;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ifpev-schema.de/BilanzdatenELBA", Order=0)]
@@ -2030,16 +2034,16 @@ namespace AMANA.IFP.Data.Elba {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class uebernehmeElbaDatenResponse {
         
-        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://www.ifpev.de/Protocol")]
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://www.ifpev.de/Protocol", MustUnderstand = true)]
         public AMANA.IFP.Data.Elba.ns1ProtocolHeaderTyp Protocol;
         
-        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://www.ifpev.de/Protocol")]
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://www.ifpev.de/Protocol", MustUnderstand = true)]
         public AMANA.IFP.Data.Elba.ns1SessionHeaderTyp Session;
         
-        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://www.ifpev.de/Protocol")]
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://www.ifpev.de/Protocol", MustUnderstand = true)]
         public AMANA.IFP.Data.Elba.ns1TargetHeaderTyp Target;
         
-        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://www.ifpev.de/Protocol")]
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://www.ifpev.de/Protocol", MustUnderstand = true)]
         public AMANA.IFP.Data.Elba.ns1TicketHeaderTyp Ticket;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ifpev-schema.de/BilanzdatenELBA", Order=0)]
