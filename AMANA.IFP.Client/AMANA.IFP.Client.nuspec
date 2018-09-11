@@ -14,8 +14,5 @@
     <releaseNotes>See GitHub project page</releaseNotes>
     <copyright>Copyright 2017 AMANA consulting GmbH</copyright>
     <tags>IFP</tags>
-	<dependencies>
-      <dependency id="DotNetZip" version="1.9.1.8" />
-	</dependencies>
   </metadata>
 </package>
