@@ -41,7 +41,8 @@ namespace AMANA.IFP.UserControls
         private void InitializeDataBindings()
         {
             ProxyTypeComboBox.DataBindings.Clear();
-            HttpProxyAddressTextBox.DataBindings.Clear();
+            HttpProxyHostTextBox.DataBindings.Clear();
+            ProxyPortTextBox.DataBindings.Clear();
             HttpProxyUsernameTextBox.DataBindings.Clear();
             HttpProxyPasswordTextBox.DataBindings.Clear();
 
@@ -49,7 +50,8 @@ namespace AMANA.IFP.UserControls
                 return;
 
             ProxyTypeComboBox.SetSelectedItemDataBinding(_httpProxySettings, nameof(_httpProxySettings.ProxyMode));
-            HttpProxyAddressTextBox.SetTextDataBinding(_httpProxySettings, nameof(_httpProxySettings.ProxyAddress));
+            HttpProxyHostTextBox.SetTextDataBinding(_httpProxySettings, nameof(_httpProxySettings.ProxyHost));
+            ProxyPortTextBox.SetTextDataBinding(_httpProxySettings, nameof(_httpProxySettings.ProxyPort));
             HttpProxyUsernameTextBox.SetTextDataBinding(_httpProxySettings, nameof(_httpProxySettings.UserName));
             HttpProxyPasswordTextBox.SetTextDataBinding(_httpProxySettings, nameof(_httpProxySettings.Password));
         }
@@ -62,7 +64,8 @@ namespace AMANA.IFP.UserControls
             bool isOwnProxy = (HttpProxySettings.HttpProxyMode)ProxyTypeComboBox.SelectedItem ==
                               HttpProxySettings.HttpProxyMode.OwnProxy;
 
-            HttpProxyAddressTextBox.Enabled = isOwnProxy;
+            HttpProxyHostTextBox.Enabled = isOwnProxy;
+            ProxyPortTextBox.Enabled = isOwnProxy;
             HttpProxyUsernameTextBox.Enabled = isOwnProxy;
             HttpProxyPasswordTextBox.Enabled = isOwnProxy;
         }
