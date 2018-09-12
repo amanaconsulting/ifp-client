@@ -35,9 +35,9 @@ namespace AMANA.IFP.UserControls
 
         private void InitializeControls()
         {
-            BalanceTypeComboBox.DataSource = Enum.GetValues(typeof(BalanceInformation.BalanceTypes));
-            BalanceLevelComboBox.DataSource = Enum.GetValues(typeof(BalanceInformation.ConsolidationTypes));
-            IdentComboBox.DataSource = Enum.GetValues(typeof(BalanceInformation.IdentTypes));
+            BalanceTypeComboBox.DataSource = Enum.GetValues(typeof(BalanceTypes));
+            BalanceLevelComboBox.DataSource = Enum.GetValues(typeof(ConsolidationTypes));
+            IdentComboBox.DataSource = Enum.GetValues(typeof(IdentTypes));
         }
 
         private void InitializeDataBindings()

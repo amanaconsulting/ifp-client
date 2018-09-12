@@ -68,6 +68,7 @@
     <Compile Include="HeaderIdentity.cs" />
     <Compile Include="Helpers\ErrorHelper.cs" />
     <Compile Include="Helpers\GcdDataValidator.cs" />
+    <Compile Include="Helpers\GenericXmlSerializerHelper.cs" />
     <Compile Include="Helpers\PathHelper.cs" />
     <Compile Include="Helpers\RequestValidator.cs" />
     <Compile Include="HomeAddress.cs" />

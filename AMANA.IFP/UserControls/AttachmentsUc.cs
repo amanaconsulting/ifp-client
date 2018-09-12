@@ -22,6 +22,7 @@ namespace AMANA.IFP.UserControls
         public AttachmentsUc()
         {
             InitializeComponent();
+            _attachments = new List<Attachment>();
         }
 
         public List<Attachment> Attachments
@@ -29,8 +30,13 @@ namespace AMANA.IFP.UserControls
             get { return _attachments; }
             set
             {
-                _attachments = value;
+                if (value != null)
+                {
+                    _attachments = value;
+                }
+
                 InitializeControls();
+               
             }
         }
 
@@ -43,8 +49,10 @@ namespace AMANA.IFP.UserControls
             AttachmentsListView.Columns[0].Width = 500;
 
             if (_attachments != null)
+            {
                 foreach (Attachment attachment in _attachments)
                     AddAttachment(attachment);
+            }
         }
 
         private void AddAttachment(Attachment attachment)
@@ -54,8 +62,7 @@ namespace AMANA.IFP.UserControls
 
             ObjectListViewItem item = new ObjectListViewItem(attachment, subItems);
 
-            AttachmentsListView.Items.Add(item);
-            _attachments.Add(attachment);
+            AttachmentsListView.Items.Add(item);            
         }
 
         private void AddButton_Click(object sender, EventArgs e)
@@ -101,7 +108,10 @@ namespace AMANA.IFP.UserControls
             Attachment newAttachment = new Attachment();
             EditAttachmentForm form = new EditAttachmentForm(newAttachment);
             if (form.ShowDialog() == DialogResult.OK)
+            {
+                _attachments.Add(newAttachment);
                 AddAttachment(newAttachment);
+            }
         }
 
         private void EditSelectedItem()

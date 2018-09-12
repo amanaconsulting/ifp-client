@@ -18,6 +18,44 @@ using AMANA.IFP.Data.Elba;
 
 namespace AMANA.IFP.Common
 {
+    public enum BalanceTypes
+    {
+        HgbFinal,
+        HgbVorlaufig,
+        HgbZwischen,
+        SteuerFinal,
+        SteuerVorlaufig,
+        SteuerZwischen,
+        EurFinal,
+        EurVorlaufig,
+        EurZwischen,
+        Bwa,
+        Sonstige
+    }
+
+    public enum ConsolidationTypes
+    {
+        Einzel,
+        Konzern,
+        Teilkonzern
+    }
+
+    public enum TaxonomyTypes
+    {
+        Hgb60,
+        Hgb54,
+        Eur10
+    }
+
+    public enum IdentTypes
+    {
+        None = -1,
+        NotIdentity = 0,
+        TechnicalIdentity = 100,
+        ManualIdentity = 200,
+        ManualIdentityResubmission = 201
+    }
+
     public class BalanceInformation : INotifyPropertyChanged
     {
         public const string XbrlGcdDataNamespacePrefix = "gcdData";
@@ -44,43 +82,7 @@ namespace AMANA.IFP.Common
         private DateTime _dueDate;
         private BalanceTypes _balanceType;
 
-        public enum BalanceTypes
-        {
-            HgbFinal,
-            HgbVorlaufig,
-            HgbZwischen,
-            SteuerFinal,
-            SteuerVorlaufig,
-            SteuerZwischen,
-            EurFinal,
-            EurVorlaufig,
-            EurZwischen,
-            Bwa,
-            Sonstige
-        }
-
-        public enum ConsolidationTypes
-        {
-            Einzel,
-            Konzern,
-            Teilkonzern
-        }
-
-        public enum TaxonomyTypes
-        {
-            Hgb60,
-            Hgb54,
-            Eur10
-        }
-
-        public enum IdentTypes
-        {
-            None = -1,
-            NotIdentity = 0,
-            TechnicalIdentity = 100,
-            ManualIdentity = 200,
-            ManualIdentityResubmission = 201
-        }
+       
 
         public static string GetSubmissionIdentType(IdentTypes type)
         {
@@ -179,7 +181,7 @@ namespace AMANA.IFP.Common
             }
         }
 
-        public List<Attachment> Attachments { get; }
+        public List<Attachment> Attachments { get; set; }
 
         public string XbrlFilePath
         {

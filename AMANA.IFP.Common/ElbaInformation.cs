@@ -7,38 +7,71 @@
 // Details finden Sie in der GNU General Public License.
 // 
 // Link zu den Lizenzbedingungen: https://www.gnu.org/licenses/gpl-3.0.txt
+
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using AMANA.IFP.Common.Helpers;
 using AMANA.IFP.Data.Elba;
 
 namespace AMANA.IFP.Common
 {
+    [Serializable]
     public class ElbaInformation
-    {
+    {        
         public Sender SenderInformation { get; set; }
         public Receiver RecieverInformation { get; set; }
         public Customer CustomerInformation { get; set; }
-        public List<BalanceInformation> BalanceInformation { get; set; }
+        public List<BalanceInformation> BalanceInformationList { get; set; }
+        private readonly string _serializedObjectFilePath;
 
         public BalanceInformation PrimaryBalanceInformation
         {
-            get { return BalanceInformation.FirstOrDefault(); }
-            set
-            {
-                if (BalanceInformation.Any())
-                    BalanceInformation.RemoveAt(0);
-
-                BalanceInformation.Insert(0, value);
-            }
+            get { return BalanceInformationList.LastOrDefault(); }            
         }
 
-        public ElbaInformation()
+        private ElbaInformation()
         {
             SenderInformation = new Sender();
             RecieverInformation = new Receiver();
-            CustomerInformation = new Customer();
-            BalanceInformation = new List<BalanceInformation>();
-            BalanceInformation.Add(new BalanceInformation());
+            CustomerInformation = new Customer();            
+        }
+
+        public ElbaInformation(string serializedObjectFilePath):this()
+        {
+            _serializedObjectFilePath = serializedObjectFilePath;
+            BalanceInformationList = new List<BalanceInformation>();
+            BalanceInformationList.Add(new BalanceInformation());
+        }
+
+        public ElbaInformation Load()
+        {
+            var desializedElbaInformation = GenericXmlSerializerHelper.DeserializeFromFile<ElbaInformation>(_serializedObjectFilePath);
+            if (desializedElbaInformation != null)
+            {
+                this.SenderInformation = desializedElbaInformation.SenderInformation;
+                this.RecieverInformation = desializedElbaInformation.RecieverInformation;
+                this.CustomerInformation = desializedElbaInformation.CustomerInformation;
+                this.BalanceInformationList = desializedElbaInformation.BalanceInformationList;
+            }
+
+            return this;
+        }
+
+        public void Save()
+        {
+            GenericXmlSerializerHelper.SerializeToFile(_serializedObjectFilePath, this);
+        }
+
+        public bool IsStoredAsFile()
+        {
+            return File.Exists(_serializedObjectFilePath);
+        }
+
+        public void DeleteStoredFile()
+        {
+            File.Delete(_serializedObjectFilePath);
         }
 
         public ns2BilanzdatenTyp ToElbaData()
@@ -48,11 +81,11 @@ namespace AMANA.IFP.Common
                 Absender = SenderInformation.ToElbaData(),
                 Empfaenger = RecieverInformation.ToElbaData(),
                 Kunde = CustomerInformation.ToElbaData(),
-                Abschluss = new ns2AbschlussTyp[BalanceInformation.Count]
+                Abschluss = new ns2AbschlussTyp[BalanceInformationList.Count]
             };
 
-            for (int i = 0; i < BalanceInformation.Count; i++)
-                balanceData.Abschluss[i] = BalanceInformation[i].ToElbaData();
+            for (int i = 0; i < BalanceInformationList.Count; i++)
+                balanceData.Abschluss[i] = BalanceInformationList[i].ToElbaData();
 
             return balanceData;
         }

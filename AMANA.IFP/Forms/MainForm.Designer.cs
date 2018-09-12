@@ -34,15 +34,30 @@ namespace AMANA.IFP.Forms
             this.BtnSend = new System.Windows.Forms.Button();
             this.InformationTabs = new System.Windows.Forms.TabControl();
             this.BalanceInfoTabPage = new System.Windows.Forms.TabPage();
+            this.BalanceInformation = new AMANA.IFP.UserControls.BalanceInformationUc();
             this.CustomerInfoTabPage = new System.Windows.Forms.TabPage();
             this.BtnSetGcdCustomer = new System.Windows.Forms.Button();
             this.CustomerTextBox = new System.Windows.Forms.TextBox();
             this.LblCustomerName = new System.Windows.Forms.Label();
+            this.CustomerContactUc = new AMANA.IFP.UserControls.ContactUc();
+            this.CustomerAddressUc = new AMANA.IFP.UserControls.AddressUc();
+            this.CustomerIdentitiesUc = new AMANA.IFP.UserControls.CustomerIdentitiesUc();
             this.RecieverTabPage = new System.Windows.Forms.TabPage();
+            this.RecieverContactPersonUc = new AMANA.IFP.UserControls.ContactPersonUc();
+            this.RecieverAddressUc = new AMANA.IFP.UserControls.AddressUc();
+            this.RecieverBankIdUc = new AMANA.IFP.UserControls.BankIdUc();
             this.SenderInfoTabPage = new System.Windows.Forms.TabPage();
             this.SenderInformationPanel = new System.Windows.Forms.Panel();
+            this.SenderNameUc = new AMANA.IFP.UserControls.NameUc();
+            this.SenderAddressUc = new AMANA.IFP.UserControls.AddressUc();
+            this.SenderIdentitiesUc = new AMANA.IFP.UserControls.SenderIdentitiesUc();
+            this.SenderContactUc = new AMANA.IFP.UserControls.ContactUc();
             this.IfpConfigurationTabPage = new System.Windows.Forms.TabPage();
+            this.ClientConfigurationUc = new AMANA.IFP.UserControls.ClientConfigurationUc();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.dateiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.LoadSessionDataMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveSessionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.IfpSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HttpProxySettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,18 +71,8 @@ namespace AMANA.IFP.Forms
             this.ValidationStatusGroupBox = new System.Windows.Forms.GroupBox();
             this.ValidationResultIconLabel = new System.Windows.Forms.Label();
             this.ValidationScopeLabel = new System.Windows.Forms.Label();
-            this.BalanceInformation = new AMANA.IFP.UserControls.BalanceInformationUc();
-            this.CustomerContactUc = new AMANA.IFP.UserControls.ContactUc();
-            this.CustomerAddressUc = new AMANA.IFP.UserControls.AddressUc();
-            this.CustomerIdentitiesUc = new AMANA.IFP.UserControls.CustomerIdentitiesUc();
-            this.RecieverContactPersonUc = new AMANA.IFP.UserControls.ContactPersonUc();
-            this.RecieverAddressUc = new AMANA.IFP.UserControls.AddressUc();
-            this.RecieverBankIdUc = new AMANA.IFP.UserControls.BankIdUc();
-            this.SenderNameUc = new AMANA.IFP.UserControls.NameUc();
-            this.SenderAddressUc = new AMANA.IFP.UserControls.AddressUc();
-            this.SenderIdentitiesUc = new AMANA.IFP.UserControls.SenderIdentitiesUc();
-            this.SenderContactUc = new AMANA.IFP.UserControls.ContactUc();
-            this.ClientConfigurationUc = new AMANA.IFP.UserControls.ClientConfigurationUc();
+            this.DeleteSessionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ResetSessionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.InformationTabs.SuspendLayout();
             this.BalanceInfoTabPage.SuspendLayout();
             this.CustomerInfoTabPage.SuspendLayout();
@@ -118,6 +123,18 @@ namespace AMANA.IFP.Forms
             this.BalanceInfoTabPage.Text = "Abschlussinformationen";
             this.BalanceInfoTabPage.UseVisualStyleBackColor = true;
             // 
+            // BalanceInformation
+            // 
+            this.BalanceInformation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BalanceInformation.BalanceInformation = null;
+            this.BalanceInformation.Location = new System.Drawing.Point(6, 6);
+            this.BalanceInformation.Margin = new System.Windows.Forms.Padding(4);
+            this.BalanceInformation.Name = "BalanceInformation";
+            this.BalanceInformation.Size = new System.Drawing.Size(639, 568);
+            this.BalanceInformation.TabIndex = 0;
+            // 
             // CustomerInfoTabPage
             // 
             this.CustomerInfoTabPage.Controls.Add(this.BtnSetGcdCustomer);
@@ -162,6 +179,41 @@ namespace AMANA.IFP.Forms
             this.LblCustomerName.TabIndex = 0;
             this.LblCustomerName.Text = "Name*";
             // 
+            // CustomerContactUc
+            // 
+            this.CustomerContactUc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CustomerContactUc.ContactData = null;
+            this.CustomerContactUc.Location = new System.Drawing.Point(3, 380);
+            this.CustomerContactUc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CustomerContactUc.Name = "CustomerContactUc";
+            this.CustomerContactUc.Size = new System.Drawing.Size(641, 158);
+            this.CustomerContactUc.TabIndex = 5;
+            // 
+            // CustomerAddressUc
+            // 
+            this.CustomerAddressUc.Address = null;
+            this.CustomerAddressUc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CustomerAddressUc.DisplayGcdButton = false;
+            this.CustomerAddressUc.Location = new System.Drawing.Point(3, 156);
+            this.CustomerAddressUc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CustomerAddressUc.Name = "CustomerAddressUc";
+            this.CustomerAddressUc.Size = new System.Drawing.Size(642, 218);
+            this.CustomerAddressUc.TabIndex = 4;
+            // 
+            // CustomerIdentitiesUc
+            // 
+            this.CustomerIdentitiesUc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CustomerIdentitiesUc.Identities = null;
+            this.CustomerIdentitiesUc.Location = new System.Drawing.Point(3, 32);
+            this.CustomerIdentitiesUc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CustomerIdentitiesUc.Name = "CustomerIdentitiesUc";
+            this.CustomerIdentitiesUc.Size = new System.Drawing.Size(641, 118);
+            this.CustomerIdentitiesUc.TabIndex = 3;
+            // 
             // RecieverTabPage
             // 
             this.RecieverTabPage.Controls.Add(this.RecieverContactPersonUc);
@@ -174,6 +226,40 @@ namespace AMANA.IFP.Forms
             this.RecieverTabPage.TabIndex = 1;
             this.RecieverTabPage.Text = "Empfängerinformationen";
             this.RecieverTabPage.UseVisualStyleBackColor = true;
+            // 
+            // RecieverContactPersonUc
+            // 
+            this.RecieverContactPersonUc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RecieverContactPersonUc.ContactPerson = null;
+            this.RecieverContactPersonUc.Location = new System.Drawing.Point(6, 342);
+            this.RecieverContactPersonUc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RecieverContactPersonUc.Name = "RecieverContactPersonUc";
+            this.RecieverContactPersonUc.Size = new System.Drawing.Size(645, 96);
+            this.RecieverContactPersonUc.TabIndex = 2;
+            // 
+            // RecieverAddressUc
+            // 
+            this.RecieverAddressUc.Address = null;
+            this.RecieverAddressUc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RecieverAddressUc.DisplayGcdButton = false;
+            this.RecieverAddressUc.Location = new System.Drawing.Point(6, 118);
+            this.RecieverAddressUc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RecieverAddressUc.Name = "RecieverAddressUc";
+            this.RecieverAddressUc.Size = new System.Drawing.Size(642, 218);
+            this.RecieverAddressUc.TabIndex = 1;
+            // 
+            // RecieverBankIdUc
+            // 
+            this.RecieverBankIdUc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RecieverBankIdUc.BankId = null;
+            this.RecieverBankIdUc.Location = new System.Drawing.Point(6, 6);
+            this.RecieverBankIdUc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RecieverBankIdUc.Name = "RecieverBankIdUc";
+            this.RecieverBankIdUc.Size = new System.Drawing.Size(639, 106);
+            this.RecieverBankIdUc.TabIndex = 0;
             // 
             // SenderInfoTabPage
             // 
@@ -200,6 +286,52 @@ namespace AMANA.IFP.Forms
             this.SenderInformationPanel.Size = new System.Drawing.Size(730, 581);
             this.SenderInformationPanel.TabIndex = 0;
             // 
+            // SenderNameUc
+            // 
+            this.SenderNameUc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SenderNameUc.IfpName = null;
+            this.SenderNameUc.Location = new System.Drawing.Point(0, 314);
+            this.SenderNameUc.Margin = new System.Windows.Forms.Padding(4);
+            this.SenderNameUc.Name = "SenderNameUc";
+            this.SenderNameUc.Size = new System.Drawing.Size(629, 85);
+            this.SenderNameUc.TabIndex = 2;
+            // 
+            // SenderAddressUc
+            // 
+            this.SenderAddressUc.Address = null;
+            this.SenderAddressUc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SenderAddressUc.DisplayGcdButton = false;
+            this.SenderAddressUc.Location = new System.Drawing.Point(-1, 90);
+            this.SenderAddressUc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SenderAddressUc.Name = "SenderAddressUc";
+            this.SenderAddressUc.Size = new System.Drawing.Size(633, 218);
+            this.SenderAddressUc.TabIndex = 1;
+            // 
+            // SenderIdentitiesUc
+            // 
+            this.SenderIdentitiesUc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SenderIdentitiesUc.Identities = null;
+            this.SenderIdentitiesUc.Location = new System.Drawing.Point(3, 3);
+            this.SenderIdentitiesUc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SenderIdentitiesUc.Name = "SenderIdentitiesUc";
+            this.SenderIdentitiesUc.Size = new System.Drawing.Size(629, 81);
+            this.SenderIdentitiesUc.TabIndex = 0;
+            // 
+            // SenderContactUc
+            // 
+            this.SenderContactUc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SenderContactUc.ContactData = null;
+            this.SenderContactUc.Location = new System.Drawing.Point(-1, 405);
+            this.SenderContactUc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SenderContactUc.Name = "SenderContactUc";
+            this.SenderContactUc.Size = new System.Drawing.Size(638, 159);
+            this.SenderContactUc.TabIndex = 3;
+            // 
             // IfpConfigurationTabPage
             // 
             this.IfpConfigurationTabPage.Controls.Add(this.ClientConfigurationUc);
@@ -211,10 +343,22 @@ namespace AMANA.IFP.Forms
             this.IfpConfigurationTabPage.Text = "Client-Konfiguration";
             this.IfpConfigurationTabPage.UseVisualStyleBackColor = true;
             // 
+            // ClientConfigurationUc
+            // 
+            this.ClientConfigurationUc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ClientConfigurationUc.IfpDataContainer = null;
+            this.ClientConfigurationUc.Location = new System.Drawing.Point(6, 6);
+            this.ClientConfigurationUc.Margin = new System.Windows.Forms.Padding(4);
+            this.ClientConfigurationUc.Name = "ClientConfigurationUc";
+            this.ClientConfigurationUc.Size = new System.Drawing.Size(642, 192);
+            this.ClientConfigurationUc.TabIndex = 0;
+            // 
             // menuStrip1
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dateiToolStripMenuItem,
             this.SettingsToolStripMenuItem,
             this.hilfeToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -223,7 +367,47 @@ namespace AMANA.IFP.Forms
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
+            // dateiToolStripMenuItem
+            // 
+            this.dateiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ResetSessionMenuItem,
+            this.LoadSessionDataMenuItem,
+            this.SaveSessionMenuItem,
+            this.DeleteSessionMenuItem});
+            this.dateiToolStripMenuItem.Name = "dateiToolStripMenuItem";
+            this.dateiToolStripMenuItem.Size = new System.Drawing.Size(57, 24);
+            this.dateiToolStripMenuItem.Text = "Datei";
+            // 
+            // LoadSessionDataMenuItem
+            // 
+            this.LoadSessionDataMenuItem.Name = "LoadSessionDataMenuItem";
+            this.LoadSessionDataMenuItem.Size = new System.Drawing.Size(313, 26);
+            this.LoadSessionDataMenuItem.Text = "Zuletzt gespeicherte Sitzung laden";
+            this.LoadSessionDataMenuItem.Click += new System.EventHandler(this.LoadSessionDataMenuItem_Click);
+            // 
+            // SaveSessionMenuItem
+            // 
+            this.SaveSessionMenuItem.Name = "SaveSessionMenuItem";
+            this.SaveSessionMenuItem.Size = new System.Drawing.Size(313, 26);
+            this.SaveSessionMenuItem.Text = "Aktuelle Sitzung speichern";
+            this.SaveSessionMenuItem.Click += new System.EventHandler(this.SaveSessionMenuItem_Click);
+            // 
             // SettingsToolStripMenuItem
+            // 
+            // 
+            // DeleteSessionMenuItem
+            // 
+            this.DeleteSessionMenuItem.Name = "DeleteSessionMenuItem";
+            this.DeleteSessionMenuItem.Size = new System.Drawing.Size(313, 26);
+            this.DeleteSessionMenuItem.Text = "Sitzungsdaten löschen";
+            this.DeleteSessionMenuItem.Click += new System.EventHandler(this.DeleteSessionMenuItem_Click);
+            // 
+            // ResetSessionMenuItem
+            // 
+            this.ResetSessionMenuItem.Name = "ResetSessionMenuItem";
+            this.ResetSessionMenuItem.Size = new System.Drawing.Size(313, 26);
+            this.ResetSessionMenuItem.Text = "Aktuelle Sitzung zurücksetzen";
+            this.ResetSessionMenuItem.Click += new System.EventHandler(this.ResetSessionMenuItem_Click);
             // 
             this.SettingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.IfpSettingsToolStripMenuItem,
@@ -333,145 +517,6 @@ namespace AMANA.IFP.Forms
             this.ValidationScopeLabel.Name = "ValidationScopeLabel";
             this.ValidationScopeLabel.Size = new System.Drawing.Size(0, 17);
             this.ValidationScopeLabel.TabIndex = 5;
-            // 
-            // BalanceInformation
-            // 
-            this.BalanceInformation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.BalanceInformation.BalanceInformation = null;
-            this.BalanceInformation.Location = new System.Drawing.Point(6, 6);
-            this.BalanceInformation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.BalanceInformation.Name = "BalanceInformation";
-            this.BalanceInformation.Size = new System.Drawing.Size(731, 582);
-            this.BalanceInformation.TabIndex = 0;
-            // 
-            // CustomerContactUc
-            // 
-            this.CustomerContactUc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.CustomerContactUc.ContactData = null;
-            this.CustomerContactUc.Location = new System.Drawing.Point(3, 394);
-            this.CustomerContactUc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.CustomerContactUc.Name = "CustomerContactUc";
-            this.CustomerContactUc.Size = new System.Drawing.Size(733, 158);
-            this.CustomerContactUc.TabIndex = 5;
-            // 
-            // CustomerAddressUc
-            // 
-            this.CustomerAddressUc.Address = null;
-            this.CustomerAddressUc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.CustomerAddressUc.DisplayGcdButton = false;
-            this.CustomerAddressUc.Location = new System.Drawing.Point(3, 170);
-            this.CustomerAddressUc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.CustomerAddressUc.Name = "CustomerAddressUc";
-            this.CustomerAddressUc.Size = new System.Drawing.Size(734, 218);
-            this.CustomerAddressUc.TabIndex = 4;
-            // 
-            // CustomerIdentitiesUc
-            // 
-            this.CustomerIdentitiesUc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.CustomerIdentitiesUc.Identities = null;
-            this.CustomerIdentitiesUc.Location = new System.Drawing.Point(3, 32);
-            this.CustomerIdentitiesUc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.CustomerIdentitiesUc.Name = "CustomerIdentitiesUc";
-            this.CustomerIdentitiesUc.Size = new System.Drawing.Size(733, 132);
-            this.CustomerIdentitiesUc.TabIndex = 3;
-            // 
-            // RecieverContactPersonUc
-            // 
-            this.RecieverContactPersonUc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.RecieverContactPersonUc.ContactPerson = null;
-            this.RecieverContactPersonUc.Location = new System.Drawing.Point(6, 342);
-            this.RecieverContactPersonUc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.RecieverContactPersonUc.Name = "RecieverContactPersonUc";
-            this.RecieverContactPersonUc.Size = new System.Drawing.Size(737, 96);
-            this.RecieverContactPersonUc.TabIndex = 2;
-            // 
-            // RecieverAddressUc
-            // 
-            this.RecieverAddressUc.Address = null;
-            this.RecieverAddressUc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.RecieverAddressUc.DisplayGcdButton = false;
-            this.RecieverAddressUc.Location = new System.Drawing.Point(6, 118);
-            this.RecieverAddressUc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.RecieverAddressUc.Name = "RecieverAddressUc";
-            this.RecieverAddressUc.Size = new System.Drawing.Size(734, 218);
-            this.RecieverAddressUc.TabIndex = 1;
-            // 
-            // RecieverBankIdUc
-            // 
-            this.RecieverBankIdUc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.RecieverBankIdUc.BankId = null;
-            this.RecieverBankIdUc.Location = new System.Drawing.Point(6, 6);
-            this.RecieverBankIdUc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.RecieverBankIdUc.Name = "RecieverBankIdUc";
-            this.RecieverBankIdUc.Size = new System.Drawing.Size(731, 106);
-            this.RecieverBankIdUc.TabIndex = 0;
-            // 
-            // SenderNameUc
-            // 
-            this.SenderNameUc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SenderNameUc.IfpName = null;
-            this.SenderNameUc.Location = new System.Drawing.Point(0, 328);
-            this.SenderNameUc.Margin = new System.Windows.Forms.Padding(4);
-            this.SenderNameUc.Name = "SenderNameUc";
-            this.SenderNameUc.Size = new System.Drawing.Size(721, 85);
-            this.SenderNameUc.TabIndex = 2;
-            // 
-            // SenderAddressUc
-            // 
-            this.SenderAddressUc.Address = null;
-            this.SenderAddressUc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SenderAddressUc.DisplayGcdButton = false;
-            this.SenderAddressUc.Location = new System.Drawing.Point(-1, 104);
-            this.SenderAddressUc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.SenderAddressUc.Name = "SenderAddressUc";
-            this.SenderAddressUc.Size = new System.Drawing.Size(725, 218);
-            this.SenderAddressUc.TabIndex = 1;
-            // 
-            // SenderIdentitiesUc
-            // 
-            this.SenderIdentitiesUc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SenderIdentitiesUc.Identities = null;
-            this.SenderIdentitiesUc.Location = new System.Drawing.Point(3, 3);
-            this.SenderIdentitiesUc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.SenderIdentitiesUc.Name = "SenderIdentitiesUc";
-            this.SenderIdentitiesUc.Size = new System.Drawing.Size(721, 95);
-            this.SenderIdentitiesUc.TabIndex = 0;
-            // 
-            // SenderContactUc
-            // 
-            this.SenderContactUc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SenderContactUc.ContactData = null;
-            this.SenderContactUc.Location = new System.Drawing.Point(-1, 419);
-            this.SenderContactUc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.SenderContactUc.Name = "SenderContactUc";
-            this.SenderContactUc.Size = new System.Drawing.Size(730, 159);
-            this.SenderContactUc.TabIndex = 3;
-            // 
-            // ClientConfigurationUc
-            // 
-            this.ClientConfigurationUc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClientConfigurationUc.IfpDataContainer = null;
-            this.ClientConfigurationUc.Location = new System.Drawing.Point(6, 6);
-            this.ClientConfigurationUc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ClientConfigurationUc.Name = "ClientConfigurationUc";
-            this.ClientConfigurationUc.Size = new System.Drawing.Size(734, 192);
-            this.ClientConfigurationUc.TabIndex = 0;
-            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -545,6 +590,11 @@ namespace AMANA.IFP.Forms
         private System.Windows.Forms.GroupBox ValidationStatusGroupBox;
         private System.Windows.Forms.Label ValidationResultIconLabel;
         private System.Windows.Forms.Label ValidationScopeLabel;
+        private System.Windows.Forms.ToolStripMenuItem dateiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem LoadSessionDataMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SaveSessionMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ResetSessionMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DeleteSessionMenuItem;
     }
 }
 
