@@ -34,14 +34,26 @@ namespace AMANA.IFP.Forms
             this.BtnSend = new System.Windows.Forms.Button();
             this.InformationTabs = new System.Windows.Forms.TabControl();
             this.BalanceInfoTabPage = new System.Windows.Forms.TabPage();
+            this.BalanceInformation = new AMANA.IFP.UserControls.BalanceInformationUc();
             this.CustomerInfoTabPage = new System.Windows.Forms.TabPage();
             this.BtnSetGcdCustomer = new System.Windows.Forms.Button();
             this.CustomerTextBox = new System.Windows.Forms.TextBox();
             this.LblCustomerName = new System.Windows.Forms.Label();
+            this.CustomerContactUc = new AMANA.IFP.UserControls.ContactUc();
+            this.CustomerAddressUc = new AMANA.IFP.UserControls.AddressUc();
+            this.CustomerIdentitiesUc = new AMANA.IFP.UserControls.CustomerIdentitiesUc();
             this.RecieverTabPage = new System.Windows.Forms.TabPage();
+            this.RecieverContactPersonUc = new AMANA.IFP.UserControls.ContactPersonUc();
+            this.RecieverAddressUc = new AMANA.IFP.UserControls.AddressUc();
+            this.RecieverBankIdUc = new AMANA.IFP.UserControls.BankIdUc();
             this.SenderInfoTabPage = new System.Windows.Forms.TabPage();
             this.SenderInformationPanel = new System.Windows.Forms.Panel();
+            this.SenderNameUc = new AMANA.IFP.UserControls.NameUc();
+            this.SenderAddressUc = new AMANA.IFP.UserControls.AddressUc();
+            this.SenderIdentitiesUc = new AMANA.IFP.UserControls.SenderIdentitiesUc();
+            this.SenderContactUc = new AMANA.IFP.UserControls.ContactUc();
             this.IfpConfigurationTabPage = new System.Windows.Forms.TabPage();
+            this.ClientConfigurationUc = new AMANA.IFP.UserControls.ClientConfigurationUc();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.dateiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LoadSessionDataMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -381,6 +393,21 @@ namespace AMANA.IFP.Forms
             this.SaveSessionMenuItem.Click += new System.EventHandler(this.SaveSessionMenuItem_Click);
             // 
             // SettingsToolStripMenuItem
+            // 
+            // 
+            // DeleteSessionMenuItem
+            // 
+            this.DeleteSessionMenuItem.Name = "DeleteSessionMenuItem";
+            this.DeleteSessionMenuItem.Size = new System.Drawing.Size(313, 26);
+            this.DeleteSessionMenuItem.Text = "Sitzungsdaten löschen";
+            this.DeleteSessionMenuItem.Click += new System.EventHandler(this.DeleteSessionMenuItem_Click);
+            // 
+            // ResetSessionMenuItem
+            // 
+            this.ResetSessionMenuItem.Name = "ResetSessionMenuItem";
+            this.ResetSessionMenuItem.Size = new System.Drawing.Size(313, 26);
+            this.ResetSessionMenuItem.Text = "Aktuelle Sitzung zurücksetzen";
+            this.ResetSessionMenuItem.Click += new System.EventHandler(this.ResetSessionMenuItem_Click);
             // 
             this.SettingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.IfpSettingsToolStripMenuItem,
