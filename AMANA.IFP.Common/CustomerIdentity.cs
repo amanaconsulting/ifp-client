@@ -16,15 +16,14 @@ using AMANA.IFP.Data.Elba;
 
 namespace AMANA.IFP.Common
 {
+    public enum IdentityTypes
+    {
+        Kundennummer
+    }
     public class CustomerIdentity : INotifyPropertyChanged
     {
         private IdentityTypes _identityType;
-        private string _value;
-
-        public enum IdentityTypes
-        {
-            Kundennummer
-        }
+        private string _value;        
 
         public IdentityTypes IdentityType
         {

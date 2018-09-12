@@ -9,6 +9,7 @@
 // Link zu den Lizenzbedingungen: https://www.gnu.org/licenses/gpl-3.0.txt
 using System;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using AMANA.IFP.Common;
@@ -21,7 +22,13 @@ namespace AMANA.IFP.Client
     {
         
         private string _version;
-        private readonly string _settingsFilePath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\AMANAconsulting\ifpSettings.xml";
+
+        private readonly string currentDefaultInstituteMappingVersion = "2017_1_001";
+        private readonly string _baseSettingsDirPath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\AMANAconsulting";
+
+        private readonly string _settingsFileName = "ifpSettings.xml";
+        private readonly string _userSessionElabaInformationFileName = "elbaInformation.xml";
+        private readonly string _userSessionHeaderIdentityFileName = "headerIdentity.xml";
 
         public ElbaInformation ElbaInformation { get; set; }
         public HeaderIdentity HeaderIdentity { get; set; }
@@ -34,19 +41,36 @@ namespace AMANA.IFP.Client
             get { return _version; }
             set
             {
+                if (!value.Equals(HeaderIdentity.MappingVersion, StringComparison.Ordinal))
+                    HeaderIdentity.MappingVersion = value;
                 if (value == _version) return;
                 _version = value;
                 OnPropertyChanged();
             }
         }                        
 
-        public IfpDataContainer()
+        public IfpDataContainer(bool userSessionLoadingEnabled = false)
         {
-            ElbaInformation = new ElbaInformation();
-            HeaderIdentity = new HeaderIdentity();
+            var settingsFilePath = Path.Combine(_baseSettingsDirPath, _settingsFileName);
+
+            var elbaInformationFilePath = Path.Combine(_baseSettingsDirPath, _userSessionElabaInformationFileName);
+            var headerIdentityFilePath = Path.Combine(_baseSettingsDirPath, _userSessionHeaderIdentityFileName);
+
+            ElbaInformation = new ElbaInformation(elbaInformationFilePath);
+            HeaderIdentity = new HeaderIdentity(headerIdentityFilePath);
+            Version = currentDefaultInstituteMappingVersion;
+            
+            if (userSessionLoadingEnabled)
+            {
+                ElbaInformation = ElbaInformation.Load();
+                HeaderIdentity = HeaderIdentity.Load();
+                
+                Version = HeaderIdentity.MappingVersion;
+            }            
+
             Client = new Client();
             HttpProxySettings = new HttpProxySettings();
-            IfpClientSettings = new IfpClientSettings(_settingsFilePath);
+            IfpClientSettings = new IfpClientSettings(settingsFilePath);
         }
 
         public RequestResult SendData(Software channelSoftware, bool isTest = false)
@@ -59,8 +83,8 @@ namespace AMANA.IFP.Client
                                                  "Bitte überprüfen Sie in den allgemeinen Einstellungen, " +
                                                  "ob der Pfad zur Mappingdatei korrekt gesetzt wurde.");
 
-            if (!ElbaInformation.BalanceInformation.Any()
-                || ElbaInformation.BalanceInformation.First().GetFirstXmlDocument() == null)
+            if (!ElbaInformation.BalanceInformationList.Any()
+                || ElbaInformation.BalanceInformationList.First().GetFirstXmlDocument() == null)
                 throw new NullReferenceException("Keine XBRL-Datei zum Übermitteln gefunden. " +
                                                  "Bitte geben Sie unter den Abschlussinformationen eine XBRL-Instanz an.");
 

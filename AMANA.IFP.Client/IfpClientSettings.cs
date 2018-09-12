@@ -60,38 +60,16 @@ namespace AMANA.IFP.Client
         public CertificateSettings CertificateSettings { get; set; }
 
         private void Load()
-        {            
-            var filename = PathHelper.GetAbsolutePath(_settingsFilePath);            
-
-            if (File.Exists(filename))
-            {
-                using (Stream stream = File.Open(filename, FileMode.Open, FileAccess.Read, FileShare.Read))
-                {
-                    XmlSerializer serializer = new XmlSerializer(typeof(IfpClientSettings), typeof(IfpClientSettings).GetNestedTypes());
-                    try
-                    {
-                        var settings = (IfpClientSettings) serializer.Deserialize(stream);
-                        settings.CopyTo(this);
-                    }
-                    catch (Exception)
-                    {
-                        stream.Close();
-                        throw;
-                    }
-
-                    stream.Close();
-                }
-            }
-            else
-            {
-                ValidateIfpData = true;
-                CertificateSettings.SetDefaultValues();
-            }
+        {
+            var settings = GenericXmlSerializerHelper.DeserializeFromFile<IfpClientSettings>(_settingsFilePath);
+            settings.CopyTo(this);
         }
 
         private IfpClientSettings()
         {
             CertificateSettings = new CertificateSettings();
+            ValidateIfpData = true;
+            CertificateSettings.SetDefaultValues();
         }
 
         public IfpClientSettings(string settingsFilepath)
@@ -102,12 +80,7 @@ namespace AMANA.IFP.Client
 
         public void Save()
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(IfpClientSettings), typeof(IfpClientSettings).GetNestedTypes());
-            using (Stream stream = File.Open(_settingsFilePath, FileMode.Create))
-            {
-                serializer.Serialize(stream, this);
-                stream.Close();
-            }
+           GenericXmlSerializerHelper.SerializeToFile(_settingsFilePath, this);
         }
 
         public IfpClientSettings Copy()

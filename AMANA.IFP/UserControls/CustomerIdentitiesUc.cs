@@ -58,8 +58,7 @@ namespace AMANA.IFP.UserControls
 
             ObjectListViewItem item = new ObjectListViewItem(identity, subItems);
 
-            SenderIdentityListView.Items.Add(item);
-            _identities.Add(identity);
+            SenderIdentityListView.Items.Add(item);            
         }
 
         private void BtnAddSenderIdentity_Click(object sender, EventArgs e)
@@ -103,7 +102,10 @@ namespace AMANA.IFP.UserControls
             CustomerIdentity newIdentity = new CustomerIdentity();
             EditCustomerIdentityForm form = new EditCustomerIdentityForm(newIdentity);
             if (form.ShowDialog() == DialogResult.OK)
+            {
+                _identities.Add(newIdentity);
                 AddSenderIdentity(newIdentity);
+            }
         }
 
         private void EditSelectedItem()

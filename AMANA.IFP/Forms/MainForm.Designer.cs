@@ -55,6 +55,9 @@ namespace AMANA.IFP.Forms
             this.IfpConfigurationTabPage = new System.Windows.Forms.TabPage();
             this.ClientConfigurationUc = new AMANA.IFP.UserControls.ClientConfigurationUc();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.dateiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.LoadSessionDataMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveSessionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.IfpSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HttpProxySettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,6 +68,8 @@ namespace AMANA.IFP.Forms
             this.BtnClose = new System.Windows.Forms.Button();
             this.GcdToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.chk_Testsubmission = new System.Windows.Forms.CheckBox();
+            this.DeleteSessionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ResetSessionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.InformationTabs.SuspendLayout();
             this.BalanceInfoTabPage.SuspendLayout();
             this.CustomerInfoTabPage.SuspendLayout();
@@ -106,10 +111,10 @@ namespace AMANA.IFP.Forms
             // BalanceInfoTabPage
             // 
             this.BalanceInfoTabPage.Controls.Add(this.BalanceInformation);
-            this.BalanceInfoTabPage.Location = new System.Drawing.Point(4, 22);
+            this.BalanceInfoTabPage.Location = new System.Drawing.Point(4, 46);
             this.BalanceInfoTabPage.Name = "BalanceInfoTabPage";
             this.BalanceInfoTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.BalanceInfoTabPage.Size = new System.Drawing.Size(651, 604);
+            this.BalanceInfoTabPage.Size = new System.Drawing.Size(651, 580);
             this.BalanceInfoTabPage.TabIndex = 3;
             this.BalanceInfoTabPage.Text = "Abschlussinformationen";
             this.BalanceInfoTabPage.UseVisualStyleBackColor = true;
@@ -121,8 +126,9 @@ namespace AMANA.IFP.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.BalanceInformation.BalanceInformation = null;
             this.BalanceInformation.Location = new System.Drawing.Point(6, 6);
+            this.BalanceInformation.Margin = new System.Windows.Forms.Padding(4);
             this.BalanceInformation.Name = "BalanceInformation";
-            this.BalanceInformation.Size = new System.Drawing.Size(639, 592);
+            this.BalanceInformation.Size = new System.Drawing.Size(639, 568);
             this.BalanceInformation.TabIndex = 0;
             // 
             // CustomerInfoTabPage
@@ -133,10 +139,10 @@ namespace AMANA.IFP.Forms
             this.CustomerInfoTabPage.Controls.Add(this.CustomerContactUc);
             this.CustomerInfoTabPage.Controls.Add(this.CustomerAddressUc);
             this.CustomerInfoTabPage.Controls.Add(this.CustomerIdentitiesUc);
-            this.CustomerInfoTabPage.Location = new System.Drawing.Point(4, 22);
+            this.CustomerInfoTabPage.Location = new System.Drawing.Point(4, 46);
             this.CustomerInfoTabPage.Name = "CustomerInfoTabPage";
             this.CustomerInfoTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.CustomerInfoTabPage.Size = new System.Drawing.Size(651, 604);
+            this.CustomerInfoTabPage.Size = new System.Drawing.Size(651, 580);
             this.CustomerInfoTabPage.TabIndex = 2;
             this.CustomerInfoTabPage.Text = "Kundeninformationen";
             this.CustomerInfoTabPage.UseVisualStyleBackColor = true;
@@ -157,7 +163,7 @@ namespace AMANA.IFP.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CustomerTextBox.Location = new System.Drawing.Point(181, 6);
             this.CustomerTextBox.Name = "CustomerTextBox";
-            this.CustomerTextBox.Size = new System.Drawing.Size(463, 20);
+            this.CustomerTextBox.Size = new System.Drawing.Size(463, 22);
             this.CustomerTextBox.TabIndex = 2;
             // 
             // LblCustomerName
@@ -165,7 +171,7 @@ namespace AMANA.IFP.Forms
             this.LblCustomerName.AutoSize = true;
             this.LblCustomerName.Location = new System.Drawing.Point(6, 9);
             this.LblCustomerName.Name = "LblCustomerName";
-            this.LblCustomerName.Size = new System.Drawing.Size(39, 13);
+            this.LblCustomerName.Size = new System.Drawing.Size(50, 17);
             this.LblCustomerName.TabIndex = 0;
             this.LblCustomerName.Text = "Name*";
             // 
@@ -174,7 +180,8 @@ namespace AMANA.IFP.Forms
             this.CustomerContactUc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CustomerContactUc.ContactData = null;
-            this.CustomerContactUc.Location = new System.Drawing.Point(3, 404);
+            this.CustomerContactUc.Location = new System.Drawing.Point(3, 380);
+            this.CustomerContactUc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CustomerContactUc.Name = "CustomerContactUc";
             this.CustomerContactUc.Size = new System.Drawing.Size(641, 158);
             this.CustomerContactUc.TabIndex = 5;
@@ -185,7 +192,8 @@ namespace AMANA.IFP.Forms
             this.CustomerAddressUc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CustomerAddressUc.DisplayGcdButton = false;
-            this.CustomerAddressUc.Location = new System.Drawing.Point(3, 180);
+            this.CustomerAddressUc.Location = new System.Drawing.Point(3, 156);
+            this.CustomerAddressUc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CustomerAddressUc.Name = "CustomerAddressUc";
             this.CustomerAddressUc.Size = new System.Drawing.Size(642, 218);
             this.CustomerAddressUc.TabIndex = 4;
@@ -197,8 +205,9 @@ namespace AMANA.IFP.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CustomerIdentitiesUc.Identities = null;
             this.CustomerIdentitiesUc.Location = new System.Drawing.Point(3, 32);
+            this.CustomerIdentitiesUc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CustomerIdentitiesUc.Name = "CustomerIdentitiesUc";
-            this.CustomerIdentitiesUc.Size = new System.Drawing.Size(641, 142);
+            this.CustomerIdentitiesUc.Size = new System.Drawing.Size(641, 118);
             this.CustomerIdentitiesUc.TabIndex = 3;
             // 
             // RecieverTabPage
@@ -206,10 +215,10 @@ namespace AMANA.IFP.Forms
             this.RecieverTabPage.Controls.Add(this.RecieverContactPersonUc);
             this.RecieverTabPage.Controls.Add(this.RecieverAddressUc);
             this.RecieverTabPage.Controls.Add(this.RecieverBankIdUc);
-            this.RecieverTabPage.Location = new System.Drawing.Point(4, 22);
+            this.RecieverTabPage.Location = new System.Drawing.Point(4, 46);
             this.RecieverTabPage.Name = "RecieverTabPage";
             this.RecieverTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.RecieverTabPage.Size = new System.Drawing.Size(651, 604);
+            this.RecieverTabPage.Size = new System.Drawing.Size(651, 580);
             this.RecieverTabPage.TabIndex = 1;
             this.RecieverTabPage.Text = "Empfängerinformationen";
             this.RecieverTabPage.UseVisualStyleBackColor = true;
@@ -220,6 +229,7 @@ namespace AMANA.IFP.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.RecieverContactPersonUc.ContactPerson = null;
             this.RecieverContactPersonUc.Location = new System.Drawing.Point(6, 342);
+            this.RecieverContactPersonUc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.RecieverContactPersonUc.Name = "RecieverContactPersonUc";
             this.RecieverContactPersonUc.Size = new System.Drawing.Size(645, 96);
             this.RecieverContactPersonUc.TabIndex = 2;
@@ -231,6 +241,7 @@ namespace AMANA.IFP.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.RecieverAddressUc.DisplayGcdButton = false;
             this.RecieverAddressUc.Location = new System.Drawing.Point(6, 118);
+            this.RecieverAddressUc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.RecieverAddressUc.Name = "RecieverAddressUc";
             this.RecieverAddressUc.Size = new System.Drawing.Size(642, 218);
             this.RecieverAddressUc.TabIndex = 1;
@@ -241,6 +252,7 @@ namespace AMANA.IFP.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.RecieverBankIdUc.BankId = null;
             this.RecieverBankIdUc.Location = new System.Drawing.Point(6, 6);
+            this.RecieverBankIdUc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.RecieverBankIdUc.Name = "RecieverBankIdUc";
             this.RecieverBankIdUc.Size = new System.Drawing.Size(639, 106);
             this.RecieverBankIdUc.TabIndex = 0;
@@ -248,10 +260,10 @@ namespace AMANA.IFP.Forms
             // SenderInfoTabPage
             // 
             this.SenderInfoTabPage.Controls.Add(this.SenderInformationPanel);
-            this.SenderInfoTabPage.Location = new System.Drawing.Point(4, 22);
+            this.SenderInfoTabPage.Location = new System.Drawing.Point(4, 46);
             this.SenderInfoTabPage.Name = "SenderInfoTabPage";
             this.SenderInfoTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.SenderInfoTabPage.Size = new System.Drawing.Size(651, 604);
+            this.SenderInfoTabPage.Size = new System.Drawing.Size(651, 580);
             this.SenderInfoTabPage.TabIndex = 0;
             this.SenderInfoTabPage.Text = "Absenderinformationen";
             this.SenderInfoTabPage.UseVisualStyleBackColor = true;
@@ -267,7 +279,7 @@ namespace AMANA.IFP.Forms
             this.SenderInformationPanel.Controls.Add(this.SenderContactUc);
             this.SenderInformationPanel.Location = new System.Drawing.Point(7, 7);
             this.SenderInformationPanel.Name = "SenderInformationPanel";
-            this.SenderInformationPanel.Size = new System.Drawing.Size(638, 591);
+            this.SenderInformationPanel.Size = new System.Drawing.Size(638, 567);
             this.SenderInformationPanel.TabIndex = 0;
             // 
             // SenderNameUc
@@ -275,7 +287,8 @@ namespace AMANA.IFP.Forms
             this.SenderNameUc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SenderNameUc.IfpName = null;
-            this.SenderNameUc.Location = new System.Drawing.Point(0, 338);
+            this.SenderNameUc.Location = new System.Drawing.Point(0, 314);
+            this.SenderNameUc.Margin = new System.Windows.Forms.Padding(4);
             this.SenderNameUc.Name = "SenderNameUc";
             this.SenderNameUc.Size = new System.Drawing.Size(629, 85);
             this.SenderNameUc.TabIndex = 2;
@@ -286,7 +299,8 @@ namespace AMANA.IFP.Forms
             this.SenderAddressUc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SenderAddressUc.DisplayGcdButton = false;
-            this.SenderAddressUc.Location = new System.Drawing.Point(-1, 114);
+            this.SenderAddressUc.Location = new System.Drawing.Point(-1, 90);
+            this.SenderAddressUc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SenderAddressUc.Name = "SenderAddressUc";
             this.SenderAddressUc.Size = new System.Drawing.Size(633, 218);
             this.SenderAddressUc.TabIndex = 1;
@@ -298,8 +312,9 @@ namespace AMANA.IFP.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SenderIdentitiesUc.Identities = null;
             this.SenderIdentitiesUc.Location = new System.Drawing.Point(3, 3);
+            this.SenderIdentitiesUc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SenderIdentitiesUc.Name = "SenderIdentitiesUc";
-            this.SenderIdentitiesUc.Size = new System.Drawing.Size(629, 105);
+            this.SenderIdentitiesUc.Size = new System.Drawing.Size(629, 81);
             this.SenderIdentitiesUc.TabIndex = 0;
             // 
             // SenderContactUc
@@ -307,7 +322,8 @@ namespace AMANA.IFP.Forms
             this.SenderContactUc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SenderContactUc.ContactData = null;
-            this.SenderContactUc.Location = new System.Drawing.Point(-1, 429);
+            this.SenderContactUc.Location = new System.Drawing.Point(-1, 405);
+            this.SenderContactUc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SenderContactUc.Name = "SenderContactUc";
             this.SenderContactUc.Size = new System.Drawing.Size(638, 159);
             this.SenderContactUc.TabIndex = 3;
@@ -315,10 +331,10 @@ namespace AMANA.IFP.Forms
             // IfpConfigurationTabPage
             // 
             this.IfpConfigurationTabPage.Controls.Add(this.ClientConfigurationUc);
-            this.IfpConfigurationTabPage.Location = new System.Drawing.Point(4, 22);
+            this.IfpConfigurationTabPage.Location = new System.Drawing.Point(4, 46);
             this.IfpConfigurationTabPage.Name = "IfpConfigurationTabPage";
             this.IfpConfigurationTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.IfpConfigurationTabPage.Size = new System.Drawing.Size(651, 604);
+            this.IfpConfigurationTabPage.Size = new System.Drawing.Size(651, 580);
             this.IfpConfigurationTabPage.TabIndex = 4;
             this.IfpConfigurationTabPage.Text = "Client-Konfiguration";
             this.IfpConfigurationTabPage.UseVisualStyleBackColor = true;
@@ -329,20 +345,48 @@ namespace AMANA.IFP.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ClientConfigurationUc.IfpDataContainer = null;
             this.ClientConfigurationUc.Location = new System.Drawing.Point(6, 6);
+            this.ClientConfigurationUc.Margin = new System.Windows.Forms.Padding(4);
             this.ClientConfigurationUc.Name = "ClientConfigurationUc";
             this.ClientConfigurationUc.Size = new System.Drawing.Size(642, 192);
             this.ClientConfigurationUc.TabIndex = 0;
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dateiToolStripMenuItem,
             this.SettingsToolStripMenuItem,
             this.hilfeToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(684, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(684, 28);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // dateiToolStripMenuItem
+            // 
+            this.dateiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ResetSessionMenuItem,
+            this.LoadSessionDataMenuItem,
+            this.SaveSessionMenuItem,
+            this.DeleteSessionMenuItem});
+            this.dateiToolStripMenuItem.Name = "dateiToolStripMenuItem";
+            this.dateiToolStripMenuItem.Size = new System.Drawing.Size(57, 24);
+            this.dateiToolStripMenuItem.Text = "Datei";
+            // 
+            // LoadSessionDataMenuItem
+            // 
+            this.LoadSessionDataMenuItem.Name = "LoadSessionDataMenuItem";
+            this.LoadSessionDataMenuItem.Size = new System.Drawing.Size(313, 26);
+            this.LoadSessionDataMenuItem.Text = "Zuletzt gespeicherte Sitzung laden";
+            this.LoadSessionDataMenuItem.Click += new System.EventHandler(this.LoadSessionDataMenuItem_Click);
+            // 
+            // SaveSessionMenuItem
+            // 
+            this.SaveSessionMenuItem.Name = "SaveSessionMenuItem";
+            this.SaveSessionMenuItem.Size = new System.Drawing.Size(313, 26);
+            this.SaveSessionMenuItem.Text = "Aktuelle Sitzung speichern";
+            this.SaveSessionMenuItem.Click += new System.EventHandler(this.SaveSessionMenuItem_Click);
             // 
             // SettingsToolStripMenuItem
             // 
@@ -350,20 +394,20 @@ namespace AMANA.IFP.Forms
             this.IfpSettingsToolStripMenuItem,
             this.HttpProxySettingsToolStripMenuItem});
             this.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem";
-            this.SettingsToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
+            this.SettingsToolStripMenuItem.Size = new System.Drawing.Size(109, 24);
             this.SettingsToolStripMenuItem.Text = "&Einstellungen";
             // 
             // IfpSettingsToolStripMenuItem
             // 
             this.IfpSettingsToolStripMenuItem.Name = "IfpSettingsToolStripMenuItem";
-            this.IfpSettingsToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.IfpSettingsToolStripMenuItem.Size = new System.Drawing.Size(252, 26);
             this.IfpSettingsToolStripMenuItem.Text = "&Allgemeine Einstellungen";
             this.IfpSettingsToolStripMenuItem.Click += new System.EventHandler(this.ValidationSettingsToolStripMenuItem_Click);
             // 
             // HttpProxySettingsToolStripMenuItem
             // 
             this.HttpProxySettingsToolStripMenuItem.Name = "HttpProxySettingsToolStripMenuItem";
-            this.HttpProxySettingsToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.HttpProxySettingsToolStripMenuItem.Size = new System.Drawing.Size(252, 26);
             this.HttpProxySettingsToolStripMenuItem.Text = "&Proxy-Einstellungen";
             this.HttpProxySettingsToolStripMenuItem.Click += new System.EventHandler(this.HttpProxySettingsToolStripMenuItem_Click);
             // 
@@ -372,13 +416,13 @@ namespace AMANA.IFP.Forms
             this.hilfeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.überToolStripMenuItem});
             this.hilfeToolStripMenuItem.Name = "hilfeToolStripMenuItem";
-            this.hilfeToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.hilfeToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.hilfeToolStripMenuItem.Text = "&Hilfe";
             // 
             // überToolStripMenuItem
             // 
             this.überToolStripMenuItem.Name = "überToolStripMenuItem";
-            this.überToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
+            this.überToolStripMenuItem.Size = new System.Drawing.Size(116, 26);
             this.überToolStripMenuItem.Text = "&Über";
             this.überToolStripMenuItem.Click += new System.EventHandler(this.überToolStripMenuItem_Click);
             // 
@@ -398,7 +442,7 @@ namespace AMANA.IFP.Forms
             this.LblMandatoryFieldsInfo.AutoSize = true;
             this.LblMandatoryFieldsInfo.Location = new System.Drawing.Point(10, 24);
             this.LblMandatoryFieldsInfo.Name = "LblMandatoryFieldsInfo";
-            this.LblMandatoryFieldsInfo.Size = new System.Drawing.Size(220, 13);
+            this.LblMandatoryFieldsInfo.Size = new System.Drawing.Size(293, 17);
             this.LblMandatoryFieldsInfo.TabIndex = 1;
             this.LblMandatoryFieldsInfo.Text = "Pflichtfelder sind mit einem * gekennzeichnet.";
             // 
@@ -418,15 +462,28 @@ namespace AMANA.IFP.Forms
             this.chk_Testsubmission.AutoSize = true;
             this.chk_Testsubmission.Location = new System.Drawing.Point(236, 682);
             this.chk_Testsubmission.Name = "chk_Testsubmission";
-            this.chk_Testsubmission.Size = new System.Drawing.Size(104, 17);
+            this.chk_Testsubmission.Size = new System.Drawing.Size(136, 21);
             this.chk_Testsubmission.TabIndex = 6;
             this.chk_Testsubmission.Text = "Testübermittlung";
             this.chk_Testsubmission.UseVisualStyleBackColor = true;
             // 
+            // DeleteSessionMenuItem
+            // 
+            this.DeleteSessionMenuItem.Name = "DeleteSessionMenuItem";
+            this.DeleteSessionMenuItem.Size = new System.Drawing.Size(313, 26);
+            this.DeleteSessionMenuItem.Text = "Sitzungsdaten löschen";
+            this.DeleteSessionMenuItem.Click += new System.EventHandler(this.DeleteSessionMenuItem_Click);
+            // 
+            // ResetSessionMenuItem
+            // 
+            this.ResetSessionMenuItem.Name = "ResetSessionMenuItem";
+            this.ResetSessionMenuItem.Size = new System.Drawing.Size(313, 26);
+            this.ResetSessionMenuItem.Text = "Aktuelle Sitzung zurücksetzen";
+            this.ResetSessionMenuItem.Click += new System.EventHandler(this.ResetSessionMenuItem_Click);
+            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(684, 711);
             this.Controls.Add(this.chk_Testsubmission);
             this.Controls.Add(this.BtnClose);
@@ -492,6 +549,11 @@ namespace AMANA.IFP.Forms
         private System.Windows.Forms.ToolStripMenuItem überToolStripMenuItem;
         private ClientConfigurationUc ClientConfigurationUc;
         private System.Windows.Forms.CheckBox chk_Testsubmission;
+        private System.Windows.Forms.ToolStripMenuItem dateiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem LoadSessionDataMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SaveSessionMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ResetSessionMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DeleteSessionMenuItem;
     }
 }
 
