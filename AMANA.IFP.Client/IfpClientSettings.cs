@@ -100,10 +100,12 @@ namespace AMANA.IFP.Client
         public DateTime? RemoteDownloadInstituteMappingTestFileLastWriteDate { get; set; }
 
 
-        private void Load()
+        private IfpClientSettings Load()
         {
             var settings = GenericXmlSerializerHelper.DeserializeFromFile<IfpClientSettings>(_settingsFilePath);
-            settings.CopyTo(this);
+            settings?.CopyTo(this);
+
+            return settings;
         }
 
         private IfpClientSettings()
@@ -118,7 +120,8 @@ namespace AMANA.IFP.Client
             _settingsFilePath = settingsFilepath;
             IsAutoDownloadRoutingTableFileDisabled = true;
 
-            Load();
+            if (Load() == null)
+                Save(); //ensure existence of settings file with default values
         }
 
         public void Save()

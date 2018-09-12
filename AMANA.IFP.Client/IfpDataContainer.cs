@@ -23,13 +23,14 @@ namespace AMANA.IFP.Client
         
         private string _version;
 
-        private readonly string _proxySettingsFilePath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\AMANAconsulting\proxySettings.xml";
-        private readonly string _ifpSettingsFilePath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\AMANAconsulting\ifpSettings.xml";
+        private readonly string _ifpSettingsFilePath;
 
         private readonly string currentDefaultInstituteMappingVersion = "2017_1_001";
         private readonly string _baseSettingsDirPath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\AMANAconsulting";
 
-        private readonly string _settingsFileName = "ifpSettings.xml";
+        private readonly string _ifpSettingsFileName = "ifpSettings.xml";
+        private readonly string _proxySettingsFileName = "proxySettings.xml";
+
         private readonly string _userSessionElabaInformationFileName = "elbaInformation.xml";
         private readonly string _userSessionHeaderIdentityFileName = "headerIdentity.xml";
 
@@ -54,7 +55,8 @@ namespace AMANA.IFP.Client
 
         public IfpDataContainer(bool userSessionLoadingEnabled = false)
         {
-            var settingsFilePath = Path.Combine(_baseSettingsDirPath, _settingsFileName);
+            _ifpSettingsFilePath = Path.Combine(_baseSettingsDirPath, _ifpSettingsFileName);
+            var proxySettingsFilePath = Path.Combine(_baseSettingsDirPath, _proxySettingsFileName);
 
             var elbaInformationFilePath = Path.Combine(_baseSettingsDirPath, _userSessionElabaInformationFileName);
             var headerIdentityFilePath = Path.Combine(_baseSettingsDirPath, _userSessionHeaderIdentityFileName);
@@ -72,7 +74,8 @@ namespace AMANA.IFP.Client
             }            
 
             Client = new Client();
-            HttpProxySettings = new HttpProxySettings(_proxySettingsFilePath);
+            
+            HttpProxySettings = new HttpProxySettings(proxySettingsFilePath);
             IfpClientSettings = new IfpClientSettings(_ifpSettingsFilePath);            
         }
 
