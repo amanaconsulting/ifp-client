@@ -55,6 +55,10 @@ namespace AMANA.IFP.Client
 
         public IfpDataContainer(bool userSessionLoadingEnabled = false)
         {
+            //ensure base settings directory exists
+            if (!Directory.Exists(_baseSettingsDirPath))
+                Directory.CreateDirectory(_baseSettingsDirPath);
+
             _ifpSettingsFilePath = Path.Combine(_baseSettingsDirPath, _ifpSettingsFileName);
             var proxySettingsFilePath = Path.Combine(_baseSettingsDirPath, _proxySettingsFileName);
 
