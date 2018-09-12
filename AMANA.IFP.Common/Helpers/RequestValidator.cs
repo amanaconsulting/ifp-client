@@ -112,7 +112,7 @@ namespace AMANA.IFP.Common.Helpers
                 if (!SenderIdentity.IsStringIdentityType(identifikation.Art))
                     AddHinweisFromErrorCode(Enums.Fehlercode.F143);
 
-                if (string.Equals(identifikation.Art, SenderIdentity.IdentityTypeToElbaString(SenderIdentity.IdentityTypes.IfpIdBeauftragter)))
+                if (string.Equals(identifikation.Art, SenderIdentity.IdentityTypeToElbaString(SenderIdentityTypes.IfpIdBeauftragter)))
                 {
                     if (!RoutingTableReader.Mappings.Any(m => string.Equals(m.IFPID, identifikation.Wert)))
                         AddHinweisFromErrorCode(Enums.Fehlercode.F130);
@@ -120,7 +120,7 @@ namespace AMANA.IFP.Common.Helpers
                     if (!regex.Match(identifikation.Wert).Success)
                         AddHinweisFromErrorCode(Enums.Fehlercode.F133);
                 }
-                else if (string.Equals(identifikation.Art, SenderIdentity.IdentityTypeToElbaString(SenderIdentity.IdentityTypes.IfpIdFirma)))
+                else if (string.Equals(identifikation.Art, SenderIdentity.IdentityTypeToElbaString(SenderIdentityTypes.IfpIdFirma)))
                 {
                     if (!RoutingTableReader.Mappings.Any(m => string.Equals(m.IFPID, identifikation.Wert)))
                         AddHinweisFromErrorCode(Enums.Fehlercode.F130);

@@ -16,20 +16,20 @@ using AMANA.IFP.Data.Elba;
 
 namespace AMANA.IFP.Common
 {
+    public enum SenderIdentityTypes
+    {
+        BeraterId,
+        FirmenId,
+        IfpIdBeauftragter,
+        IfpIdFirma
+    }
+
     public class SenderIdentity : INotifyPropertyChanged
     {
-        private IdentityTypes _identityType;
-        private string _value;
+        private SenderIdentityTypes _identityType;
+        private string _value;        
 
-        public enum IdentityTypes
-        {
-            BeraterId,
-            FirmenId,
-            IfpIdBeauftragter,
-            IfpIdFirma
-        }
-
-        public IdentityTypes IdentityType
+        public SenderIdentityTypes IdentityType
         {
             get { return _identityType; }
             set
@@ -51,17 +51,17 @@ namespace AMANA.IFP.Common
             }
         }
 
-        public static string IdentityTypeToElbaString(IdentityTypes identityType)
+        public static string IdentityTypeToElbaString(SenderIdentityTypes identityType)
         {
             switch (identityType)
             {
-                case IdentityTypes.BeraterId:
+                case SenderIdentityTypes.BeraterId:
                     return "Berater-ID";
-                case IdentityTypes.FirmenId:
+                case SenderIdentityTypes.FirmenId:
                     return "Firmen-ID";
-                case IdentityTypes.IfpIdBeauftragter:
+                case SenderIdentityTypes.IfpIdBeauftragter:
                     return "IFP-ID-BEAUF";
-                case IdentityTypes.IfpIdFirma:
+                case SenderIdentityTypes.IfpIdFirma:
                     return "IFP-ID-Firma";
             }
 
@@ -83,7 +83,7 @@ namespace AMANA.IFP.Common
 
         public static bool IsStringIdentityType(string possibleType)
         {
-            IEnumerable<IdentityTypes> identityTypes = Enum.GetValues(typeof(IdentityTypes)).Cast<IdentityTypes>();
+            IEnumerable<SenderIdentityTypes> identityTypes = Enum.GetValues(typeof(SenderIdentityTypes)).Cast<SenderIdentityTypes>();
             return identityTypes.Any(identityType => string.Equals(IdentityTypeToElbaString(identityType), possibleType));
         }
 

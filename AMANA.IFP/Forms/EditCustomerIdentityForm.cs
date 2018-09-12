@@ -27,7 +27,7 @@ namespace AMANA.IFP.Forms
         private void InitializeControls()
         {
             TextBoxValue.SetTextDataBinding(_identity, nameof(_identity.Value));
-            CmbType.DataSource = Enum.GetValues(typeof(CustomerIdentity.IdentityTypes));
+            CmbType.DataSource = Enum.GetValues(typeof(IdentityTypes));
             CmbType.SetSelectedItemDataBinding(_identity, nameof(_identity.IdentityType));
         }
 

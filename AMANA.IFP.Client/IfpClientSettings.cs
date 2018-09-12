@@ -100,39 +100,19 @@ namespace AMANA.IFP.Client
         public DateTime? RemoteDownloadInstituteMappingTestFileLastWriteDate { get; set; }
 
 
-        private void Load()
-        {            
-            var filename = PathHelper.GetAbsolutePath(_settingsFilePath);            
+        private IfpClientSettings Load()
+        {
+            var settings = GenericXmlSerializerHelper.DeserializeFromFile<IfpClientSettings>(_settingsFilePath);
+            settings?.CopyTo(this);
 
-            if (File.Exists(filename))
-            {
-                using (Stream stream = File.Open(filename, FileMode.Open, FileAccess.Read, FileShare.Read))
-                {
-                    XmlSerializer serializer = new XmlSerializer(typeof(IfpClientSettings), typeof(IfpClientSettings).GetNestedTypes());
-                    try
-                    {
-                        var settings = (IfpClientSettings) serializer.Deserialize(stream);
-                        settings.CopyTo(this);
-                    }
-                    catch (Exception)
-                    {
-                        stream.Close();
-                        throw;
-                    }
-
-                    stream.Close();
-                }
-            }
-            else
-            {
-                ValidateIfpData = true;
-                CertificateSettings.SetDefaultValues();
-            }
+            return settings;
         }
 
         private IfpClientSettings()
         {
             CertificateSettings = new CertificateSettings();
+            ValidateIfpData = true;
+            CertificateSettings.SetDefaultValues();
         }
 
         public IfpClientSettings(string settingsFilepath)
@@ -140,17 +120,13 @@ namespace AMANA.IFP.Client
             _settingsFilePath = settingsFilepath;
             IsAutoDownloadRoutingTableFileDisabled = true;
 
-            Load();
+            if (Load() == null)
+                Save(); //ensure existence of settings file with default values
         }
 
         public void Save()
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(IfpClientSettings), typeof(IfpClientSettings).GetNestedTypes());
-            using (Stream stream = File.Open(_settingsFilePath, FileMode.Create))
-            {
-                serializer.Serialize(stream, this);
-                stream.Close();
-            }
+           GenericXmlSerializerHelper.SerializeToFile(_settingsFilePath, this);
         }
 
         public IfpClientSettings Copy()

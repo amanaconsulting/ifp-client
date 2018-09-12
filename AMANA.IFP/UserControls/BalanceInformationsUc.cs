@@ -26,7 +26,7 @@ namespace AMANA.IFP.UserControls
             InitializeComponent();
         }
 
-        public List<BalanceInformation> Balances => _dataContainer?.ElbaInformation?.BalanceInformation;
+        public List<BalanceInformation> Balances => _dataContainer?.ElbaInformation?.BalanceInformationList;
 
         public IfpDataContainer DataContainer
         {

@@ -7,12 +7,18 @@
 // Details finden Sie in der GNU General Public License.
 // 
 // Link zu den Lizenzbedingungen: https://www.gnu.org/licenses/gpl-3.0.txt
+
+using System;
 using System.ComponentModel;
+using System.IO;
 using System.Runtime.CompilerServices;
+using System.Xml.Serialization;
+using AMANA.IFP.Common.Helpers;
 using AMANA.IFP.Data.Elba;
 
 namespace AMANA.IFP.Common
 {
+    [Serializable]
     public class HeaderIdentity : INotifyPropertyChanged
     {
         private string _userId;
@@ -20,6 +26,16 @@ namespace AMANA.IFP.Common
         private string _instituteIdType;
         private string _client;
         private string _provider;
+        private readonly string _serializedObjectFilePath;
+
+        private HeaderIdentity()
+        {
+        }
+
+        public HeaderIdentity(string serializedObjectFilePath):this()
+        {
+            _serializedObjectFilePath = serializedObjectFilePath;            
+        }
 
         public string UserId
         {
@@ -76,6 +92,8 @@ namespace AMANA.IFP.Common
             }
         }
 
+        public string MappingVersion { get; set; }
+
         public ns1IdentityHeaderTyp ToElbaData()
         {
             ns1IdentityHeaderTyp headerIdentity = new ns1IdentityHeaderTyp
@@ -86,6 +104,36 @@ namespace AMANA.IFP.Common
             };
 
             return headerIdentity;
+        }
+
+        public HeaderIdentity Load()
+        {            
+            var desializedHeaderIdentity = GenericXmlSerializerHelper.DeserializeFromFile<HeaderIdentity>(_serializedObjectFilePath);
+            if (desializedHeaderIdentity != null)
+            {
+                UserId = desializedHeaderIdentity.UserId;
+                InstituteId = desializedHeaderIdentity.InstituteId;
+                InstituteIdType = desializedHeaderIdentity.InstituteIdType;
+                Client = desializedHeaderIdentity.Client;
+                Provider = desializedHeaderIdentity.Provider;
+            }
+
+            return this;
+        }
+
+        public void Save()
+        {
+            GenericXmlSerializerHelper.SerializeToFile(_serializedObjectFilePath, this);
+        }
+
+        public bool IsStoredAsFile()
+        {
+            return File.Exists(_serializedObjectFilePath);
+        }
+
+        public void DeleteStoredFile()
+        {
+            File.Delete(_serializedObjectFilePath);
         }
 
         private ns1IdentityHeaderTypInstitute GetHeaderInstitute()

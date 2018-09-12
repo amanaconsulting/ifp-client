@@ -38,51 +38,11 @@ namespace AMANA.IFP.Forms
             InitObjects();
             InitializeComponent();
             InitControls();
-        }
-
-        public Software SetChannelSoftware(Software software)
-        {
-            ChannelSoftware = software;
-            return ChannelSoftware;
-        }
-
-        public HttpProxySettings SetHttpProxy(HttpProxySettings settings)
-        {
-            if (_dataContainer != null)
-                _dataContainer.HttpProxySettings = settings;
-
-            return settings;
-        }
-
-        public void SetXbrlBalanceFileContent(string balanceContent)
-        {
-            _dataContainer.ElbaInformation.PrimaryBalanceInformation.SetXbrlFileContent(balanceContent);
-        }
-
-        public void SetXbrlBalanceFilePath(string path)
-        {
-            _dataContainer.ElbaInformation.PrimaryBalanceInformation.SetXbrlFileContent(path);
-        }
-
-        public void SetXbrlBalanceInformation(BalanceInformation balanceInformation)
-        {
-            try
-            {
-                _dataContainer.ElbaInformation.PrimaryBalanceInformation = balanceInformation;
-                BalanceInformation.BalanceInformation = balanceInformation;
-            }
-            catch (Exception ex)
-            {
-                ex.ToMessageBox();
-            }
-        }
+        }       
 
         private void InitObjects()
         {
-            _dataContainer = new IfpDataContainer()
-            {
-                Version = "2017_001"                
-            };
+            _dataContainer = new IfpDataContainer();
         }
 
         private void InitControls()
@@ -109,8 +69,11 @@ namespace AMANA.IFP.Forms
 
             BalanceInformation.BalanceInformation = elbaInformation.PrimaryBalanceInformation;
 
+            CustomerTextBox.DataBindings.Clear();
             CustomerTextBox.SetTextDataBinding(customer, nameof(customer.Name));
             ClientConfigurationUc.IfpDataContainer = _dataContainer;
+
+            SetEnabledStateForLoadDeleteMenuItems();
 
             GcdToolTip.SetToolTip(BtnSetGcdCustomer, GuiHelper.GetGcdValueTooltipText("Name"));
         }
@@ -280,6 +243,42 @@ namespace AMANA.IFP.Forms
             {
                 ex.ToMessageBox();
             }
-        }       
+        }
+
+        private void LoadSessionDataMenuItem_Click(object sender, EventArgs e)
+        {
+            _dataContainer = new IfpDataContainer(true);
+            InitControls();
+        }
+
+        private void SaveSessionMenuItem_Click(object sender, EventArgs e)
+        {
+            _dataContainer.ElbaInformation.Save();
+            _dataContainer.HeaderIdentity.Save();
+
+            SetEnabledStateForLoadDeleteMenuItems();
+        }
+
+        private void ResetSessionMenuItem_Click(object sender, EventArgs e)
+        {
+            _dataContainer = new IfpDataContainer();
+            InitControls();
+        }
+
+        private void DeleteSessionMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_dataContainer.ElbaInformation.IsStoredAsFile())
+                _dataContainer.ElbaInformation.DeleteStoredFile();
+            if (_dataContainer.HeaderIdentity.IsStoredAsFile())
+                _dataContainer.HeaderIdentity.DeleteStoredFile();
+
+            SetEnabledStateForLoadDeleteMenuItems();
+        }
+
+        private void SetEnabledStateForLoadDeleteMenuItems()
+        {
+            LoadSessionDataMenuItem.Enabled = _dataContainer.ElbaInformation.IsStoredAsFile() || _dataContainer.HeaderIdentity.IsStoredAsFile();
+            DeleteSessionMenuItem.Enabled = _dataContainer.ElbaInformation.IsStoredAsFile() || _dataContainer.HeaderIdentity.IsStoredAsFile();
+        }
     }
 }

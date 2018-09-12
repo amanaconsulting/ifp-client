@@ -31,7 +31,8 @@ namespace AMANA.IFP.Client
         public HttpProxySettings(string settingsFilePath)
         {
             _settingsFilePath = settingsFilePath;
-            Load();
+            if (Load() == null)
+                Save(); //ensure existence of settings file with default values
         }
 
         public Uri HttpProxyAddresUri
@@ -48,7 +49,7 @@ namespace AMANA.IFP.Client
             }
         }
 
-    public string ProxyHost { get; set; }
+        public string ProxyHost { get; set; }
         public string ProxyPort { get; set; }
 
         public string UserName { get; set; }
@@ -57,29 +58,12 @@ namespace AMANA.IFP.Client
 
         private readonly string _settingsFilePath;
 
-        private void Load()
-        {
-            var filename = PathHelper.GetAbsolutePath(_settingsFilePath);
+        private HttpProxySettings Load()
+        {            
+            var settings = GenericXmlSerializerHelper.DeserializeFromFile<HttpProxySettings>(_settingsFilePath);
+            settings?.CopyTo(this);
 
-            if (File.Exists(filename))
-            {
-                using (Stream stream = File.Open(filename, FileMode.Open, FileAccess.Read, FileShare.Read))
-                {
-                    XmlSerializer serializer = new XmlSerializer(typeof(HttpProxySettings), typeof(HttpProxySettings).GetNestedTypes());
-                    try
-                    {
-                        var settings = (HttpProxySettings)serializer.Deserialize(stream);
-                        settings.CopyTo(this);
-                    }
-                    catch (Exception)
-                    {
-                        stream.Close();
-                        throw;
-                    }
-
-                    stream.Close();
-                }
-            }           
+            return settings;
         }
 
         public HttpProxySettings Copy()
@@ -100,12 +84,7 @@ namespace AMANA.IFP.Client
 
         public void Save()
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(HttpProxySettings), typeof(HttpProxySettings).GetNestedTypes());
-            using (Stream stream = File.Open(_settingsFilePath, FileMode.Create))
-            {
-                serializer.Serialize(stream, this);
-                stream.Close();
-            }
+            GenericXmlSerializerHelper.SerializeToFile(_settingsFilePath, this);
         }
     }
 }
