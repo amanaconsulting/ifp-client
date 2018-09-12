@@ -19,6 +19,9 @@ namespace AMANA.IFP.Client
     [Serializable]
     public class IfpClientSettings : INotifyPropertyChanged
     {
+        private bool _isAutoDownloadRoutingTableFileDisabled;
+        private string _sftpSchufaFilesUserName;
+        private string _sftpSchufaFilesPassword;
         private bool _validateIfpData;
         private bool _validateGcdData;
         private string _routingTableFilePath;
@@ -57,7 +60,45 @@ namespace AMANA.IFP.Client
             }
         }
 
+
+        public bool IsAutoDownloadRoutingTableFileDisabled
+        {
+            get { return _isAutoDownloadRoutingTableFileDisabled; }
+            set
+            {
+                if (value == _isAutoDownloadRoutingTableFileDisabled) return;
+                    _isAutoDownloadRoutingTableFileDisabled = value;
+                OnPropertyChanged();
+            }
+        }
+
         public CertificateSettings CertificateSettings { get; set; }
+
+        public string SftpSchufaFilesUserName
+        {
+            get { return _sftpSchufaFilesUserName; }
+            set
+            {
+                if (value == _sftpSchufaFilesUserName) return;
+                    _sftpSchufaFilesUserName = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string SftpSchufaFilesPassword
+        {
+            get { return _sftpSchufaFilesPassword; }
+            set
+            {
+                if (value == _sftpSchufaFilesPassword) return;
+                    _sftpSchufaFilesPassword = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime? RemoteDownloadInstituteMappingProdFileLastWriteDate { get; set; }
+        public DateTime? RemoteDownloadInstituteMappingTestFileLastWriteDate { get; set; }
+
 
         private void Load()
         {
@@ -75,6 +116,8 @@ namespace AMANA.IFP.Client
         public IfpClientSettings(string settingsFilepath)
         {
             _settingsFilePath = settingsFilepath;
+            IsAutoDownloadRoutingTableFileDisabled = true;
+
             Load();
         }
 
@@ -94,6 +137,9 @@ namespace AMANA.IFP.Client
             settings.ValidateGcdData = ValidateGcdData;
             settings.RoutingTableFilePath = RoutingTableFilePath;
             settings.CertificateSettings = CertificateSettings.Copy();
+            settings.IsAutoDownloadRoutingTableFileDisabled = IsAutoDownloadRoutingTableFileDisabled;
+            settings.SftpSchufaFilesUserName = SftpSchufaFilesUserName;
+            settings.SftpSchufaFilesPassword = SftpSchufaFilesPassword;
 
             return settings;
         }

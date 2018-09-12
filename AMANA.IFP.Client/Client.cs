@@ -57,7 +57,7 @@ namespace AMANA.IFP.Client
 
                 if (httpProxySettings.ProxyMode == HttpProxySettings.HttpProxyMode.OwnProxy)
                 {
-                    httpProxy = new WebProxy(httpProxySettings.ProxyAddresUri);
+                    httpProxy = new WebProxy(httpProxySettings.HttpProxyAddresUri);
                     httpProxy.UseDefaultCredentials = false;
                     httpProxy.Credentials = new NetworkCredential(httpProxySettings.UserName, httpProxySettings.Password);                    
                     webProxy = httpProxy;
@@ -104,7 +104,7 @@ namespace AMANA.IFP.Client
                         _elbaClient.Abort();
                         _elbaClient.ChannelFactory.Abort();
                     }
-                    else if (_elbaClient.State != CommunicationState.Closed)
+                    else if (_elbaClient.State != CommunicationState.Opened)
                     {
                         _elbaClient.Close();
                         _elbaClient.ChannelFactory.Close();

@@ -37,6 +37,9 @@ namespace AMANA.IFP.UserControls
             RoutingTableFilePathTextBox.DataBindings.Clear();
             IfpValidationCheckBox.DataBindings.Clear();
             GcdValidationCheckBox.DataBindings.Clear();
+            CustomRoutingTableFilePathCheckbox.DataBindings.Clear();
+            PasswordTextBox.DataBindings.Clear();
+            UserNameTextBox.DataBindings.Clear();
             CertificateSettingsUc.Settings = _settings?.CertificateSettings;
 
             if (Settings == null)
@@ -45,6 +48,9 @@ namespace AMANA.IFP.UserControls
             RoutingTableFilePathTextBox.SetTextDataBinding(_settings, nameof(_settings.RoutingTableFilePath));
             IfpValidationCheckBox.SetCheckedDataBinding(_settings, nameof(_settings.ValidateIfpData));
             GcdValidationCheckBox.SetCheckedDataBinding(_settings, nameof(_settings.ValidateGcdData));
+            CustomRoutingTableFilePathCheckbox.SetCheckedDataBinding(_settings, nameof(_settings.IsAutoDownloadRoutingTableFileDisabled));
+            UserNameTextBox.SetTextDataBinding(_settings, nameof(_settings.SftpSchufaFilesUserName));
+            PasswordTextBox.SetTextDataBinding(_settings, nameof(_settings.SftpSchufaFilesPassword));
         }
 
         private void SearchRoutingTableFilePathButton_Click(object sender, EventArgs e)
@@ -68,6 +74,12 @@ namespace AMANA.IFP.UserControls
             {
                 _settings.RoutingTableFilePath = ofd.FileName;
             }
+        }
+
+        private void CustomRoutingTableFilePathCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            RoutingTableFilePathLabel.Enabled = RoutingTableFilePathTextBox.Enabled = SearchRoutingTableFilePathButton.Enabled = CustomRoutingTableFilePathCheckbox.Checked;
+            SftpCredentialsGroupBox.Enabled = !CustomRoutingTableFilePathCheckbox.Checked;
         }
     }
 }
