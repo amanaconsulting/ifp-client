@@ -23,7 +23,7 @@ namespace AMANA.IFP.Forms
     {
         private RequestResult _lastRequestResult;
 
-        private IfpDataContainer DataContainer { get; set; } = new IfpDataContainer();
+        public IfpDataContainer DataContainer { get; set; } = new IfpDataContainer();
 
         public Software ChannelSoftware { get; set; } = new Software
         {
