@@ -1,5 +1,5 @@
 ﻿// AMANA DiFin Client zum Erstellen und Versenden von XBRL-Abschlussdaten via DiFin
-// Copyright (C) [2016]  [AMANA consulting GmbH] 
+// Copyright (C) [2018]  [AMANA consulting GmbH] 
 // 
 // Die Veröffentlichung dieses Programms erfolgt in der Hoffnung, dass es Ihnen von
 // Nutzen sein wird, aber OHNE IRGENDEINE GARANTIE, sogar ohne die implizite
