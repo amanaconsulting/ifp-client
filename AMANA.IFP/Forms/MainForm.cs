@@ -31,7 +31,7 @@ namespace AMANA.IFP.Forms
             InitControls();
         }
 
-        public IfpDataContainer DataContainer { get; set; };
+        public IfpDataContainer DataContainer { get; set; }
 
         public Software ChannelSoftware { get; set; }
 
