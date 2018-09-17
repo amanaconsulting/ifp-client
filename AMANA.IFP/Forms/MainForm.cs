@@ -1,11 +1,11 @@
 ﻿// AMANA DiFin Client zum Erstellen und Versenden von XBRL-Abschlussdaten via DiFin
-// Copyright (C) [2016]  [AMANA consulting GmbH] 
-// 
+// Copyright (C) [2016]  [AMANA consulting GmbH]
+//
 // Die Veröffentlichung dieses Programms erfolgt in der Hoffnung, dass es Ihnen von
 // Nutzen sein wird, aber OHNE IRGENDEINE GARANTIE, sogar ohne die implizite
 // Garantie der MARKTREIFE oder der VERWENDBARKEIT FÜR EINEN BESTIMMTEN ZWECK.
 // Details finden Sie in der GNU General Public License.
-// 
+//
 // Link zu den Lizenzbedingungen: https://www.gnu.org/licenses/gpl-3.0.txt
 using System;
 using System.Configuration;
@@ -22,32 +22,34 @@ namespace AMANA.IFP.Forms
 {
     public partial class MainForm : Form
     {
-        private IfpDataContainer _dataContainer;
         private RequestResult _lastRequestResult;
-
-        public Software ChannelSoftware { get; set; } = new Software()
-        {
-            Id = "IFP99900045",
-            Manufacturer = "AMANA consulting GmbH",
-            Name = "IFP Transfer Client",
-            Version = Assembly.GetExecutingAssembly().GetName().Version.ToString()
-        };
 
         public MainForm()
         {
             InitObjects();
             InitializeComponent();
             InitControls();
-        }       
+        }
+
+        public IfpDataContainer DataContainer { get; set; };
+
+        public Software ChannelSoftware { get; set; }
 
         private void InitObjects()
         {
-            _dataContainer = new IfpDataContainer();
+            DataContainer = new IfpDataContainer();
+            ChannelSoftware = new Software
+                {
+                    Id = "IFP99900045",
+                    Manufacturer = "AMANA consulting GmbH",
+                    Name = "IFP Transfer Client",
+                    Version = Assembly.GetExecutingAssembly().GetName().Version.ToString()
+                };
         }
 
         private void InitControls()
         {
-            ElbaInformation elbaInformation = _dataContainer.ElbaInformation;
+            ElbaInformation elbaInformation = this.DataContainer.ElbaInformation;
             Sender sender = elbaInformation.SenderInformation;
             SenderIdentitiesUc.Identities = sender.SenderIdentities;
             SenderAddressUc.Address = sender.Address;
@@ -57,21 +59,21 @@ namespace AMANA.IFP.Forms
             Receiver receiver = elbaInformation.RecieverInformation;
             RecieverBankIdUc.BankId = receiver.BankId;
             RecieverAddressUc.Address = receiver.Address;
-            RecieverAddressUc.SetIfpDataContainer(_dataContainer);
+            RecieverAddressUc.SetIfpDataContainer(this.DataContainer);
             RecieverContactPersonUc.ContactPerson = receiver.ContactPerson;
 
             Customer customer = elbaInformation.CustomerInformation;
             CustomerIdentitiesUc.Identities = customer.Identities;
             CustomerAddressUc.Address = customer.Address;
             CustomerAddressUc.DisplayGcdButton = true;
-            CustomerAddressUc.SetIfpDataContainer(_dataContainer);
+            CustomerAddressUc.SetIfpDataContainer(this.DataContainer);
             CustomerContactUc.ContactData = customer.ContactData;
 
             BalanceInformation.BalanceInformation = elbaInformation.PrimaryBalanceInformation;
 
             CustomerTextBox.DataBindings.Clear();
             CustomerTextBox.SetTextDataBinding(customer, nameof(customer.Name));
-            ClientConfigurationUc.IfpDataContainer = _dataContainer;
+            ClientConfigurationUc.IfpDataContainer = this.DataContainer;
 
             SetEnabledStateForLoadDeleteMenuItems();
 
@@ -100,16 +102,16 @@ namespace AMANA.IFP.Forms
                 {
                     ValidationScopeLabel.Text = "Server";
 
-                    if (_lastRequestResult.ResultMessages.Count == 0 || 
-                        _lastRequestResult.ResultMessages.Count == 1 && 
+                    if (_lastRequestResult.ResultMessages.Count == 0 ||
+                        _lastRequestResult.ResultMessages.Count == 1 &&
                         _lastRequestResult.ResultMessages.Any(rm => rm.MessageId.Equals(Enums.Fehlercode.F000.ToString(), StringComparison.OrdinalIgnoreCase))
                     )
-                    {                        
+                    {
                         ValidationResultIconLabel.Text = "✓";
                         ValidationResultIconLabel.ForeColor = Color.Green;
                     }
                     else
-                    {                       
+                    {
                         ValidationResultIconLabel.Text = "X";
                         ValidationResultIconLabel.ForeColor = Color.Red;
                     }
@@ -132,7 +134,7 @@ namespace AMANA.IFP.Forms
         {
             try
             {
-                SendData(_dataContainer, chk_Testsubmission.Checked);
+                SendData(this.DataContainer, chk_Testsubmission.Checked);
             }
             catch (Exception ex)
             {
@@ -144,7 +146,7 @@ namespace AMANA.IFP.Forms
         {
             try
             {
-                HttpProxySettings settings = _dataContainer.HttpProxySettings;
+                HttpProxySettings settings = this.DataContainer.HttpProxySettings;
                 HttpProxySettingsForm form = new HttpProxySettingsForm { HttpProxySettings = settings };
                 if (form.ShowDialog() == DialogResult.OK)
                     form.HttpProxySettings.Save();
@@ -188,14 +190,14 @@ namespace AMANA.IFP.Forms
             {
                 ex.ToMessageBox();
             }
-            
+
         }
 
         private void EditIfpSettings()
         {
-            IfpSettingsForm form = new IfpSettingsForm { Settings = _dataContainer.IfpClientSettings };
+            IfpSettingsForm form = new IfpSettingsForm { Settings = this.DataContainer.IfpClientSettings };
             if (form.ShowDialog() == DialogResult.OK)
-                _dataContainer.IfpClientSettings.Save();
+                this.DataContainer.IfpClientSettings.Save();
         }
 
         private void BtnSetGcdCustomer_Click(object sender, EventArgs e)
@@ -213,11 +215,11 @@ namespace AMANA.IFP.Forms
         private void SetCustomerFromGcd()
         {
             string value =
-                _dataContainer.ElbaInformation.PrimaryBalanceInformation.GetGcdNodeValue(
+                this.DataContainer.ElbaInformation.PrimaryBalanceInformation.GetGcdNodeValue(
                     GcdDataValidator.CompanyNameConcept);
 
             if (!string.IsNullOrEmpty(value))
-                _dataContainer.ElbaInformation.CustomerInformation.Name = value;
+                this.DataContainer.ElbaInformation.CustomerInformation.Name = value;
         }
 
         private void BtnClose_Click(object sender, EventArgs e)
@@ -247,38 +249,38 @@ namespace AMANA.IFP.Forms
 
         private void LoadSessionDataMenuItem_Click(object sender, EventArgs e)
         {
-            _dataContainer = new IfpDataContainer(true);
+            this.DataContainer = new IfpDataContainer(true);
             InitControls();
         }
 
         private void SaveSessionMenuItem_Click(object sender, EventArgs e)
         {
-            _dataContainer.ElbaInformation.Save();
-            _dataContainer.HeaderIdentity.Save();
+            this.DataContainer.ElbaInformation.Save();
+            this.DataContainer.HeaderIdentity.Save();
 
             SetEnabledStateForLoadDeleteMenuItems();
         }
 
         private void ResetSessionMenuItem_Click(object sender, EventArgs e)
         {
-            _dataContainer = new IfpDataContainer();
+            this.DataContainer = new IfpDataContainer();
             InitControls();
         }
 
         private void DeleteSessionMenuItem_Click(object sender, EventArgs e)
         {
-            if (_dataContainer.ElbaInformation.IsStoredAsFile())
-                _dataContainer.ElbaInformation.DeleteStoredFile();
-            if (_dataContainer.HeaderIdentity.IsStoredAsFile())
-                _dataContainer.HeaderIdentity.DeleteStoredFile();
+            if (this.DataContainer.ElbaInformation.IsStoredAsFile())
+                this.DataContainer.ElbaInformation.DeleteStoredFile();
+            if (this.DataContainer.HeaderIdentity.IsStoredAsFile())
+                this.DataContainer.HeaderIdentity.DeleteStoredFile();
 
             SetEnabledStateForLoadDeleteMenuItems();
         }
 
         private void SetEnabledStateForLoadDeleteMenuItems()
         {
-            LoadSessionDataMenuItem.Enabled = _dataContainer.ElbaInformation.IsStoredAsFile() || _dataContainer.HeaderIdentity.IsStoredAsFile();
-            DeleteSessionMenuItem.Enabled = _dataContainer.ElbaInformation.IsStoredAsFile() || _dataContainer.HeaderIdentity.IsStoredAsFile();
+            LoadSessionDataMenuItem.Enabled = this.DataContainer.ElbaInformation.IsStoredAsFile() || this.DataContainer.HeaderIdentity.IsStoredAsFile();
+            DeleteSessionMenuItem.Enabled = this.DataContainer.ElbaInformation.IsStoredAsFile() || this.DataContainer.HeaderIdentity.IsStoredAsFile();
         }
     }
 }
