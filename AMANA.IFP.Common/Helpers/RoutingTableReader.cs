@@ -13,7 +13,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Xml;
-using WinSCP;
+
+using Renci.SshNet;
 
 namespace AMANA.IFP.Common.Helpers
 {
@@ -53,39 +54,38 @@ namespace AMANA.IFP.Common.Helpers
             if (!isTest)
                 remoteFileName = InstituteMappingProdFileName;
 
-            var localSaveFilePath = Path.Combine(localSaveDirPath, remoteFileName);            
+            var localSaveFilePath = Path.Combine(localSaveDirPath, remoteFileName);
 
-            SessionOptions sessionOptions = new SessionOptions
-            {
-                Protocol = Protocol.Sftp,
-                HostName = SftpSchufaFileServerHostUrl,
-                UserName = userName,
-                Password = password,
-                GiveUpSecurityAndAcceptAnySshHostKey = true
-            };
+            var connectionInfo = new ConnectionInfo(SftpSchufaFileServerHostUrl, 22, userName, new PasswordAuthenticationMethod(userName, password));
 
-            if (proxyUri != null && !String.IsNullOrWhiteSpace(proxyUserName) && !String.IsNullOrWhiteSpace(proxyPassword))
+            if (proxyUri != null && !string.IsNullOrWhiteSpace(proxyUserName) && !string.IsNullOrWhiteSpace(proxyPassword))
             {
-                //3 is Http Proxy Method s. https://winscp.net/eng/docs/rawsettings
-                sessionOptions.AddRawSettings("ProxyMethod", "3");
-                sessionOptions.AddRawSettings("ProxyHost", proxyUri.Host);
-                sessionOptions.AddRawSettings("ProxyPort", proxyUri.Port.ToString());
-                sessionOptions.AddRawSettings("ProxyUsername", proxyUserName);
-                sessionOptions.AddRawSettings("ProxyPassword", proxyPassword);
+                connectionInfo = new ConnectionInfo(
+                    SftpSchufaFileServerHostUrl,
+                    22,
+                    userName,
+                    ProxyTypes.Http,
+                    proxyUri.Host,
+                    proxyUri.Port,
+                    proxyUserName,
+                    proxyPassword,
+                    new PasswordAuthenticationMethod(userName, password));
             }
 
-            using (Session session = new Session())
-            {                
-                // Connect - Open throws an internal exception which can be ignored
-                session.Open(sessionOptions);
-                var remoteFilePath = "/" + remoteFileName;
+            using (var client = new SftpClient(connectionInfo))
+            {
+                client.Connect();
+                client.HostKeyReceived += (sender, args) => args.CanTrust = true;
 
-                if (session.FileExists(remoteFilePath))
-                    remoteFileLastWriteDate = session.GetFileInfo(remoteFilePath).LastWriteTime.Date;              
+                var remoteFilePath = $@"/{remoteFileName}";
 
-                if (!downloadedRemoteFileLastWriteDate.HasValue || remoteFileLastWriteDate.HasValue && remoteFileLastWriteDate.Value > downloadedRemoteFileLastWriteDate)
-                {                   
-                    session.GetFiles(remoteFilePath, localSaveFilePath).Check();                    
+                if (client.Exists(remoteFilePath))
+                    remoteFileLastWriteDate = client.GetLastWriteTime(remoteFilePath).Date;
+
+                if (!downloadedRemoteFileLastWriteDate.HasValue
+                    || remoteFileLastWriteDate.HasValue && remoteFileLastWriteDate.Value > downloadedRemoteFileLastWriteDate)
+                {
+                    client.DownloadFile(remoteFilePath, new FileStream(localSaveFilePath, FileMode.Create));
                 }
             }           
 
