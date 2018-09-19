@@ -86,6 +86,10 @@ namespace AMANA.IFP.Common.Helpers
                     || remoteFileLastWriteDate.HasValue && remoteFileLastWriteDate.Value > downloadedRemoteFileLastWriteDate)
                 {
                     client.DownloadFile(remoteFilePath, new FileStream(localSaveFilePath, FileMode.Create));
+                    using (var fs = new FileStream(localSaveFilePath, FileMode.Create))
+                    {
+                        client.DownloadFile(remoteFilePath, fs);
+                    }
                 }
             }           
 
