@@ -7,7 +7,7 @@ Die aktuellste Version des Clients steht unter folgender Adresse zum Download zu
 Die ZIP-Datei muss entpackt und die AMANA.IFP.WinClient.exe gestartet werden. Grundsätzlich lassen sich die DLL's aber auch als API in Drittanwendungen verwenden.
 
 Zur Versendung wird ein Zertifikat benötigt. Nach Vorliegen der [Teilnahme- und Verbindlichkeitserklärung](https://digitaler-finanzbericht.de/files/Digitaler-Finanzbericht_Teilnahme-und-Verbindlichkeitserklaerung.pdf) 
-erfolgt die Beantragung des Zertifikats über den [Zertifikate-Client der Schufa](http://downloads.amana-consulting.de/xbrl/Difin/Kurzanleitung_SCHUFA%20Zertifikate.pdf). Die Zertifikatsdatei sollte dann als Benutzerzertifikat unter Windows
+erfolgt die Beantragung des Zertifikats über den Zertifikate-Client der Schufa. Die Zertifikatsdatei sollte dann als Benutzerzertifikat unter Windows
 installiert werden (als Computerzertifikat installiert muss die WinClient.exe im Admin-Modus ausgeführt bzw. explizit Berechtigungen zum Verarbeiten des Zertikats für das entsprechende Benutzerkonto gesetzt werden). Das Zertifikat muss dann einmalig 
 unter "Allgemeine Einstellungen" im Tool ausgewählt werden.
 
