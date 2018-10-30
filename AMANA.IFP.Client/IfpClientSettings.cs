@@ -115,7 +115,7 @@ namespace AMANA.IFP.Client
             CertificateSettings.SetDefaultValues();
         }
 
-        public IfpClientSettings(string settingsFilepath)
+        public IfpClientSettings(string settingsFilepath) : this()
         {
             _settingsFilePath = settingsFilepath;
             IsAutoDownloadRoutingTableFileDisabled = true;
