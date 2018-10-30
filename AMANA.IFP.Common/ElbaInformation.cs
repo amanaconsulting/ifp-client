@@ -10,8 +10,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using AMANA.IFP.Common.Helpers;
 using AMANA.IFP.Data.Elba;
 
@@ -23,6 +25,20 @@ namespace AMANA.IFP.Common
         public Sender SenderInformation { get; set; }
         public Receiver RecieverInformation { get; set; }
         public Customer CustomerInformation { get; set; }
+
+        private bool _isTestsystemSubmission;
+        public bool IsTestsystemSubmission
+        {
+            get { return _isTestsystemSubmission; }
+            set
+            {
+                if (value == _isTestsystemSubmission) return;
+
+                _isTestsystemSubmission = value;
+                OnPropertyChanged();
+            }
+        }
+
         public List<BalanceInformation> BalanceInformationList { get; set; }
         private readonly string _serializedObjectFilePath;
 
@@ -54,6 +70,7 @@ namespace AMANA.IFP.Common
                 this.RecieverInformation = desializedElbaInformation.RecieverInformation;
                 this.CustomerInformation = desializedElbaInformation.CustomerInformation;
                 this.BalanceInformationList = desializedElbaInformation.BalanceInformationList;
+                this.IsTestsystemSubmission = desializedElbaInformation.IsTestsystemSubmission;
             }
 
             return this;
@@ -88,6 +105,13 @@ namespace AMANA.IFP.Common
                 balanceData.Abschluss[i] = BalanceInformationList[i].ToElbaData();
 
             return balanceData;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
