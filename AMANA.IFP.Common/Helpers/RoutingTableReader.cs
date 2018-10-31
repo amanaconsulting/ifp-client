@@ -58,7 +58,7 @@ namespace AMANA.IFP.Common.Helpers
 
             var connectionInfo = new ConnectionInfo(SftpSchufaFileServerHostUrl, 22, userName, new PasswordAuthenticationMethod(userName, password));
 
-            if (proxyUri != null && !string.IsNullOrWhiteSpace(proxyUserName) && !string.IsNullOrWhiteSpace(proxyPassword))
+            if (proxyUri != null && !String.IsNullOrWhiteSpace(proxyUserName) && !String.IsNullOrWhiteSpace(proxyPassword))
             {
                 connectionInfo = new ConnectionInfo(
                     SftpSchufaFileServerHostUrl,
@@ -84,8 +84,7 @@ namespace AMANA.IFP.Common.Helpers
 
                 if (!downloadedRemoteFileLastWriteDate.HasValue
                     || remoteFileLastWriteDate.HasValue && remoteFileLastWriteDate.Value > downloadedRemoteFileLastWriteDate)
-                {
-                    client.DownloadFile(remoteFilePath, new FileStream(localSaveFilePath, FileMode.Create));
+                {                    
                     using (var fs = new FileStream(localSaveFilePath, FileMode.Create))
                     {
                         client.DownloadFile(remoteFilePath, fs);
