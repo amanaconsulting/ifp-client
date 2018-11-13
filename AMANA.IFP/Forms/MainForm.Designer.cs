@@ -56,13 +56,15 @@ namespace AMANA.IFP.Forms
             this.ClientConfigurationUc = new AMANA.IFP.UserControls.ClientConfigurationUc();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.dateiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ResetSessionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LoadSessionDataMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SaveSessionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DeleteSessionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.IfpSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HttpProxySettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.überToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ShowMessagesButton = new System.Windows.Forms.Button();
             this.LblMandatoryFieldsInfo = new System.Windows.Forms.Label();
             this.BtnClose = new System.Windows.Forms.Button();
@@ -71,8 +73,6 @@ namespace AMANA.IFP.Forms
             this.ValidationStatusGroupBox = new System.Windows.Forms.GroupBox();
             this.ValidationResultIconLabel = new System.Windows.Forms.Label();
             this.ValidationScopeLabel = new System.Windows.Forms.Label();
-            this.DeleteSessionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ResetSessionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.InformationTabs.SuspendLayout();
             this.BalanceInfoTabPage.SuspendLayout();
             this.CustomerInfoTabPage.SuspendLayout();
@@ -378,6 +378,13 @@ namespace AMANA.IFP.Forms
             this.dateiToolStripMenuItem.Size = new System.Drawing.Size(57, 24);
             this.dateiToolStripMenuItem.Text = "Datei";
             // 
+            // ResetSessionMenuItem
+            // 
+            this.ResetSessionMenuItem.Name = "ResetSessionMenuItem";
+            this.ResetSessionMenuItem.Size = new System.Drawing.Size(313, 26);
+            this.ResetSessionMenuItem.Text = "Aktuelle Sitzung zurücksetzen";
+            this.ResetSessionMenuItem.Click += new System.EventHandler(this.ResetSessionMenuItem_Click);
+            // 
             // LoadSessionDataMenuItem
             // 
             this.LoadSessionDataMenuItem.Name = "LoadSessionDataMenuItem";
@@ -392,9 +399,6 @@ namespace AMANA.IFP.Forms
             this.SaveSessionMenuItem.Text = "Aktuelle Sitzung speichern";
             this.SaveSessionMenuItem.Click += new System.EventHandler(this.SaveSessionMenuItem_Click);
             // 
-            // SettingsToolStripMenuItem
-            // 
-            // 
             // DeleteSessionMenuItem
             // 
             this.DeleteSessionMenuItem.Name = "DeleteSessionMenuItem";
@@ -402,12 +406,7 @@ namespace AMANA.IFP.Forms
             this.DeleteSessionMenuItem.Text = "Sitzungsdaten löschen";
             this.DeleteSessionMenuItem.Click += new System.EventHandler(this.DeleteSessionMenuItem_Click);
             // 
-            // ResetSessionMenuItem
-            // 
-            this.ResetSessionMenuItem.Name = "ResetSessionMenuItem";
-            this.ResetSessionMenuItem.Size = new System.Drawing.Size(313, 26);
-            this.ResetSessionMenuItem.Text = "Aktuelle Sitzung zurücksetzen";
-            this.ResetSessionMenuItem.Click += new System.EventHandler(this.ResetSessionMenuItem_Click);
+            // SettingsToolStripMenuItem
             // 
             this.SettingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.IfpSettingsToolStripMenuItem,
@@ -433,17 +432,17 @@ namespace AMANA.IFP.Forms
             // hilfeToolStripMenuItem
             // 
             this.hilfeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.überToolStripMenuItem});
+            this.aboutToolStripMenuItem});
             this.hilfeToolStripMenuItem.Name = "hilfeToolStripMenuItem";
             this.hilfeToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.hilfeToolStripMenuItem.Text = "&Hilfe";
             // 
-            // überToolStripMenuItem
+            // aboutToolStripMenuItem
             // 
-            this.überToolStripMenuItem.Name = "überToolStripMenuItem";
-            this.überToolStripMenuItem.Size = new System.Drawing.Size(116, 26);
-            this.überToolStripMenuItem.Text = "&Über";
-            this.überToolStripMenuItem.Click += new System.EventHandler(this.überToolStripMenuItem_Click);
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.aboutToolStripMenuItem.Text = "&Über";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // ShowMessagesButton
             // 
@@ -517,6 +516,7 @@ namespace AMANA.IFP.Forms
             this.ValidationScopeLabel.Name = "ValidationScopeLabel";
             this.ValidationScopeLabel.Size = new System.Drawing.Size(0, 17);
             this.ValidationScopeLabel.TabIndex = 5;
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -584,7 +584,7 @@ namespace AMANA.IFP.Forms
         private System.Windows.Forms.Button BtnClose;
         private System.Windows.Forms.ToolTip GcdToolTip;
         private System.Windows.Forms.ToolStripMenuItem hilfeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem überToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private ClientConfigurationUc ClientConfigurationUc;
         private System.Windows.Forms.CheckBox chk_Testsubmission;
         private System.Windows.Forms.GroupBox ValidationStatusGroupBox;
