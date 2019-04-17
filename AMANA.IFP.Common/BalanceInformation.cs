@@ -42,6 +42,8 @@ namespace AMANA.IFP.Common
 
     public enum TaxonomyTypes
     {
+        Hgb62,
+        Hgb61,
         Hgb60,
         Hgb54,
         Eur10
@@ -66,6 +68,9 @@ namespace AMANA.IFP.Common
 
         private const string _xLinkNamespace = "http://www.w3.org/1999/xlink";
         private const string _gcdTaxonomyPrefix = "http://www.xbrl.de/taxonomies/de-gcd";
+
+        private const string _Hgb_6_2 = "http://www.xbrl.de/taxonomies/de-gaap-ci-2018-04-01";
+        private const string _Hgb_6_1 = "http://www.xbrl.de/taxonomies/de-gaap-ci-2017-04-01";
         private const string _Hgb_6_0 = "http://www.xbrl.de/taxonomies/de-gaap-ci-2016-04-01";
         private const string _Hgb_5_4 = "http://www.xbrl.de/taxonomies/de-gaap-ci-2015-04-03";
         private const string _Eur_1_0 = "http://www.xbrl.de/taxonomies/de-euer-2015-12-03";
@@ -517,6 +522,12 @@ namespace AMANA.IFP.Common
                     var attribute = node.Attributes?["href", _xLinkNamespace];
                     if (attribute != null && !attribute.Value.StartsWith(_gcdTaxonomyPrefix))
                     {
+                        if (attribute.Value.StartsWith(_Hgb_6_2))
+                            return "HGB_6.2";
+
+                        if (attribute.Value.StartsWith(_Hgb_6_1))
+                            return "HGB_6.1";
+
                         if (attribute.Value.StartsWith(_Hgb_6_0))
                             return "HGB_6.0";
 
@@ -524,7 +535,7 @@ namespace AMANA.IFP.Common
                             return "HGB_5.4";
 
                         if (attribute.Value.StartsWith(_Eur_1_0))
-                            return "EÜR:1.0";
+                            return "EÜR_1.0";
                     }
                 }
             }
@@ -534,7 +545,12 @@ namespace AMANA.IFP.Common
 
         public static bool IsSupportableTaxonomySchemaRef(string schemaRef)
         {
-            return schemaRef.StartsWith(_Hgb_6_0) || schemaRef.StartsWith(_Hgb_5_4) || schemaRef.StartsWith(_Eur_1_0);
+            return
+                schemaRef.StartsWith(_Hgb_6_2)
+                || schemaRef.StartsWith(_Hgb_6_1)
+                || schemaRef.StartsWith(_Hgb_6_0) 
+                || schemaRef.StartsWith(_Hgb_5_4) 
+                || schemaRef.StartsWith(_Eur_1_0);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
