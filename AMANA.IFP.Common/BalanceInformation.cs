@@ -342,6 +342,10 @@ namespace AMANA.IFP.Common
         {
             switch (type)
             {
+                case TaxonomyTypes.Hgb62:
+                    return "HGB_6.2";
+                case TaxonomyTypes.Hgb61:
+                    return "HGB_6.1";
                 case TaxonomyTypes.Hgb60:
                     return "HGB_6.0";
                 case TaxonomyTypes.Hgb54:
