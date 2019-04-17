@@ -26,7 +26,7 @@ namespace AMANA.IFP.Client
         private readonly string _ifpSettingsFilePath;
 
         private readonly string currentDefaultInstituteMappingVersion = "2017_1_001";
-        private readonly string _baseSettingsDirPath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\AMANAconsulting";
+        private readonly string _baseSettingsDirPath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\AMANAconsulting\IFP-DiFin-Client";
 
         private readonly string _ifpSettingsFileName = "ifpSettings.xml";
         private readonly string _proxySettingsFileName = "proxySettings.xml";
@@ -83,12 +83,15 @@ namespace AMANA.IFP.Client
             IfpClientSettings = new IfpClientSettings(_ifpSettingsFilePath);            
         }
 
-        public RequestResult SendData(Software channelSoftware, bool isTest = false)
+        public RequestResult SendData(Software channelSoftware)
         {
+            var isTest = ElbaInformation.IsTestsystemSubmission;
+
             if (!IfpClientSettings.IsAutoDownloadRoutingTableFileDisabled)
             {
                 var baseSettingsDirPath = new FileInfo(_ifpSettingsFilePath).DirectoryName;
                 var downloadedRemoteFileLastWriteDate = IfpClientSettings.RemoteDownloadInstituteMappingTestFileLastWriteDate;
+                
                 if (!isTest)
                     downloadedRemoteFileLastWriteDate = IfpClientSettings.RemoteDownloadInstituteMappingProdFileLastWriteDate;
 

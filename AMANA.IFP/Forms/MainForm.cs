@@ -48,6 +48,9 @@ namespace AMANA.IFP.Forms
             SenderNameUc.IfpName = sender.SenderName;
             SenderContactUc.ContactData = elbaInformation.SenderInformation.ContactData;
 
+            chk_Testsubmission.DataBindings.Clear();
+            chk_Testsubmission.SetCheckedDataBinding(elbaInformation, nameof(elbaInformation.IsTestsystemSubmission));
+
             Receiver receiver = elbaInformation.RecieverInformation;
             RecieverBankIdUc.BankId = receiver.BankId;
             RecieverAddressUc.Address = receiver.Address;
@@ -72,14 +75,14 @@ namespace AMANA.IFP.Forms
             GcdToolTip.SetToolTip(BtnSetGcdCustomer, GuiHelper.GetGcdValueTooltipText("Name"));
         }
 
-        private void SendData(IfpDataContainer container, bool isTest = false)
+        private void SendData(IfpDataContainer container)
         {
             try
             {
                 ValidationScopeLabel.Text = String.Empty;
                 ValidationResultIconLabel.Text = String.Empty;
 
-                _lastRequestResult = container.SendData(ChannelSoftware, isTest);
+                _lastRequestResult = container.SendData(ChannelSoftware);
                 MessageBox.Show(_lastRequestResult.IsLocalResult
                     ? "Daten wurden nicht gesendet. Bitte überprüfen Sie die Meldungen."
                     : "Daten wurden gesendet. Bitte überprüfen Sie die Meldungen");
@@ -126,7 +129,7 @@ namespace AMANA.IFP.Forms
         {
             try
             {
-                SendData(DataContainer, chk_Testsubmission.Checked);
+                SendData(DataContainer);
             }
             catch (Exception ex)
             {
@@ -226,7 +229,7 @@ namespace AMANA.IFP.Forms
             }
         }
 
-        private void überToolStripMenuItem_Click(object sender, EventArgs e)
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
