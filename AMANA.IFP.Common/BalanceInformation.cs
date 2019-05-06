@@ -69,10 +69,30 @@ namespace AMANA.IFP.Common
         private const string _xLinkNamespace = "http://www.w3.org/1999/xlink";
         private const string _gcdTaxonomyPrefix = "http://www.xbrl.de/taxonomies/de-gcd";
 
-        private const string _Hgb_6_2 = "http://www.xbrl.de/taxonomies/de-gaap-ci-2018-04-01";
-        private const string _Hgb_6_1 = "http://www.xbrl.de/taxonomies/de-gaap-ci-2017-04-01";
-        private const string _Hgb_6_0 = "http://www.xbrl.de/taxonomies/de-gaap-ci-2016-04-01";
-        private const string _Hgb_5_4 = "http://www.xbrl.de/taxonomies/de-gaap-ci-2015-04-03";
+        private readonly string[] _Hgb_6_2 = new string[] { "http://www.xbrl.de/taxonomies/de-bra-2018-04-01",
+                                                            "http://www.xbrl.de/taxonomies/de-fi-2018-04-01",
+                                                            "http://www.xbrl.de/taxonomies/de-gaap-ci-2018-04-01",
+                                                            "http://www.xbrl.de/taxonomies/de-ins-2018-04-01",
+                                                            "http://www.xbrl.de/taxonomies/de-pi-2018-04-01"};
+
+        private readonly string[] _Hgb_6_1 = new string[] { "http://www.xbrl.de/taxonomies/de-bra-2017-04-01",
+                                                            "http://www.xbrl.de/taxonomies/de-fi-2017-04-01",
+                                                            "http://www.xbrl.de/taxonomies/de-gaap-ci-2017-04-01",
+                                                            "http://www.xbrl.de/taxonomies/de-ins-2017-04-01",
+                                                            "http://www.xbrl.de/taxonomies/de-pi-2017-04-01"};
+
+        private readonly string[] _Hgb_6_0 = new string[] { "http://www.xbrl.de/taxonomies/de-bra-2016-04-01",
+                                                            "http://www.xbrl.de/taxonomies/de-fi-2016-04-01",
+                                                            "http://www.xbrl.de/taxonomies/de-gaap-ci-2016-04-01",
+                                                            "http://www.xbrl.de/taxonomies/de-ins-2016-04-01",
+                                                            "http://www.xbrl.de/taxonomies/de-pi-2016-04-01"};
+
+        private readonly string[] _Hgb_5_4 = new string[] { "http://www.xbrl.de/taxonomies/de-bra-2015-04-03",
+                                                            "http://www.xbrl.de/taxonomies/de-fi-2015-04-03",
+                                                            "http://www.xbrl.de/taxonomies/de-gaap-ci-2015-04-03",
+                                                            "http://www.xbrl.de/taxonomies/de-ins-2015-04-03",
+                                                            "http://www.xbrl.de/taxonomies/de-pi-2015-04-03"};
+
         private const string _Eur_1_0 = "http://www.xbrl.de/taxonomies/de-euer-2015-12-03";
 
         private string _xbrlFilePath;
@@ -526,16 +546,16 @@ namespace AMANA.IFP.Common
                     var attribute = node.Attributes?["href", _xLinkNamespace];
                     if (attribute != null && !attribute.Value.StartsWith(_gcdTaxonomyPrefix))
                     {
-                        if (attribute.Value.StartsWith(_Hgb_6_2))
+                        if (_Hgb_6_2.Any(attribute.Value.StartsWith))
                             return "HGB_6.2";
 
-                        if (attribute.Value.StartsWith(_Hgb_6_1))
+                        if (_Hgb_6_1.Any(attribute.Value.StartsWith))
                             return "HGB_6.1";
 
-                        if (attribute.Value.StartsWith(_Hgb_6_0))
+                        if (_Hgb_6_0.Any(attribute.Value.StartsWith))
                             return "HGB_6.0";
 
-                        if (attribute.Value.StartsWith(_Hgb_5_4))
+                        if (_Hgb_5_4.Any(attribute.Value.StartsWith))
                             return "HGB_5.4";
 
                         if (attribute.Value.StartsWith(_Eur_1_0))
@@ -545,16 +565,6 @@ namespace AMANA.IFP.Common
             }
 
             return string.Empty;
-        }
-
-        public static bool IsSupportableTaxonomySchemaRef(string schemaRef)
-        {
-            return
-                schemaRef.StartsWith(_Hgb_6_2)
-                || schemaRef.StartsWith(_Hgb_6_1)
-                || schemaRef.StartsWith(_Hgb_6_0) 
-                || schemaRef.StartsWith(_Hgb_5_4) 
-                || schemaRef.StartsWith(_Eur_1_0);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
