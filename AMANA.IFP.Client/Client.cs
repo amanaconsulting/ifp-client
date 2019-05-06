@@ -104,7 +104,7 @@ namespace AMANA.IFP.Client
                         _elbaClient.Abort();
                         _elbaClient.ChannelFactory.Abort();
                     }
-                    else if (_elbaClient.State != CommunicationState.Opened)
+                    else if (_elbaClient.State == CommunicationState.Opened)
                     {
                         _elbaClient.Close();
                         _elbaClient.ChannelFactory.Close();
