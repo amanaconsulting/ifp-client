@@ -508,11 +508,7 @@ namespace AMANA.IFP.Common
 
             string attachmentTimestamp = GetGcdNodeValue(_conceptNameUserSpecificDocumentInformation);
             if (string.IsNullOrEmpty(attachmentTimestamp))
-            {
-                DateTime time = DateTime.Now;
-                attachmentTimestamp =
-                    $"{time.Year.ToString("d4")}{time.Month.ToString("d2")}{time.Day.ToString("d2")}{time.Hour.ToString("d2")}{time.Minute.ToString("d2")}{time.Second.ToString("d2")}";
-            }
+                attachmentTimestamp = Attachment.GetAttachmentTimeStamp();
 
             daten.XbrlAbschlussdaten.XBRL.Any[0] = xbrlRootNode ;
             daten.Anhaenge = new ns3BinaerAnhangTyp[Attachments.Count];
