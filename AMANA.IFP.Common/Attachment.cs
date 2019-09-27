@@ -7,6 +7,7 @@
 // Details finden Sie in der GNU General Public License.
 // 
 // Link zu den Lizenzbedingungen: https://www.gnu.org/licenses/gpl-3.0.txt
+using System;
 using System.ComponentModel;
 using System.IO;
 using System.Runtime.CompilerServices;
@@ -87,6 +88,7 @@ namespace AMANA.IFP.Common
             {
                 if (value == _attachmentType) return;
                 _attachmentType = value;
+                UpdateAttachmentId();
                 OnPropertyChanged();
             }
         }
@@ -105,6 +107,8 @@ namespace AMANA.IFP.Common
             attachment.Name = Name;
             attachment.Description = Description;
             attachment.Document = new byte[Document.Length];
+            attachment.AttachmentType = AttachmentType;
+            attachment.AttachmentId = AttachmentId;
             Document.CopyTo(attachment.Document, 0);
 
             return attachment;
@@ -150,6 +154,15 @@ namespace AMANA.IFP.Common
             return anhang;
         }
 
+        public static string GetAttachmentTimeStamp()
+        {
+            var time = DateTime.Now;
+            var attachmentTimestamp =
+                $"{time.Year.ToString("d4")}{time.Month.ToString("d2")}{time.Day.ToString("d2")}{time.Hour.ToString("d2")}{time.Minute.ToString("d2")}{time.Second.ToString("d2")}";
+
+            return attachmentTimestamp;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -166,6 +179,17 @@ namespace AMANA.IFP.Common
                 return AttachmentId;
 
             return $"{AttachmentIdTypeToElbaString(AttachmentType)}{attachmentTimeStamp}";
+        }
+
+        private void UpdateAttachmentId()
+        {
+            string timestamp;
+            if (AttachmentId != null && AttachmentId.Length > 14)
+                timestamp = AttachmentId.Substring(AttachmentId.Length - 14);
+            else
+                timestamp = GetAttachmentTimeStamp();
+
+            AttachmentId = GetAnhangId(timestamp);
         }
     }
 }
