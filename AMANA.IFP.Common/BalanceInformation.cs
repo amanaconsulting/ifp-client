@@ -69,6 +69,12 @@ namespace AMANA.IFP.Common
         private const string _xLinkNamespace = "http://www.w3.org/1999/xlink";
         private const string _gcdTaxonomyPrefix = "http://www.xbrl.de/taxonomies/de-gcd";
 
+        private readonly string[] _Hgb_6_3 = new string[] { "http://www.xbrl.de/taxonomies/de-bra-2019-04-01",
+                                                            "http://www.xbrl.de/taxonomies/de-fi-2019-04-01",
+                                                            "http://www.xbrl.de/taxonomies/de-gaap-ci-2019-04-01",
+                                                            "http://www.xbrl.de/taxonomies/de-ins-2019-04-01",
+                                                            "http://www.xbrl.de/taxonomies/de-pi-2019-04-01"};
+
         private readonly string[] _Hgb_6_2 = new string[] { "http://www.xbrl.de/taxonomies/de-bra-2018-04-01",
                                                             "http://www.xbrl.de/taxonomies/de-fi-2018-04-01",
                                                             "http://www.xbrl.de/taxonomies/de-gaap-ci-2018-04-01",
@@ -542,6 +548,9 @@ namespace AMANA.IFP.Common
                     var attribute = node.Attributes?["href", _xLinkNamespace];
                     if (attribute != null && !attribute.Value.StartsWith(_gcdTaxonomyPrefix))
                     {
+                        if (_Hgb_6_3.Any(attribute.Value.StartsWith))
+                            return "HGB_6.3";
+
                         if (_Hgb_6_2.Any(attribute.Value.StartsWith))
                             return "HGB_6.2";
 
