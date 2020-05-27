@@ -42,10 +42,14 @@ namespace AMANA.IFP.Common
 
     public enum TaxonomyTypes
     {
+        Hgb64,
+        Hgb63,
         Hgb62,
         Hgb61,
         Hgb60,
         Hgb54,
+        Eur12,
+        Eur11,
         Eur10
     }
 
@@ -68,6 +72,12 @@ namespace AMANA.IFP.Common
 
         private const string _xLinkNamespace = "http://www.w3.org/1999/xlink";
         private const string _gcdTaxonomyPrefix = "http://www.xbrl.de/taxonomies/de-gcd";
+
+        private readonly string[] _Hgb_6_3 = new string[] { "http://www.xbrl.de/taxonomies/de-bra-2019-04-01",
+                                                            "http://www.xbrl.de/taxonomies/de-fi-2019-04-01",
+                                                            "http://www.xbrl.de/taxonomies/de-gaap-ci-2019-04-01",
+                                                            "http://www.xbrl.de/taxonomies/de-ins-2019-04-01",
+                                                            "http://www.xbrl.de/taxonomies/de-pi-2019-04-01"};
 
         private readonly string[] _Hgb_6_2 = new string[] { "http://www.xbrl.de/taxonomies/de-bra-2018-04-01",
                                                             "http://www.xbrl.de/taxonomies/de-fi-2018-04-01",
@@ -93,6 +103,8 @@ namespace AMANA.IFP.Common
                                                             "http://www.xbrl.de/taxonomies/de-ins-2015-04-03",
                                                             "http://www.xbrl.de/taxonomies/de-pi-2015-04-03"};
 
+        private const string _Eur_1_2 = "http://www.xbrl.de/taxonomies/de-euer-2019-12-16";
+        private const string _Eur_1_1 = "http://www.xbrl.de/taxonomies/de-euer-2018-08-22";
         private const string _Eur_1_0 = "http://www.xbrl.de/taxonomies/de-euer-2015-12-03";
 
         private string _xbrlFilePath;
@@ -362,6 +374,10 @@ namespace AMANA.IFP.Common
         {
             switch (type)
             {
+                case TaxonomyTypes.Hgb64:
+                    return "HGB_6.4";
+                case TaxonomyTypes.Hgb63:
+                    return "HGB_6.3";
                 case TaxonomyTypes.Hgb62:
                     return "HGB_6.2";
                 case TaxonomyTypes.Hgb61:
@@ -370,8 +386,12 @@ namespace AMANA.IFP.Common
                     return "HGB_6.0";
                 case TaxonomyTypes.Hgb54:
                     return "HGB_5.4";
+                case TaxonomyTypes.Eur12:
+                    return "EÜR_1.2";
+                case TaxonomyTypes.Eur11:
+                    return "EÜR_1.1";
                 case TaxonomyTypes.Eur10:
-                    return "EÜR:1.0";
+                    return "EÜR_1.0";
             }
 
             return string.Empty;
@@ -542,6 +562,9 @@ namespace AMANA.IFP.Common
                     var attribute = node.Attributes?["href", _xLinkNamespace];
                     if (attribute != null && !attribute.Value.StartsWith(_gcdTaxonomyPrefix))
                     {
+                        if (_Hgb_6_3.Any(attribute.Value.StartsWith))
+                            return "HGB_6.3";
+
                         if (_Hgb_6_2.Any(attribute.Value.StartsWith))
                             return "HGB_6.2";
 
@@ -553,6 +576,12 @@ namespace AMANA.IFP.Common
 
                         if (_Hgb_5_4.Any(attribute.Value.StartsWith))
                             return "HGB_5.4";
+
+                        if (attribute.Value.StartsWith(_Eur_1_2))
+                            return "EÜR_1.2";
+
+                        if (attribute.Value.StartsWith(_Eur_1_1))
+                            return "EÜR_1.1";
 
                         if (attribute.Value.StartsWith(_Eur_1_0))
                             return "EÜR_1.0";
