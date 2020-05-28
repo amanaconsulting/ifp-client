@@ -55,6 +55,30 @@ Zusätzlich zu den Leistungen der Open Source und der Professional Variante biet
 * Server für den Digitalen Finanzbericht
 * XBRL Web-Editor 
 
+## Unterstützte Taxonomien
+
+Der Client untersützt den Versand von XBRL-Instanzen, die auf einer der folgenden XBRL-Taxonomien beasieren:
+
+* HGB, Version 5.4 - 6.3
+* EÜR, Version 1.0 - 1.2
+
+Folgende Tabelle listet die untersützten Taxonomieversionen zusammen mit der IPF-Client Version,
+die mindestens benötigt wird, um einen Versand durchführen zu können:
+
+| Taxonomieversion | Unterstützt ab IFP Client-Version |
+| ---------------- | --------------------------------- |
+| HGB 6.3          | 1.1.4                             |
+| HGB 6.2          | 1.1.1                             |
+| HGB 6.1          | 1.1.1                             |
+| HGB 6.0          | 1.0.0                             |
+| HGB 5.4          | 1.0.0                             |
+| EÜR 1.2          | 1.1.4                             |
+| EÜR 1.1          | 1.1.4                             |
+| EÜR 1.0          | 1.0.0                             |
+
+* HGB 6.3, 6.2, 6.1, 6.0, 5.4
+* EÜR 1.2, 1,1, 1.0
+
 ## Lizenzinformationen
 
 Dieses Programm ist freie Software. Sie können es unter den Bedingungen der GNU General Public License, Version 3, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren. Link zu den GPL: https://www.gnu.org/licenses/gpl-3.0.txt
