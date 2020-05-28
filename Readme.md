@@ -62,10 +62,10 @@ Der Client untersützt den Versand von XBRL-Instanzen, die auf einer der folgend
 * HGB, Version 5.4 - 6.3
 * EÜR, Version 1.0 - 1.2
 
-Folgende Tabelle listet die untersützten Taxonomieversionen zusammen mit der IPF-Client Version,
+Folgende Tabelle listet die untersützten Taxonomieversionen zusammen mit der IPF Client Version,
 die mindestens benötigt wird, um einen Versand durchführen zu können:
 
-| Taxonomieversion | Unterstützt ab IFP Client-Version |
+| Taxonomieversion | Unterstützt ab IFP Client Version |
 | ---------------- | --------------------------------- |
 | HGB 6.3          | 1.1.4                             |
 | HGB 6.2          | 1.1.1                             |
