@@ -76,9 +76,6 @@ die mindestens benötigt wird, um einen Versand durchführen zu können:
 | EÜR 1.1          | 1.1.4                             |
 | EÜR 1.0          | 1.0.0                             |
 
-* HGB 6.3, 6.2, 6.1, 6.0, 5.4
-* EÜR 1.2, 1,1, 1.0
-
 ## Lizenzinformationen
 
 Dieses Programm ist freie Software. Sie können es unter den Bedingungen der GNU General Public License, Version 3, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren. Link zu den GPL: https://www.gnu.org/licenses/gpl-3.0.txt
