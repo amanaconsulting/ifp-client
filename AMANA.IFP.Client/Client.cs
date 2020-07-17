@@ -30,6 +30,8 @@ namespace AMANA.IFP.Client
         {
             try
             {
+                ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12;
+
                 ns1ProtocolHeaderTyp protocol = new ns1ProtocolHeaderTyp();
                 protocol.version = "IFP_1.6";
                 protocol.engine = "Apache CXF 3.1.4";
@@ -80,7 +82,7 @@ namespace AMANA.IFP.Client
                     behavior.ServiceCertificate.SetDefaultCertificate(certificateSettings.StoreLocation, certificateSettings.StoreName, certificateSettings.FindType, certificateSettings.FindValue);
 
                 _elbaClient.Endpoint.Address = new EndpointAddress(new Uri(version.URL), EndpointIdentity.CreateDnsIdentity(behavior.ServiceCertificate.DefaultCertificate.GetNameInfo(X509NameType.SimpleName, false)));
-
+                
                 ns3QuittungTyp quittung = _elbaClient.uebernehmeElbaDaten(
                     channel,
                     identity,
