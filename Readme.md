@@ -1,5 +1,7 @@
 # AMANA IFP Client für den Digitalen Finanzbericht
 
+> :warning: **Maintainer needed**: Achtung, diese Projekt wird nicht mehr aktiv gepflegt!
+
 ## Installation
 
 Die aktuellste Version des Clients steht unter folgender Adresse zum Download zur Verfügung: [GitHub Releases](https://github.com/amanaconsulting/DiFin-Client/releases)
